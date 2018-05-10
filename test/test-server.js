@@ -18,7 +18,7 @@ const expect = chai.expect;
 // see: https://github.com/chaijs/chai-http
 chai.use(chaiHttp);
 
-describe('Initial Commit', function() {
+describe('Index Page', function() {
 
   // Before our tests run, we activate the server. Our `runServer`
   // function returns a promise, and we return the that promise by
@@ -41,7 +41,7 @@ describe('Initial Commit', function() {
   // test strategy:
   //   1. make request to `/`
   //   2. inspect response object and prove has right code in response object.
-  it('should respond with a 200 status code on GET', function() {
+  it('should exist', function() {
     // for Mocha tests, when we're dealing with asynchronous operations,
     // we must either return a Promise object or else call a `done` callback
     // at the end of the test. The `chai.request(server).get...` call is asynchronous
