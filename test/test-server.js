@@ -2,10 +2,14 @@
 
 const chai = require('chai');
 const chaiHttp = require('chai-http');
+const mongoose = require('mongoose');
 
 // Import server.js and use destructuring assignment to create variables for
 // server.app, server.runServer, and server.closeServer
+const {LaborWeek} = require('../models');
+const {SalesWeek} = require('../models');
 const {app, runServer, closeServer} = require('../server');
+const {TEST_DATABASE_URL} = require('../config');
 
 
 // this lets us use *expect* style syntax in our tests
@@ -26,7 +30,7 @@ describe('Index Page', function() {
   // there's a possibility of a race condition where our tests start
   // running before our server has started.
   before(function() {
-    return runServer();
+    return runServer(TEST_DATABASE_URL);
   });
 
   // although we only have one test module at the moment, we'll
