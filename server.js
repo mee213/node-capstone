@@ -2,13 +2,36 @@
 
 const express = require('express');
 const morgan = require('morgan');
+const mongoose = require('mongoose');
+
+// Mongoose internally uses a promise-like object,
+// but its better to make Mongoose use built in es6 promises
+mongoose.Promise = global.Promise;
+
+// config.js is where we control constants for entire
+// app like PORT and DATABASE_URL
+const { PORT, DATABASE_URL } = require('./config');
 
 const app = express();
+
+const laborRouter = require('./laborRouter');
+const salesRouter = require('./salesRouter');
 
 // log the http layer
 app.use(morgan('common'));
 
 app.use(express.static('public'));
+
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/views/index.html');
+});
+
+// when requests come into `/labor` or
+// `/sales`, we'll route them to the express
+// router instances we've imported. Remember,
+// these router instances act as modular, mini-express apps.
+app.use('/labor', laborRouter);
+app.use('/sales', salesRouter);
 
 // both runServer and closeServer need to access the same
 // server object, so we declare `server` here, and then when

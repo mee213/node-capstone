@@ -11,7 +11,12 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.3",
+    "mongoose": "^5.1.0",
     "morgan": "^1.9.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mee213/node-capstone"
   },
   "devDependencies": {
     "chai": "^4.1.2",

@@ -1,0 +1,51 @@
+{
+	"week_id": "201610",
+	"sunSales": "9085.55",
+	"monSales": "19692.03",
+	"tueSales": "29180.03",
+	"wedSales": "15809.44",
+	"thuSales": "34894.37",
+	"friSales": "19656.74",
+	"satSales": "16611.84",
+	"sunDate": "20160228",
+	"monDate": "20160229",
+	"tueDate": "20160301",
+	"wedDate": "20160302",
+	"thuDate": "20160303",
+	"friDate": "20160304",
+	"satDate": "20160305"
+}
+{
+	"week_id": "201611",
+	"sunSales": "8584.90",
+	"monSales": "17011.82",
+	"tueSales": "28897.25",
+	"wedSales": "16883.39",
+	"thuSales": "34202.71",
+	"friSales": "19328.42",
+	"satSales": "17970.36",
+	"sunDate": "20160306",
+	"monDate": "20160307",
+	"tueDate": "20160308",
+	"wedDate": "20160309",
+	"thuDate": "20160310",
+	"friDate": "20160311",
+	"satDate": "20160312"
+}
+{
+	"week_id": "201612",
+	"sunSales": "8957.19",
+	"monSales": "18965.16",
+	"tueSales": "37839.67",
+	"wedSales": "24300.40",
+	"thuSales": "36776.49",
+	"friSales": "20318.98",
+	"satSales": "18600.06",
+	"sunDate": "20160313",
+	"monDate": "20160314",
+	"tueDate": "20160315",
+	"wedDate": "20160316",
+	"thuDate": "20160317",
+	"friDate": "20160318",
+	"satDate": "20160319"
+}
