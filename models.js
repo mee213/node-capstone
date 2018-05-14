@@ -52,6 +52,20 @@ const salesWeekSchema = mongoose.Schema({
 // properties that are stored in the database. Here we use it
 // to generate a human readable string based on the author object
 // we're storing in Mongo.
+laborWeekSchema.virtual('totalLabor').get(function() {
+  const totalLabor = 	bakrsRegGrossPay + 
+  						bakrsOTGrossPay + 
+  						csrvcRegGrossPay +
+  						csrvcOTGrossPay +
+  						drvrsRegGrossPay +
+  						drvrsOTGrossPay +
+  						jntrsRegGrossPay +
+  						jntrsOTGrossPay +
+  						pckrsRegGrossPay +
+  						pckrsOTGrossPay;
+  return totalLabor;
+});
+
 salesWeekSchema.virtual('totalSales').get(function() {
   const totalSales = 	sunSales + 
   						monSales + 
@@ -68,8 +82,11 @@ salesWeekSchema.virtual('totalSales').get(function() {
 // exposes *some* of the fields we want from the underlying data
 laborWeekSchema.methods.serialize = function() {
 
-  return this; // right now it returns everything, can change later as needed
-}
+  return {
+  	week_id: this.week_id,
+  	totalLabor: this.totalLabor
+  };
+};
 
 salesWeekSchema.methods.serialize = function() {
 
@@ -77,8 +94,8 @@ salesWeekSchema.methods.serialize = function() {
   	week_id: this.week_id,
   	startDate: this.sunSales,
   	totalSales: this.totalSales
-  }
-}
+  };
+};
 
 const LaborWeek = mongoose.model('LaborWeek', laborWeekSchema);
 
