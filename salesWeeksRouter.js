@@ -16,10 +16,7 @@ router.get('/', (req, res) => {
     // call the `.serialize` instance method we've created in
     // models.js in order to only expose the data we want the API return.
     .then(salesweeks => {
-      res.json({
-        salesweeks: salesweeks.map(
-          (salesweek) => salesweek.serialize())
-      });
+      res.json(salesweeks.map(salesweek => salesweek.serialize()));
     })
     .catch(err => {
       console.error(err);
@@ -28,8 +25,11 @@ router.get('/', (req, res) => {
 });
 
 
-
-
-
+/*
+// catch-all endpoint if client makes request to non-existent endpoint
+router.use('*', function (req, res) {
+  res.status(404).json({ message: 'Not Found' });
+});
+*/
 
 module.exports = router;

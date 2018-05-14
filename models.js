@@ -1,6 +1,7 @@
 'use strict';
 
 const mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
 
 // this is our schema to represent a week's worth of labor data
 const laborWeekSchema = mongoose.Schema({
@@ -84,7 +85,7 @@ laborWeekSchema.methods.serialize = function() {
 
   return {
   	week_id: this.week_id,
-  	totalLabor: this.totalLabor
+  	periodEndDate: this.periodEndDate
   };
 };
 
@@ -92,8 +93,7 @@ salesWeekSchema.methods.serialize = function() {
 
   return {
   	week_id: this.week_id,
-  	startDate: this.sunSales,
-  	totalSales: this.totalSales
+  	sunSales: this.sunSales
   };
 };
 
