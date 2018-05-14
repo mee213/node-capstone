@@ -6,3 +6,9 @@ const router = express.Router();
 router.use(express.json());
 
 const {LaborWeek} = require('./models');
+
+
+
+
+
+module.exports = router;
