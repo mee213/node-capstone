@@ -26,6 +26,7 @@ router.get('/', (req, res) => {
 
 // send back JSON representation of single week of sales data on GET request by week_id
 router.get('/:week_id', (req, res) => {
+  console.log(req.params);
   SalesWeek
     .find({week_id: req.params.week_id})
     .then(salesweek => res.json(salesweek.serialize()))
