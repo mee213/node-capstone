@@ -18,8 +18,8 @@ function thisApp() {
 
 	    $.get(settings, processSalesWeekData)
 	    	.done(function () {
-	    		console.log(`salesWeek is ${salesWeek}`);
-	    		console.log(`laborWeek is ${laborWeek}`);
+	    		console.log(`salesWeek is ${JSON.stringify(salesWeek)}`);
+	    		console.log(`laborWeek is ${JSON.stringify(laborWeek)}`);
 	    	});
 	}
 
