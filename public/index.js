@@ -28,8 +28,8 @@ function thisApp() {
 	    	dataType: 'json'
 	    };
 
-	    $.get(settings, processLaborWeekData);
-	    	//.done(getDataFromSalesWeeksApi(weekID));
+	    $.get(settings, processLaborWeekData)
+	    	.done(getDataFromSalesWeeksApi(weekID));
 	}
 
 	function processSalesWeekData(data) {
