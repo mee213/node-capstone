@@ -16,7 +16,11 @@ function thisApp() {
 	    	dataType: 'json'
 	    };
 
-	    $.get(settings, processSalesWeekData);
+	    $.get(settings, processSalesWeekData)
+	    	.done(function () {
+	    		console.log(`salesWeek is ${salesWeek}`);
+	    		console.log(`laborWeek is ${laborWeek}`);
+	    	});
 	}
 
 	function getDataFromLaborWeeksApi(weekID) {
