@@ -53,29 +53,29 @@ const salesWeekSchema = mongoose.Schema({
 // properties that are stored in the database. Here we use it
 // to generate a human readable string based on the author object
 // we're storing in Mongo.
-laborWeekSchema.virtual('totalLabor').get(function() {
-  const totalLabor = 	bakrsRegGrossPay + 
-  						bakrsOTGrossPay + 
-  						csrvcRegGrossPay +
-  						csrvcOTGrossPay +
-  						drvrsRegGrossPay +
-  						drvrsOTGrossPay +
-  						jntrsRegGrossPay +
-  						jntrsOTGrossPay +
-  						pckrsRegGrossPay +
-  						pckrsOTGrossPay;
-  return totalLabor;
+laborWeekSchema.virtual('totalGrossPay').get(function() {
+  const totalGrossPay = this.bakrsRegGrossPay + 
+  						this.bakrsOTGrossPay + 
+  						this.csrvcRegGrossPay +
+  						this.csrvcOTGrossPay +
+  						this.drvrsRegGrossPay +
+  						this.drvrsOTGrossPay +
+  						this.jntrsRegGrossPay +
+  						this.jntrsOTGrossPay +
+  						this.pckrsRegGrossPay +
+  						this.pckrsOTGrossPay;
+  return totalGrossPay;
 });
 
 salesWeekSchema.virtual('totalSales').get(function() {
-  const totalSales = 	sunSales + 
-  						monSales + 
-  						tueSales +
-  						wedSales +
-  						thuSales +
-  						friSales +
-  						satSales;
-  return totalSales;
+  const totalSales = 	this.sunSales + 
+  						this.monSales + 
+  						this.tueSales +
+  						this.wedSales +
+  						this.thuSales +
+  						this.friSales +
+  						this.satSales;
+  return totalSales.toFixed(2);
 });
 
 // this is an *instance method* which will be available on all instances
@@ -85,7 +85,7 @@ laborWeekSchema.methods.serialize = function() {
 
   return {
   	week_id: this.week_id,
-  	periodEndDate: this.periodEndDate
+  	totalGrossPay: this.totalGrossPay
   };
 };
 
@@ -93,7 +93,8 @@ salesWeekSchema.methods.serialize = function() {
 
   return {
   	week_id: this.week_id,
-  	sunSales: this.sunSales
+  	totalSales: this.totalSales,
+  	startDate: this.sunDate
   };
 };
 
