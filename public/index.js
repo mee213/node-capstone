@@ -16,7 +16,7 @@ function thisApp() {
 	    	dataType: 'json'
 	    };
 
-	    $.get(settings, processSalesWeekData(data));
+	    $.get(settings, processSalesWeekData);
 	}
 
 	function getDataFromLaborWeeksApi(weekID) {
@@ -25,12 +25,11 @@ function thisApp() {
 
 	    const settings = {
 	    	url: `${LABORWEEKS_URL}/${weekID}`,
-	    	dataType: 'json',
-	    	type: 'GET'
+	    	dataType: 'json'
 	    };
 
-	    $.ajax(settings, processLaborWeekData(data))
-	    	.done(getDataFromSalesWeeksApi(weekID));
+	    $.get(settings, processLaborWeekData);
+	    	//.done(getDataFromSalesWeeksApi(weekID));
 	}
 
 	function processSalesWeekData(data) {
