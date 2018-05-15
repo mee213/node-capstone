@@ -12,7 +12,7 @@ function thisApp() {
 	    let url = `${SALESWEEKS_URL}/${weekID}`;
 	    console.log(`The url is ${url}`);
 
-	    $.get(url)
+	    $.getJSON(url)
 	    	.done(processSalesWeekData(data));
 	}
 
