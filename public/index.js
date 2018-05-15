@@ -64,8 +64,9 @@ function thisApp() {
 	      console.log('Search button clicked');
 	      const queryTarget = $(event.currentTarget).find('.js-query');
 	      const query = queryTarget.val();
-	      getDataFromSalesWeeksApi(query);
 	      getDataFromLaborWeeksApi(query, processLaborWeekData);
+	      //getDataFromSalesWeeksApi(query);
+	      
 	    });
 	}
 
