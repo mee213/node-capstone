@@ -5,18 +5,14 @@ function thisApp() {
 	const SALESWEEKS_URL = 'https://fast-citadel-48845.herokuapp.com/salesWeeks';
 	const LABORWEEKS_URL = 'https://fast-citadel-48845.herokuapp.com/laborWeeks';
 
-	function getDataFromSalesWeeksApi(weekID, callback) {
+	function getDataFromSalesWeeksApi(weekID) {
     
 		console.log('getDataFromSalesWeeksApi ran');
 
-	    const settings = {
-	    	url: `${SALESWEEKS_URL}/${weekID}`,
-	    	dataType: 'json',
-	    	type: 'GET',
-	    	success: callback
-	    };
+	    let url = `${SALESWEEKS_URL}/${weekID}`;
 
-	    $.ajax(settings);
+	    $.getJSON(url)
+	    	.done(processSalesWeekData(data));
 	}
 
 	function getDataFromLaborWeeksApi(weekID, callback) {
@@ -68,7 +64,7 @@ function thisApp() {
 	      console.log('Search button clicked');
 	      const queryTarget = $(event.currentTarget).find('.js-query');
 	      const query = queryTarget.val();
-	      getDataFromSalesWeeksApi(query, processSalesWeekData);
+	      getDataFromSalesWeeksApi(query);
 	      getDataFromLaborWeeksApi(query, processLaborWeekData);
 	    });
 	}
