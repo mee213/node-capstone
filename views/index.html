@@ -15,7 +15,33 @@
 </head>
 
 <body>
-	<p>Hello World!</p>
+	<header role="banner">
+		<div class="row">
+			<div class="col-12">
+				<h1>Weekly Sales and Labor Report</h1>
+			</div>
+		</div>
+	</header>
+
+	<main role="main">
+
+		<div class="row">
+            <div class="col-12">
+             	<form action="#" class="js-search-form">
+                	<label for="search">Which week would you like to search for?</label>
+                	<input type="text" class="js-query" id="search">
+                	<button type="submit">Search</button>
+              	</form>
+            </div>
+        </div>
+          
+        <div class="js-results row" aria-live="assertive" hidden>
+            
+        </div>
+
+	</main>
+
+	
 
 	<script src="index.js"></script>
 </body>
