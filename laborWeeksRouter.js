@@ -25,9 +25,9 @@ router.get('/', (req, res) => {
 });
 
 // send back JSON representation of single week of labor data on GET request by week_id
-router.get('/:week_id', (req, res) => {
+router.get('/:weekId', (req, res) => {
   LaborWeek
-    .find({week_id: req.params.week_id})
+    .findOne({week_id: req.params.weekId})
     .then(laborweek => res.json(laborweek.serialize()))
     .catch(err => {
       console.error(err);

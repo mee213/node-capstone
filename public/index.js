@@ -10,8 +10,9 @@ function thisApp() {
 		console.log('getDataFromSalesWeeksApi ran');
 
 	    let url = `${SALESWEEKS_URL}/${weekID}`;
+	    console.log(`The url is ${url}`);
 
-	    $.getJSON(url)
+	    $.get(url)
 	    	.done(processSalesWeekData(data));
 	}
 
