@@ -36,7 +36,7 @@ function thisApp() {
 	function processSalesWeekData(data) {
 
 		console.log('processSalesWeekData ran');
-		console.log(`The data is ${data}`);
+		console.log(`The weekID is ${data.week_id}`);
 
 	}
 
