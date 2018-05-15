@@ -24,7 +24,16 @@ router.get('/', (req, res) => {
     });
 });
 
-
+// send back JSON representation of single week of sales data on GET request by week_id
+router.get('/:week_id', (req, res) => {
+  SalesWeek
+    .find({week_id: req.params.week_id})
+    .then(salesweek => res.json(salesweek.serialize()))
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({ message: 'Internal server error' });
+    });
+});
 /*
 // catch-all endpoint if client makes request to non-existent endpoint
 router.use('*', function (req, res) {

@@ -1,16 +1,17 @@
 function thisApp() {
 
+	console.log('thisApp ran');
+
 	const SALESWEEKS_URL = 'https://fast-citadel-48845.herokuapp.com/salesWeeks';
 	const LABORWEEKS_URL = 'https://fast-citadel-48845.herokuapp.com/laborWeeks';
 
-	function getDataFromSalesWeeksApi(searchTerm, callback) {
+	function getDataFromSalesWeeksApi(weekID, callback) {
     
+		console.log('getDataFromSalesWeeksApi ran');
+
 	    const settings = {
-	    	url: SALESWEEKS_URL,
-	    	data: {
-	     		'q': searchTerm
-	    	},
-	    	dataType: 'jsonp',
+	    	url: `${SALESWEEKS_URL}/${weekID}`,
+	    	dataType: 'json',
 	    	type: 'GET',
 	    	success: callback
 	    };
@@ -18,35 +19,62 @@ function thisApp() {
 	    $.ajax(settings);
 	}
 
-	function getDataFromLaborWeeksApi(searchTerm, callback) {
+	function getDataFromLaborWeeksApi(weekID, callback) {
     
+		console.log('getDataFromLaborWeeksApi ran');
+
 	    const settings = {
-	    	url: LABORWEEKS_URL,
-	    	data: {
-	     		'q': searchTerm
-	    	},
-	    	dataType: 'jsonp',
+	    	url: `${LABORWEEKS_URL}/${weekID}`,
+	    	dataType: 'json',
 	    	type: 'GET',
 	    	success: callback
 	    };
 
 	    $.ajax(settings);
+	}
+
+	function processSalesWeekData(data) {
+
+		console.log('processSalesWeekData ran');
+		console.log(data);
+
+	}
+
+	function processLaborWeekData(data) {
+
+		console.log('processLaborWeekData ran');
+		console.log(data);
+
+	}
+
+	function populateResultsToDOM(results_1) {
+    	console.log('populateResultsToDOM ran');
+    	$('.js-results').html(results_1);
+    }
+
+	function unhideResultsDiv() {
+    	console.log('unhideResultsDiv ran');
+    	$('.js-results').prop('hidden', false);
 	}
 
 	function watchSubmitSearch() {
     
+		console.log('watchSubmitSearch ran');
+
 	    clearInput();
 
 	    $('.js-search-form').submit(event => {
 	      event.preventDefault();
+	      console.log('Search button clicked');
 	      const queryTarget = $(event.currentTarget).find('.js-query');
 	      const query = queryTarget.val();
-	      getDataFromSalesWeeksApi(query, callbackGoesHere);
-	      getDataFromLaborWeeksApi(query, callbackGoesHere);
+	      getDataFromSalesWeeksApi(query, processSalesWeekData);
+	      getDataFromLaborWeeksApi(query, processLaborWeekData);
 	    });
 	}
 
 	function clearInput() {
+    	console.log('clearInput ran');
     	$('.js-query').val("");
 	}
 
