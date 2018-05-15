@@ -12,8 +12,7 @@ function thisApp() {
 	    let url = `${SALESWEEKS_URL}/${weekID}`;
 	    console.log(`The url is ${url}`);
 
-	    $.getJSON(url)
-	    	.done(processSalesWeekData(data));
+	    $.getJSON(url, processSalesWeekData(data));
 	}
 
 	function getDataFromLaborWeeksApi(weekID, callback) {
