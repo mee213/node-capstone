@@ -4,35 +4,40 @@ function thisApp() {
 
 	const SALESWEEKS_URL = 'https://fast-citadel-48845.herokuapp.com/salesWeeks';
 	const LABORWEEKS_URL = 'https://fast-citadel-48845.herokuapp.com/laborWeeks';
+	let laborWeek;
+	let salesWeek;
 
 	function getDataFromSalesWeeksApi(weekID) {
     
 		console.log('getDataFromSalesWeeksApi ran');
 
-	    let url = `${SALESWEEKS_URL}/${weekID}`;
-	    console.log(`The url is ${url}`);
+	    const settings = {
+	    	url: `${SALESWEEKS_URL}/${weekID}`,
+	    	dataType: 'json'
+	    };
 
-	    $.getJSON(url, processSalesWeekData(data));
+	    $.get(settings, processSalesWeekData(data));
 	}
 
-	function getDataFromLaborWeeksApi(weekID, callback) {
+	function getDataFromLaborWeeksApi(weekID) {
     
 		console.log('getDataFromLaborWeeksApi ran');
 
 	    const settings = {
 	    	url: `${LABORWEEKS_URL}/${weekID}`,
 	    	dataType: 'json',
-	    	type: 'GET',
-	    	success: callback
+	    	type: 'GET'
 	    };
 
-	    $.ajax(settings);
+	    $.ajax(settings, processLaborWeekData(data))
+	    	.done(getDataFromSalesWeeksApi(weekID));
 	}
 
 	function processSalesWeekData(data) {
 
 		console.log('processSalesWeekData ran');
 		console.log(`The weekID is ${data.week_id}`);
+		salesWeek = data;
 
 	}
 
@@ -40,6 +45,7 @@ function thisApp() {
 
 		console.log('processLaborWeekData ran');
 		console.log(data);
+		laborWeek = data;
 
 	}
 
@@ -64,8 +70,8 @@ function thisApp() {
 	      console.log('Search button clicked');
 	      const queryTarget = $(event.currentTarget).find('.js-query');
 	      const query = queryTarget.val();
-	      getDataFromLaborWeeksApi(query, processLaborWeekData);
-	      //getDataFromSalesWeeksApi(query);
+	      getDataFromLaborWeeksApi(query);
+
 	      
 	    });
 	}
