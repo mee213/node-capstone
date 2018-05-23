@@ -24,7 +24,7 @@ function thisApp() {
 	    	//	console.log(`laborWeek is ${JSON.stringify(laborWeek)}`);
 	    	//})
 	    	//.done(unhideResultsDiv())
-	    	.done(doSomeD3OneWeek());
+	    	.done(doSomeD3OneWeek(salesWeek, laborWeek));
 	}
 
 	function getDataFromLaborWeeksApi(weekID) {
@@ -51,7 +51,7 @@ function thisApp() {
 	}
 
 	// create a data object for D3 containing only the gross pay totals for each dept
-	function createGrossPayByDeptObj() {
+	function createGrossPayByDeptObj(salesWeek, laborWeek) {
 		let grossPayByDeptData;
 		if (salesWeek.week_id === laborWeek.week_id) { // only merge if both weeks are the same
 			grossPayByDeptData.bakrsTotalGrossPay = laborWeek.bakrsTotalGrossPay;
@@ -65,12 +65,12 @@ function thisApp() {
 		}
 	}
 
-	function doSomeD3OneWeek() {
+	function doSomeD3OneWeek(salesWeek, laborWeek) {
 
 		unhideResultsDiv();
 
 		// get data object
-		const dataset = createGrossPayByDeptObj();
+		const dataset = createGrossPayByDeptObj(salesWeek, laborWeek);
 
 		//Width and height
 		let w = 500;
