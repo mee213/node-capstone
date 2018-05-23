@@ -24,7 +24,8 @@ function thisApp() {
 	    	//	console.log(`laborWeek is ${JSON.stringify(laborWeek)}`);
 	    	//})
 	    	//.done(unhideResultsDiv())
-	    	.done(doSomeD3OneWeek());
+	    	.then(doSomeD3OneWeek())
+	    	.done();
 	}
 
 	function getDataFromLaborWeeksApi(weekID) {
