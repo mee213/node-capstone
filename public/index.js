@@ -19,10 +19,10 @@ function thisApp() {
 	    };
 
 	    $.get(settings, processSalesWeekData)
-	    	//.done(function () {
-	    	//	console.log(`salesWeek is ${JSON.stringify(salesWeek)}`);
-	    	//	console.log(`laborWeek is ${JSON.stringify(laborWeek)}`);
-	    	//})
+	    	.then(function () {
+	    		console.log(`Inside of promise chain, salesWeek is ${JSON.stringify(salesWeek)}`);
+	    		console.log(`Inside of promise chain, laborWeek is ${JSON.stringify(laborWeek)}`);
+	    	})
 	    	//.done(unhideResultsDiv())
 	    	.then(doSomeD3OneWeek())
 	    	.done();
@@ -42,12 +42,13 @@ function thisApp() {
 	function processSalesWeekData(data) {
 
 		salesWeek = data;
-
+		console.log(`inside of processSalesWeekData(), salesWeek is ${JSON.stringify(salesWeek)}`);
 	}
 
 	function processLaborWeekData(data) {
 
 		laborWeek = data;
+		console.log(`inside of processLaborWeekData(), laborWeek is ${JSON.stringify(laborWeek)}`);
 
 	}
 
