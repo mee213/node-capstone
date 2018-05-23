@@ -20,8 +20,8 @@ function thisApp() {
 	    	.done(function () {
 	    		console.log(`salesWeek is ${JSON.stringify(salesWeek)}`);
 	    		console.log(`laborWeek is ${JSON.stringify(laborWeek)}`);
-	    	});
-	    	,done(unhideResultsDiv());
+	    	})
+	    	.done(unhideResultsDiv())
 	    	.done(doSomeD3OneWeek());
 	}
 
