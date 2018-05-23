@@ -55,6 +55,8 @@ function thisApp() {
 	function createGrossPayByDeptObj(salesWeek_, laborWeek_) {
 		console.log(`salesWeek_ is ${JSON.stringify(salesWeek_)}`);
 	   	console.log(`laborWeek_ is ${JSON.stringify(laborWeek_)}`);
+	   	console.log(`salesWeek is ${JSON.stringify(salesWeek)}`);
+	   	console.log(`laborWeek is ${JSON.stringify(laborWeek)}`);
 
 		let grossPayByDeptData;
 		if (salesWeek_.week_id === laborWeek_.week_id) { // only merge if both weeks are the same
