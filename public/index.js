@@ -21,11 +21,11 @@ function thisApp() {
 	    		console.log(`salesWeek is ${JSON.stringify(salesWeek)}`);
 	    		console.log(`laborWeek is ${JSON.stringify(laborWeek)}`);
 	    	});
+	    	,done(unhideResultsDiv());
+	    	.done(doSomeD3OneWeek());
 	}
 
 	function getDataFromLaborWeeksApi(weekID) {
-    
-		console.log('getDataFromLaborWeeksApi ran');
 
 	    const settings = {
 	    	url: `${LABORWEEKS_URL}/${weekID}`,
@@ -38,17 +38,73 @@ function thisApp() {
 
 	function processSalesWeekData(data) {
 
-		console.log('processSalesWeekData ran');
-		console.log(`The weekID is ${data.week_id}`);
 		salesWeek = data;
 
 	}
 
 	function processLaborWeekData(data) {
 
-		console.log('processLaborWeekData ran');
-		console.log(data);
 		laborWeek = data;
+
+	}
+
+	// create a data object for D3 containing only the gross pay totals for each dept
+	function createGrossPayByDeptObj() {
+		let grossPayByDeptData;
+		if (salesWeek.week_id === laborWeek.week_id) { // only merge if both weeks are the same
+			grossPayByDeptData.bakrsTotalGrossPay = laborWeek.bakrsTotalGrossPay;
+			grossPayByDeptData.csrvcTotalGrossPay = laborWeek.csrvcTotalGrossPay;
+			grossPayByDeptData.drvrsTotalGrossPay = laborWeek.drvrsTotalGrossPay;
+			grossPayByDeptData.jntrsTotalGrossPay = laborWeek.jntrsTotalGrossPay;
+			grossPayByDeptData.pckrsTotalGrossPay = laborWeek.pckrsTotalGrossPay;
+			return grossPayByDeptData;
+		} else {
+			console.log("salesWeek.week_id does not match laborWeek.week_id");
+		}
+	}
+
+	function doSomeD3OneWeek() {
+
+		// get data object
+		const dataset = createGrossPayByDeptObj();
+
+		//Width and height
+		let w = 500;
+		let h = 300;
+		let padding = 20;
+
+		//Create scale functions
+		//var xScale = d3.scaleLinear()
+		//					 .domain([0, d3.max(dataset, function(d) { return d[0]; })])
+		//					 .range([padding, w - padding * 2]);
+
+		//var yScale = d3.scaleLinear()
+		//					 .domain([0, d3.max(dataset, function(d) { return d[1]; })])
+		//					 .range([h - padding, padding]);
+
+		//Create SVG element
+		let svg = d3.select(".js-results")
+					.append("svg")
+					.attr("width", w)
+					.attr("height", h);
+
+		svg.selectAll("rect")
+			.data(dataset)
+			.enter()
+			.append("rect")
+			.attr("x", function(d, i) {
+				return i * (w/ dataset.length);
+			})
+			.attr("y", function(d) {
+				return h - (d * 4);
+			})
+			.attr("width", w / dataset.length - barPadding)
+		   	.attr("height", function(d) {
+		   		return d * 4;
+		  	 })
+		   	.attr("fill", function(d) {
+				return "rgb(0, 0, " + Math.round(d * 10) + ")";
+		   	});
 
 	}
 
