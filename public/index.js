@@ -1,3 +1,5 @@
+'use strict';
+
 function thisApp() {
 
 	console.log('thisApp ran');
