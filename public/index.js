@@ -17,11 +17,11 @@ function thisApp() {
 	    };
 
 	    $.get(settings, processSalesWeekData)
-	    	.done(function () {
-	    		console.log(`salesWeek is ${JSON.stringify(salesWeek)}`);
-	    		console.log(`laborWeek is ${JSON.stringify(laborWeek)}`);
-	    	})
-	    	.done(unhideResultsDiv())
+	    	//.done(function () {
+	    	//	console.log(`salesWeek is ${JSON.stringify(salesWeek)}`);
+	    	//	console.log(`laborWeek is ${JSON.stringify(laborWeek)}`);
+	    	//})
+	    	//.done(unhideResultsDiv())
 	    	.done(doSomeD3OneWeek());
 	}
 
@@ -64,6 +64,8 @@ function thisApp() {
 	}
 
 	function doSomeD3OneWeek() {
+
+		unhideResultsDiv();
 
 		// get data object
 		const dataset = createGrossPayByDeptObj();
