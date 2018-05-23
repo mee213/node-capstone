@@ -51,20 +51,20 @@ function thisApp() {
 	}
 
 	// create a data object for D3 containing only the gross pay totals for each dept
-	function createGrossPayByDeptObj(salesWeek, laborWeek) {
-		console.log(`salesWeek is ${JSON.stringify(salesWeek)}`);
-	   	console.log(`laborWeek is ${JSON.stringify(laborWeek)}`);
+	function createGrossPayByDeptObj(salesWeek_, laborWeek_) {
+		console.log(`salesWeek_ is ${JSON.stringify(salesWeek_)}`);
+	   	console.log(`laborWeek_ is ${JSON.stringify(laborWeek_)}`);
 
 		let grossPayByDeptData;
-		if (salesWeek.week_id === laborWeek.week_id) { // only merge if both weeks are the same
-			grossPayByDeptData.bakrsTotalGrossPay = laborWeek.bakrsTotalGrossPay;
-			grossPayByDeptData.csrvcTotalGrossPay = laborWeek.csrvcTotalGrossPay;
-			grossPayByDeptData.drvrsTotalGrossPay = laborWeek.drvrsTotalGrossPay;
-			grossPayByDeptData.jntrsTotalGrossPay = laborWeek.jntrsTotalGrossPay;
-			grossPayByDeptData.pckrsTotalGrossPay = laborWeek.pckrsTotalGrossPay;
+		if (salesWeek_.week_id === laborWeek_.week_id) { // only merge if both weeks are the same
+			grossPayByDeptData.bakrsTotalGrossPay = laborWeek_.bakrsTotalGrossPay;
+			grossPayByDeptData.csrvcTotalGrossPay = laborWeek_.csrvcTotalGrossPay;
+			grossPayByDeptData.drvrsTotalGrossPay = laborWeek_.drvrsTotalGrossPay;
+			grossPayByDeptData.jntrsTotalGrossPay = laborWeek_.jntrsTotalGrossPay;
+			grossPayByDeptData.pckrsTotalGrossPay = laborWeek_.pckrsTotalGrossPay;
 			return grossPayByDeptData;
 		} else {
-			console.log("salesWeek.week_id does not match laborWeek.week_id");
+			console.log("salesWeek_.week_id does not match laborWeek_.week_id");
 		}
 	}
 
