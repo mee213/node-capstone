@@ -61,6 +61,7 @@ function thisApp() {
 
 		let grossPayByDeptData;
 		if (salesWeek_.week_id === laborWeek_.week_id) { // only merge if both weeks are the same
+			console.log('this happened');
 			grossPayByDeptData.bakrsTotalGrossPay = laborWeek_.bakrsTotalGrossPay;
 			grossPayByDeptData.csrvcTotalGrossPay = laborWeek_.csrvcTotalGrossPay;
 			grossPayByDeptData.drvrsTotalGrossPay = laborWeek_.drvrsTotalGrossPay;
