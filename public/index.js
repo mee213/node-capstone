@@ -41,10 +41,12 @@ const getDataFromSalesWeeksAPI = function(weekID) {
 	    	dataType: 'json'
 	    };
 
-	    let salesResponse = $.get(settings);
+	    $.get(settings, function(data) {
+	    	resolve(data);
+	    });
 
-	    sales_Week = salesResponse.responseJSON;
-
+/*
+	    
 	    console.log(sales_Week);
 
 	    if (sales_Week != undefined) {
@@ -52,6 +54,7 @@ const getDataFromSalesWeeksAPI = function(weekID) {
 	    } else {
 	    	reject(Error("There has been an error in getDataFromSalesWeeksAPI"));
 	    }
+	    */
 
 	});
 }
