@@ -42,7 +42,7 @@ const getDataFromSalesWeeksAPI = function(weekID) {
 	    };
 
 	    sales_Week = $.get(settings, function(data) {
-	    	return data;
+	    	return data.responseJSON;
 	    });
 
 	    console.log(sales_Week);
