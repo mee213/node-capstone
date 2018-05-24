@@ -46,6 +46,8 @@ const getDataFromSalesWeeksAPI = function(weekID) {
 	    	console.log(sales_Week);
 	    });
 
+	    console.log(sales_Week);
+
 	    if (sales_Week != undefined) {
 	    	resolve (sales_Week);
 	    } else {
@@ -70,6 +72,8 @@ const getDataFromLaborWeeksAPI = function(weekID) {
 	    	labor_Week = data;
 	    	console.log(labor_Week);
 	    });
+
+	    console.log(labor_Week);
 
 	    if (labor_Week != undefined) {
 	    	resolve (labor_Week);
