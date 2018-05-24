@@ -71,10 +71,9 @@ const getDataFromLaborWeeksAPI = function(weekID) {
 	    };
 
 	    $.get(settings, function(data) {
-	    	labor_Week = data;
-	    	console.log(labor_Week);
+	    	resolve(data);
 	    });
-
+/*
 	    console.log(labor_Week);
 
 	    if (labor_Week != undefined) {
@@ -82,8 +81,8 @@ const getDataFromLaborWeeksAPI = function(weekID) {
 	    } else {
 	    	reject(Error("There has been an error in getDataFromLaborWeeksAPI"));
 	    }
-
-	})
+*/
+	});
 }
 
 // create a data object for D3 containing only the gross pay totals for each dept
