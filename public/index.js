@@ -6,51 +6,76 @@ const LABORWEEKS_URL = 'https://fast-citadel-48845.herokuapp.com/laborWeeks';
 const getDataFromAPIs = function(weekID) {
 
 	return new Promise(function(resolve, reject) {
-		
-		let salesWeek = getDataFromSalesWeeksAPI(weekID);
 
-		let laborWeek = getDataFromLaborWeeksAPI(weekID);
+		const getSalesWeek = getDataFromSalesWeeksAPI(weekID);
 
-		let grossPayByDept = createGrossPayByDeptObj(salesWeek, laborWeek);
+		const getLaborWeek = getDataFromLaborWeeksAPI(weekID);
+
+		const getSalesAndLaborWeeks = Promise.all([getSalesWeek, getLaborWeek]);
+
+		let grossPayByDept;
+
+		getSalesAndLaborWeeks
+			.then(function(responses) {
+				let salesWeek = responses[0];
+				let laborWeek = responses[1];
+				grossPayByDept = createGrossPayByDeptObj(salesWeek, laborWeek);
+			})
 
 		if (grossPayByDept != undefined) {
 			resolve (grossPayByDept);
 		} else {
-			reject(Error("There has been an error"));
+			reject(Error("There has been an error in getDataFromAPIs"));
 		}
 	});
 }
 
-function getDataFromSalesWeeksAPI(weekID) {
+const getDataFromSalesWeeksAPI = function(weekID) {
 
-	let sales_Week;
+	return new Promise(function(resolve, reject) {
 
-    const settings = {
-    	url: `${SALESWEEKS_URL}/${weekID}`,
-    	dataType: 'json'
-    };
+		let sales_Week;
 
-    $.get(settings, function(data) {
-    	sales_Week = data;
-    });
+	    const settings = {
+	    	url: `${SALESWEEKS_URL}/${weekID}`,
+	    	dataType: 'json'
+	    };
 
-    return sales_Week;
+	    $.get(settings, function(data) {
+	    	sales_Week = data;
+	    });
+
+	    if (sales_Week != undefined) {
+	    	resolve (sales_Week);
+	    } else {
+	    	reject(Error("There has been an error in getDataFromSalesWeeksAPI"));
+	    }
+
+	});
 }
 
-function getDataFromLaborWeeksAPI(weekID) {
+const getDataFromLaborWeeksAPI = function(weekID) {
 
-	let labor_Week;
+	return new Promise(function(resolve, reject) {
 
-    const settings = {
-    	url: `${LABORWEEKS_URL}/${weekID}`,
-    	dataType: 'json'
-    };
+		let labor_Week;
 
-    $.get(settings, function(data) {
-    	labor_Week = data;
-    });
+	    const settings = {
+	    	url: `${LABORWEEKS_URL}/${weekID}`,
+	    	dataType: 'json'
+	    };
 
-    return labor_Week;
+	    $.get(settings, function(data) {
+	    	labor_Week = data;
+	    });
+
+	    if (labor_Week != undefined) {
+	    	resolve (labor_Week);
+	    } else {
+	    	reject(Error("There has been an error in getDataFromLaborWeeksAPI"));
+	    }
+
+	})
 }
 
 // create a data object for D3 containing only the gross pay totals for each dept
