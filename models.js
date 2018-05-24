@@ -64,7 +64,7 @@ laborWeekSchema.virtual('totalGrossPay').get(function() {
   						this.jntrsOTGrossPay +
   						this.pckrsRegGrossPay +
   						this.pckrsOTGrossPay;
-  return totalGrossPay;
+  return totalGrossPay.toFixed(2);
 });
 
 laborWeekSchema.virtual('totalRegGrossPay').get(function() {
@@ -73,7 +73,7 @@ laborWeekSchema.virtual('totalRegGrossPay').get(function() {
   						this.drvrsRegGrossPay +
   						this.jntrsRegGrossPay +
   						this.pckrsRegGrossPay;
-  return totalRegGrossPay;
+  return totalRegGrossPay.toFixed(2);
 });
 
 laborWeekSchema.virtual('totalOTGrossPay').get(function() {
@@ -82,37 +82,37 @@ laborWeekSchema.virtual('totalOTGrossPay').get(function() {
   						this.drvrsOTGrossPay +
   						this.jntrsOTGrossPay +
   						this.pckrsOTGrossPay;
-  return totalOTGrossPay;
+  return totalOTGrossPay.toFixed(2);
 });
 
 laborWeekSchema.virtual('bakrsTotalGrossPay').get(function() {
   const bakrsTotalGrossPay = this.bakrsRegGrossPay + 
   						this.bakrsOTGrossPay;
-  return bakrsTotalGrossPay;
+  return bakrsTotalGrossPay.toFixed(2);
 });
 
 laborWeekSchema.virtual('csrvcTotalGrossPay').get(function() {
   const csrvcTotalGrossPay = this.csrvcRegGrossPay + 
   						this.csrvcOTGrossPay;
-  return csrvcTotalGrossPay;
+  return csrvcTotalGrossPay.toFixed(2);
 });
 
 laborWeekSchema.virtual('drvrsTotalGrossPay').get(function() {
   const drvrsTotalGrossPay = this.drvrsRegGrossPay + 
   						this.drvrsOTGrossPay;
-  return drvrsTotalGrossPay;
+  return drvrsTotalGrossPay.toFixed(2);
 });
 
 laborWeekSchema.virtual('jntrsTotalGrossPay').get(function() {
   const jntrsTotalGrossPay = this.jntrsRegGrossPay + 
   						this.jntrsOTGrossPay;
-  return jntrsTotalGrossPay;
+  return jntrsTotalGrossPay.toFixed(2);
 });
 
 laborWeekSchema.virtual('pckrsTotalGrossPay').get(function() {
   const pckrsTotalGrossPay = this.pckrsRegGrossPay + 
   						this.pckrsOTGrossPay;
-  return pckrsTotalGrossPay;
+  return pckrsTotalGrossPay.toFixed(2);
 });
 
 laborWeekSchema.virtual('totalHours').get(function() {
@@ -126,7 +126,7 @@ laborWeekSchema.virtual('totalHours').get(function() {
   						this.jntrsOTHours +
   						this.pckrsRegHours +
   						this.pckrsOTHours;
-  return totalHours;
+  return totalHours.toFixed(2);
 });
 
 laborWeekSchema.virtual('totalRegHours').get(function() {
@@ -135,7 +135,7 @@ laborWeekSchema.virtual('totalRegHours').get(function() {
   						this.drvrsRegHours +
   						this.jntrsRegHours +
   						this.pckrsRegHours;
-  return totalRegHours;
+  return totalRegHours.toFixed(2);
 });
 
 laborWeekSchema.virtual('totalOTHours').get(function() {
@@ -144,37 +144,37 @@ laborWeekSchema.virtual('totalOTHours').get(function() {
   						this.drvrsOTHours +
   						this.jntrsOTHours +
   						this.pckrsOTHours;
-  return totalOTHours;
+  return totalOTHours.toFixed(2);
 });
 
 laborWeekSchema.virtual('bakrsTotalHours').get(function() {
   const bakrsTotalHours = this.bakrsRegHours + 
   						this.bakrsOTHours;
-  return bakrsTotalHours;
+  return bakrsTotalHours.toFixed(2);
 });
 
 laborWeekSchema.virtual('csrvcTotalHours').get(function() {
   const csrvcTotalHours = this.csrvcRegHours + 
   						this.csrvcOTHours;
-  return csrvcTotalHours;
+  return csrvcTotalHours.toFixed(2);
 });
 
 laborWeekSchema.virtual('drvrsTotalHours').get(function() {
   const drvrsTotalHours = this.drvrsRegHours + 
   						this.drvrsOTHours;
-  return drvrsTotalHours;
+  return drvrsTotalHours.toFixed(2);
 });
 
 laborWeekSchema.virtual('jntrsTotalHours').get(function() {
   const jntrsTotalHours = this.jntrsRegHours + 
   						this.jntrsOTHours;
-  return jntrsTotalHours;
+  return jntrsTotalHours.toFixed(2);
 });
 
 laborWeekSchema.virtual('pckrsTotalHours').get(function() {
   const pckrsTotalHours = this.pckrsRegHours + 
   						this.pckrsOTHours;
-  return pckrsTotalHours;
+  return pckrsTotalHours.toFixed(2);
 });
 
 salesWeekSchema.virtual('totalSales').get(function() {
