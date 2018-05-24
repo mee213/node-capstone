@@ -43,7 +43,7 @@ const getDataFromSalesWeeksAPI = function(weekID) {
 
 	    $.get(settings, function(data) {
 	    	sales_Week = data;
-	    	console.log(`sales_Week is ${sales_Week}`);
+	    	console.log(sales_Week);
 	    });
 
 	    if (sales_Week != undefined) {
@@ -68,7 +68,7 @@ const getDataFromLaborWeeksAPI = function(weekID) {
 
 	    $.get(settings, function(data) {
 	    	labor_Week = data;
-	    	console.log(`labor_Week is ${labor_Week}`);
+	    	console.log(labor_Week);
 	    });
 
 	    if (labor_Week != undefined) {
