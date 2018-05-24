@@ -20,13 +20,12 @@ const getDataFromAPIs = function(weekID) {
 				let salesWeek = responses[0];
 				let laborWeek = responses[1];
 				grossPayByDept = createGrossPayByDeptObj(salesWeek, laborWeek);
+				if (grossPayByDept != undefined) {
+					resolve (grossPayByDept);
+				} else {
+					reject(Error("There has been an error in getDataFromAPIs"));
+				}
 			})
-
-		if (grossPayByDept != undefined) {
-			resolve (grossPayByDept);
-		} else {
-			reject(Error("There has been an error in getDataFromAPIs"));
-		}
 	});
 }
 
