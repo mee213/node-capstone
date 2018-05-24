@@ -130,7 +130,7 @@ function doSomeD3(data) {
 		.attr("y", function(d) {
 			return h - (d * 4);
 		})
-		.attr("width", w / dataset.length - barPadding)
+		.attr("width", w / dataset.length - padding)
 	   	.attr("height", function(d) {
 	   		return d * 4;
 	  	 })
