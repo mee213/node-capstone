@@ -43,19 +43,10 @@ const getDataFromSalesWeeksAPI = function(weekID) {
 
 	    $.get(settings, function(data) {
 	    	resolve(data);
-	    });
-
-/*
-	    
-	    console.log(sales_Week);
-
-	    if (sales_Week != undefined) {
-	    	resolve (sales_Week);
-	    } else {
-	    	reject(Error("There has been an error in getDataFromSalesWeeksAPI"));
-	    }
-	    */
-
+	    })
+	    	.fail(function() {
+	    		console.error("There has been an error in getDataFromSalesWeeksAPI");
+	    	});
 	});
 }
 
@@ -72,16 +63,10 @@ const getDataFromLaborWeeksAPI = function(weekID) {
 
 	    $.get(settings, function(data) {
 	    	resolve(data);
-	    });
-/*
-	    console.log(labor_Week);
-
-	    if (labor_Week != undefined) {
-	    	resolve (labor_Week);
-	    } else {
-	    	reject(Error("There has been an error in getDataFromLaborWeeksAPI"));
-	    }
-*/
+	    })
+	    	.fail(function() {
+	    		console.error("There has been an error in getDataFromLaborWeeksAPI");
+	    	});
 	});
 }
 
@@ -91,7 +76,7 @@ function createGrossPayByDeptObj(salesWeek_, laborWeek_) {
 	let salesWeek1 = salesWeek_;
 	let laborWeek1 = laborWeek_;
 
-	let grossPayByDeptData;
+	let grossPayByDeptData = {};
 
 	if (salesWeek1.week_id === laborWeek1.week_id) { // only merge if both weeks are the same
 		console.log('this happened');
