@@ -3,16 +3,22 @@
 const SALESWEEKS_URL = 'https://fast-citadel-48845.herokuapp.com/salesWeeks';
 const LABORWEEKS_URL = 'https://fast-citadel-48845.herokuapp.com/laborWeeks';
 
-function getDataFromAPIs(weekID) {
+const getDataFromAPIs = function(weekID) {
 
-	let salesWeek = getDataFromSalesWeeksAPI(weekID);
+	return new Promise(function(resolve, reject) {
+		
+		let salesWeek = getDataFromSalesWeeksAPI(weekID);
 
-	let laborWeek = getDataFromLaborWeeksAPI(weekID);
+		let laborWeek = getDataFromLaborWeeksAPI(weekID);
 
-	let grossPayByDept = createGrossPayByDeptObj(salesWeek, laborWeek);
+		let grossPayByDept = createGrossPayByDeptObj(salesWeek, laborWeek);
 
-	return grossPayByDept;
-
+		if (grossPayByDept != undefined) {
+			resolve (grossPayByDept);
+		} else {
+			reject(Error("There has been an error"));
+		}
+	});
 }
 
 function getDataFromSalesWeeksAPI(weekID) {
@@ -54,6 +60,7 @@ function createGrossPayByDeptObj(salesWeek_, laborWeek_) {
 	let laborWeek1 = laborWeek_;
 
 	let grossPayByDeptData;
+
 	if (salesWeek1.week_id === laborWeek1.week_id) { // only merge if both weeks are the same
 		console.log('this happened');
 		grossPayByDeptData.bakrsTotalGrossPay = laborWeek1.bakrsTotalGrossPay;
@@ -136,7 +143,8 @@ function watchSubmitSearch() {
       const queryTarget = $(event.currentTarget).find('.js-query');
       const query = queryTarget.val();
       getDataFromAPIs(query)
-      	.then(doSomeD3);
+      	.then(doSomeD3)
+      	.catch(err => console.error(err));
       
     });
 }
