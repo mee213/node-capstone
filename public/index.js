@@ -50,17 +50,20 @@ function getDataFromLaborWeeksAPI(weekID) {
 // create a data object for D3 containing only the gross pay totals for each dept
 function createGrossPayByDeptObj(salesWeek_, laborWeek_) {
 
+	let salesWeek1 = salesWeek_;
+	let laborWeek1 = laborWeek_;
+
 	let grossPayByDeptData;
-	if (salesWeek_.week_id === laborWeek_.week_id) { // only merge if both weeks are the same
+	if (salesWeek1.week_id === laborWeek1.week_id) { // only merge if both weeks are the same
 		console.log('this happened');
-		grossPayByDeptData.bakrsTotalGrossPay = laborWeek_.bakrsTotalGrossPay;
-		grossPayByDeptData.csrvcTotalGrossPay = laborWeek_.csrvcTotalGrossPay;
-		grossPayByDeptData.drvrsTotalGrossPay = laborWeek_.drvrsTotalGrossPay;
-		grossPayByDeptData.jntrsTotalGrossPay = laborWeek_.jntrsTotalGrossPay;
-		grossPayByDeptData.pckrsTotalGrossPay = laborWeek_.pckrsTotalGrossPay;
+		grossPayByDeptData.bakrsTotalGrossPay = laborWeek1.bakrsTotalGrossPay;
+		grossPayByDeptData.csrvcTotalGrossPay = laborWeek1.csrvcTotalGrossPay;
+		grossPayByDeptData.drvrsTotalGrossPay = laborWeek1.drvrsTotalGrossPay;
+		grossPayByDeptData.jntrsTotalGrossPay = laborWeek1.jntrsTotalGrossPay;
+		grossPayByDeptData.pckrsTotalGrossPay = laborWeek1.pckrsTotalGrossPay;
 		return grossPayByDeptData;
 	} else {
-		console.log("salesWeek_.week_id does not match laborWeek_.week_id");
+		console.log("salesWeek1.week_id does not match laborWeek1.week_id");
 	}
 }
 
