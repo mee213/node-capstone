@@ -87,6 +87,7 @@ function createGrossPayByDeptObj(salesWeek_, laborWeek_) {
 		grossPayByDeptData.drvrsTotalGrossPay = laborWeek1.drvrsTotalGrossPay;
 		grossPayByDeptData.jntrsTotalGrossPay = laborWeek1.jntrsTotalGrossPay;
 		grossPayByDeptData.pckrsTotalGrossPay = laborWeek1.pckrsTotalGrossPay;
+		console.log(grossPayByDeptData);
 		return grossPayByDeptData;
 	} else {
 		console.log("salesWeek1.week_id does not match laborWeek1.week_id");
