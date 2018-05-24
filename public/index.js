@@ -95,6 +95,7 @@ function createGrossPayByDeptObj(salesWeek_, laborWeek_) {
 
 	if (salesWeek1.week_id === laborWeek1.week_id) { // only merge if both weeks are the same
 		console.log('this happened');
+		console.log(laborWeek1);
 		grossPayByDeptData.bakrsTotalGrossPay = laborWeek1.bakrsTotalGrossPay;
 		grossPayByDeptData.csrvcTotalGrossPay = laborWeek1.csrvcTotalGrossPay;
 		grossPayByDeptData.drvrsTotalGrossPay = laborWeek1.drvrsTotalGrossPay;
