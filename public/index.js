@@ -15,17 +15,18 @@ const getDataFromAPIs = function(weekID) {
 
 		let grossPayByDept;
 
-		getSalesAndLaborWeeks
+		resolve(getSalesAndLaborWeeks
 			.then(function(responses) {
 				let salesWeek = responses[0];
 				let laborWeek = responses[1];
 				grossPayByDept = createGrossPayByDeptObj(salesWeek, laborWeek);
 				if (grossPayByDept != undefined) {
+					console.log(grossPayByDept);
 					resolve (grossPayByDept);
 				} else {
 					reject(Error("There has been an error in getDataFromAPIs"));
 				}
-			})
+			}));
 	});
 }
 
@@ -99,20 +100,21 @@ function doSomeD3(data) {
 
 	// get data object
 	const dataset = data;
+	console.log(dataset);
 
 	//Width and height
 	let w = 500;
 	let h = 300;
 	let padding = 20;
 
-	//Create scale functions
-	//var xScale = d3.scaleLinear()
-	//					 .domain([0, d3.max(dataset, function(d) { return d[0]; })])
-	//					 .range([padding, w - padding * 2]);
+	Create scale functions
+	var xScale = d3.scaleLinear()
+						 .domain([0, d3.max(dataset, function(d) { return d[0]; })])
+						 .range([padding, w - padding * 2]);
 
-	//var yScale = d3.scaleLinear()
-	//					 .domain([0, d3.max(dataset, function(d) { return d[1]; })])
-	//					 .range([h - padding, padding]);
+	var yScale = d3.scaleLinear()
+						 .domain([0, d3.max(dataset, function(d) { return d[1]; })])
+						 .range([h - padding, padding]);
 
 	//Create SVG element
 	let svg = d3.select(".js-results")
@@ -128,7 +130,7 @@ function doSomeD3(data) {
 			return i * (w/ dataset.length);
 		})
 		.attr("y", function(d) {
-			return h - (d * 4);
+			return h - (d);
 		})
 		.attr("width", w / dataset.length - padding)
 	   	.attr("height", function(d) {
