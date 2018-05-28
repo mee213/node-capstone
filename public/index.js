@@ -107,7 +107,7 @@ function doSomeD3(data) {
 	let h = 300;
 	let padding = 20;
 
-	Create scale functions
+	//Create scale functions
 	var xScale = d3.scaleLinear()
 						 .domain([0, d3.max(dataset, function(d) { return d[0]; })])
 						 .range([padding, w - padding * 2]);
