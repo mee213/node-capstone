@@ -99,6 +99,7 @@ function doSomeD3(data) {
 
 	// get data object
 	const dataset = data;
+	console.log(dataset);
 
 	//Width and height
 	let w = 500;
