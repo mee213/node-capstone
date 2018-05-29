@@ -15,7 +15,7 @@ const getDataFromAPIs = function(weekID) {
 
 		let grossPayByDept;
 
-		resolve(getSalesAndLaborWeeks
+		getSalesAndLaborWeeks
 			.then(function(responses) {
 				let salesWeek = responses[0];
 				let laborWeek = responses[1];
@@ -26,7 +26,7 @@ const getDataFromAPIs = function(weekID) {
 				} else {
 					reject(Error("There has been an error in getDataFromAPIs"));
 				}
-			}));
+			});
 	});
 }
 
