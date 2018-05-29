@@ -98,6 +98,7 @@ function doSomeD3(data) {
 
 	unhideResultsDiv();
 
+	console.log(data);
 	// get data object
 	const dataset = data;
 	console.log(dataset);
