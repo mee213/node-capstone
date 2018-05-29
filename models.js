@@ -74,7 +74,7 @@ laborWeekSchema.virtual('totalGrossPay').get(function() {
   						this.jntrsOTGrossPay +
   						this.pckrsRegGrossPay +
   						this.pckrsOTGrossPay;
-  return totalGrossPay;
+  return round(totalGrossPay, 2);
 
 });
 
@@ -84,7 +84,7 @@ laborWeekSchema.virtual('totalRegGrossPay').get(function() {
   						this.drvrsRegGrossPay +
   						this.jntrsRegGrossPay +
   						this.pckrsRegGrossPay;
-  return totalRegGrossPay;
+  return round(totalRegGrossPay, 2);
 });
 
 laborWeekSchema.virtual('totalOTGrossPay').get(function() {
@@ -93,25 +93,25 @@ laborWeekSchema.virtual('totalOTGrossPay').get(function() {
   						this.drvrsOTGrossPay +
   						this.jntrsOTGrossPay +
   						this.pckrsOTGrossPay;
-  return totalOTGrossPay;
+  return round(totalOTGrossPay, 2);
 });
 
 laborWeekSchema.virtual('bakrsTotalGrossPay').get(function() {
   const bakrsTotalGrossPay = this.bakrsRegGrossPay + 
   						this.bakrsOTGrossPay;
-  return bakrsTotalGrossPay;
+  return round(bakrsTotalGrossPay, 2);
 });
 
 laborWeekSchema.virtual('csrvcTotalGrossPay').get(function() {
   const csrvcTotalGrossPay = this.csrvcRegGrossPay + 
   						this.csrvcOTGrossPay;
-  return csrvcTotalGrossPay;
+  return round(csrvcTotalGrossPay, 2);
 });
 
 laborWeekSchema.virtual('drvrsTotalGrossPay').get(function() {
   const drvrsTotalGrossPay = this.drvrsRegGrossPay + 
   						this.drvrsOTGrossPay;
-  return drvrsTotalGrossPay;
+  return round(drvrsTotalGrossPay, 2);
 });
 
 laborWeekSchema.virtual('jntrsTotalGrossPay').get(function() {
@@ -123,7 +123,7 @@ laborWeekSchema.virtual('jntrsTotalGrossPay').get(function() {
 laborWeekSchema.virtual('pckrsTotalGrossPay').get(function() {
   const pckrsTotalGrossPay = this.pckrsRegGrossPay + 
   						this.pckrsOTGrossPay;
-  return pckrsTotalGrossPay;
+  return round(pckrsTotalGrossPay, 2);
 });
 
 laborWeekSchema.virtual('totalHours').get(function() {
@@ -137,7 +137,7 @@ laborWeekSchema.virtual('totalHours').get(function() {
   						this.jntrsOTHours +
   						this.pckrsRegHours +
   						this.pckrsOTHours;
-  return totalHours;
+  return round(totalHours, 2);
 });
 
 laborWeekSchema.virtual('totalRegHours').get(function() {
@@ -146,7 +146,7 @@ laborWeekSchema.virtual('totalRegHours').get(function() {
   						this.drvrsRegHours +
   						this.jntrsRegHours +
   						this.pckrsRegHours;
-  return totalRegHours;
+  return round(totalRegHours, 2);
 });
 
 laborWeekSchema.virtual('totalOTHours').get(function() {
@@ -155,37 +155,37 @@ laborWeekSchema.virtual('totalOTHours').get(function() {
   						this.drvrsOTHours +
   						this.jntrsOTHours +
   						this.pckrsOTHours;
-  return totalOTHours;
+  return round(totalOTHours, 2);
 });
 
 laborWeekSchema.virtual('bakrsTotalHours').get(function() {
   const bakrsTotalHours = this.bakrsRegHours + 
   						this.bakrsOTHours;
-  return bakrsTotalHours;
+  return round(bakrsTotalHours, 2);
 });
 
 laborWeekSchema.virtual('csrvcTotalHours').get(function() {
   const csrvcTotalHours = this.csrvcRegHours + 
   						this.csrvcOTHours;
-  return csrvcTotalHours;
+  return round(csrvcTotalHours, 2);
 });
 
 laborWeekSchema.virtual('drvrsTotalHours').get(function() {
   const drvrsTotalHours = this.drvrsRegHours + 
   						this.drvrsOTHours;
-  return drvrsTotalHours;
+  return round(drvrsTotalHours, 2);
 });
 
 laborWeekSchema.virtual('jntrsTotalHours').get(function() {
   const jntrsTotalHours = this.jntrsRegHours + 
   						this.jntrsOTHours;
-  return jntrsTotalHours;
+  return round(jntrsTotalHours, 2);
 });
 
 laborWeekSchema.virtual('pckrsTotalHours').get(function() {
   const pckrsTotalHours = this.pckrsRegHours + 
   						this.pckrsOTHours;
-  return pckrsTotalHours;
+  return round(pckrsTotalHours, 2);
 });
 
 salesWeekSchema.virtual('totalSales').get(function() {
@@ -196,7 +196,7 @@ salesWeekSchema.virtual('totalSales').get(function() {
   						this.thuSales +
   						this.friSales +
   						this.satSales;
-  return +round(totalSales, 2).toFixed(2);
+  return round(totalSales, 2);
 });
 
 // this is an *instance method* which will be available on all instances
