@@ -64,7 +64,8 @@ laborWeekSchema.virtual('totalGrossPay').get(function() {
   						this.jntrsOTGrossPay +
   						this.pckrsRegGrossPay +
   						this.pckrsOTGrossPay;
-  return +totalGrossPay.toFixed(2);
+  return +(Math.round(totalGrossPay * 100) / 100).toFixed(2);
+ 
 });
 
 laborWeekSchema.virtual('totalRegGrossPay').get(function() {
