@@ -196,7 +196,7 @@ salesWeekSchema.virtual('totalSales').get(function() {
   						this.thuSales +
   						this.friSales +
   						this.satSales;
-  return round(totalSales, 2);
+  return +round(totalSales, 2).toFixed(2);
 });
 
 // this is an *instance method* which will be available on all instances
