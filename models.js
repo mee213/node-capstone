@@ -88,7 +88,7 @@ laborWeekSchema.virtual('totalOTGrossPay').get(function() {
 laborWeekSchema.virtual('bakrsTotalGrossPay').get(function() {
   const bakrsTotalGrossPay = this.bakrsRegGrossPay + 
   						this.bakrsOTGrossPay;
-  return bakrsTotalGrossPay.toFixed(2);
+  return +bakrsTotalGrossPay.toFixed(2);
 });
 
 laborWeekSchema.virtual('csrvcTotalGrossPay').get(function() {
