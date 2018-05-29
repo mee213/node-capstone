@@ -106,13 +106,14 @@ function doSomeD3(data) {
 	let padding = 20;
 
 	//Create scale functions
-	var xScale = d3.scaleLinear()
-						 .domain([0, d3.max(dataset, function(d) { return d[0]; })])
-						 .range([padding, w - padding * 2]);
+	var xScale = d3.scaleBand()
+							.domain(d3.range(dataset.length))
+							.rangeRound([0, w])
+							.paddingInner(0.05);
 
 	var yScale = d3.scaleLinear()
-						 .domain([0, d3.max(dataset, function(d) { return d[1]; })])
-						 .range([h - padding, padding]);
+							.domain([0, d3.max(dataset)])
+							.range([0, h]);
 
 	//Create SVG element
 	let svg = d3.select(".js-results")
@@ -120,23 +121,43 @@ function doSomeD3(data) {
 				.attr("width", w)
 				.attr("height", h);
 
+	//Create bars
 	svg.selectAll("rect")
-		.data(dataset)
-		.enter()
-		.append("rect")
-		.attr("x", function(d, i) {
-			return i * (w/ dataset.length);
-		})
-		.attr("y", function(d) {
-			return h - (d);
-		})
-		.attr("width", w / dataset.length - padding)
-	   	.attr("height", function(d) {
-	   		return d * 4;
-	  	 })
-	   	.attr("fill", function(d) {
+	   .data(dataset)
+	   .enter()
+	   .append("rect")
+	   .attr("x", function(d, i) {
+	   		return xScale(i);
+	   })
+	   .attr("y", function(d) {
+	   		return h - yScale(d);
+	   })
+	   .attr("width", xScale.bandwidth())
+	   .attr("height", function(d) {
+	   		return yScale(d);
+	   })
+	   .attr("fill", function(d) {
 			return "rgb(0, 0, " + Math.round(d * 10) + ")";
-	   	});
+	   });
+
+	//Create labels
+	svg.selectAll("text")
+	   .data(dataset)
+	   .enter()
+	   .append("text")
+	   .text(function(d) {
+	   		return d;
+	   })
+	   .attr("text-anchor", "middle")
+	   .attr("x", function(d, i) {
+	   		return xScale(i) + xScale.bandwidth() / 2;
+	   })
+	   .attr("y", function(d) {
+	   		return h - yScale(d) + 14;
+	   })
+	   .attr("font-family", "sans-serif")
+	   .attr("font-size", "11px")
+	   .attr("fill", "white");
 
 }
 /*
