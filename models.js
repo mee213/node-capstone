@@ -48,6 +48,16 @@ const salesWeekSchema = mongoose.Schema({
 	satDate: {type: String, required: true}  		
 });
 
+
+//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/round#A_better_solution
+function round(number, precision) {
+  let shift = function (number, exponent) {
+    let numArray = ("" + number).split("e");
+    return +(numArray[0] + "e" + (numArray[1] ? (+numArray[1] + exponent) : exponent));
+  };
+  return shift(Math.round(shift(number, +precision)), -precision);
+}
+
 // *virtuals* (http://mongoosejs.com/docs/guide.html#virtuals)
 // allow us to define properties on our object that manipulate
 // properties that are stored in the database. Here we use it
@@ -64,8 +74,8 @@ laborWeekSchema.virtual('totalGrossPay').get(function() {
   						this.jntrsOTGrossPay +
   						this.pckrsRegGrossPay +
   						this.pckrsOTGrossPay;
-  return +(Math.round(totalGrossPay * 100) / 100).toFixed(2);
- 
+  return round(totalGrossPay, 2);
+
 });
 
 laborWeekSchema.virtual('totalRegGrossPay').get(function() {
