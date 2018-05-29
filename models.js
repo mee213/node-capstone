@@ -117,7 +117,7 @@ laborWeekSchema.virtual('drvrsTotalGrossPay').get(function() {
 laborWeekSchema.virtual('jntrsTotalGrossPay').get(function() {
   const jntrsTotalGrossPay = this.jntrsRegGrossPay + 
   						this.jntrsOTGrossPay;
-  return jntrsTotalGrossPay;
+  return round(jntrsTotalGrossPay, 2);
 });
 
 laborWeekSchema.virtual('pckrsTotalGrossPay').get(function() {
