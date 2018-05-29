@@ -21,7 +21,6 @@ const getDataFromAPIs = function(weekID) {
 				let laborWeek = responses[1];
 				grossPayByDept = createGrossPayByDeptObj(salesWeek, laborWeek);
 				if (grossPayByDept != undefined) {
-					console.log(grossPayByDept);
 					resolve (grossPayByDept);
 				} else {
 					reject(Error("There has been an error in getDataFromAPIs"));
@@ -98,10 +97,8 @@ function doSomeD3(data) {
 
 	unhideResultsDiv();
 
-	console.log(data);
 	// get data object
 	const dataset = data;
-	console.log(dataset);
 
 	//Width and height
 	let w = 500;
