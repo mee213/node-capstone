@@ -84,7 +84,7 @@ laborWeekSchema.virtual('totalRegGrossPay').get(function() {
   						this.drvrsRegGrossPay +
   						this.jntrsRegGrossPay +
   						this.pckrsRegGrossPay;
-  return +totalRegGrossPay.toFixed(2);
+  return totalRegGrossPay;
 });
 
 laborWeekSchema.virtual('totalOTGrossPay').get(function() {
