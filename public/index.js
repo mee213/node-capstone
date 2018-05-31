@@ -124,8 +124,7 @@ function doSomeD3(data) {
 
 	var yScale = d3.scaleLinear()
 							.domain([0, totalSales])
-							.rangeRound([0, svgHeight])
-							.nice();
+							.range([0, svgHeight]);
 
 	//Create SVG element
 	let svg = d3.select(".js-results")
