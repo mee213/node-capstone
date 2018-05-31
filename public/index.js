@@ -159,7 +159,7 @@ function doSomeD3(data) {
 	   .append("rect")
 	   .attr("x", centeredX) // center the bar inside the svg space
 	   .attr("y", function(d, i) {
-	   		return arrayOfYs[i];
+	   		return svgHeight - arrayOfYs[i];
 	   })
 	   .attr("width", barWidth)
 	   .attr("height", function(d) {
