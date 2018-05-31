@@ -119,13 +119,11 @@ function doSomeD3(data) {
 	
 
 	//Create scale functions
-	var xScale = d3.scaleLinear()
-							.domain(d3.range(dataset.length))
-							.range([0, w]);
+	
 
 	var yScale = d3.scaleLinear()
 							.domain([0, totalSales])
-							.range([0, h]);
+							.range([0, svgHeight]);
 
 	//Create SVG element
 	let svg = d3.select(".js-results")
