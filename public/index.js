@@ -99,13 +99,13 @@ function doSomeD3(data) {
 	unhideResultsDiv();
 
 	// extract labor data into its own object, put sales data in a separate variable
-	const dataset = {};
+	const dataset = [];
 
-	dataset.bakrsTotalGrossPay = data.bakrsTotalGrossPay;
-	dataset.csrvcTotalGrossPay = data.csrvcTotalGrossPay;
-	dataset.drvrsTotalGrossPay = data.drvrsTotalGrossPay;
-	dataset.jntrsTotalGrossPay = data.jntrsTotalGrossPay;
-	dataset.pckrsTotalGrossPay = data.pckrsTotalGrossPay;
+	dataset[0] = data.bakrsTotalGrossPay;
+	dataset[1] = data.csrvcTotalGrossPay;
+	dataset[2] = data.drvrsTotalGrossPay;
+	dataset[3] = data.jntrsTotalGrossPay;
+	dataset[4] = data.pckrsTotalGrossPay;
 
 	const totalSales = data.totalSales;
 
@@ -113,35 +113,37 @@ function doSomeD3(data) {
 	console.log(totalSales);
 
 	//Width and height
-	let w = 500;
-	let h = 300;
+	let svgWidth = 500;
+	let svgHeight = 500;
+	let barWidth = 20;
 	
 
 	//Create scale functions
-	var xScale = d3.scaleBand()
+	var xScale = d3.scaleLinear()
 							.domain(d3.range(dataset.length))
-							.rangeRound([0, w])
-							.paddingInner(0.05);
+							.range([0, w]);
 
 	var yScale = d3.scaleLinear()
-							.domain([0, d3.max(dataset)])
+							.domain([0, totalSales])
 							.range([0, h]);
 
 	//Create SVG element
 	let svg = d3.select(".js-results")
 				.append("svg")
-				.attr("width", w)
-				.attr("height", h);
+				.attr("width", svgWidth)
+				.attr("height", svgHeight);
 
 	//Create bars
 	svg.selectAll("rect")
 	   .data(dataset)
 	   .enter()
 	   .append("rect")
-	   .attr("x", 0)
-	   .attr("y", 0)
-	   .attr("width", 20)
-	   .attr("height", 100);
+	   .attr("x", ((svgWidth/2)-(barWidth/2)) // center the bar inside the svg space
+	   .attr("y", function(d) {
+	   		return yScale(d);
+	   })
+	   .attr("width", barWidth)
+	   .attr("height", yScale(d));
 
 	
 
