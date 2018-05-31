@@ -141,7 +141,9 @@ function doSomeD3(data) {
 	   		return yScale(d);
 	   })
 	   .attr("width", barWidth)
-	   .attr("height", yScale(d) );
+	   .attr("height", function(d) {
+	   		return yScale(d);
+	   	});
 
 }
 /*
