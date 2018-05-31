@@ -98,9 +98,19 @@ function doSomeD3(data) {
 
 	unhideResultsDiv();
 
-	// get data object
-	const dataset = data;
+	// extract labor data into its own object, put sales data in a separate variable
+	const dataset = {};
+
+	dataset.bakrsTotalGrossPay = data.bakrsTotalGrossPay;
+	dataset.csrvcTotalGrossPay = data.csrvcTotalGrossPay;
+	dataset.drvrsTotalGrossPay = data.drvrsTotalGrossPay;
+	dataset.jntrsTotalGrossPay = data.jntrsTotalGrossPay;
+	dataset.pckrsTotalGrossPay = data.pckrsTotalGrossPay;
+
+	const totalSales = data.totalSales;
+
 	console.log(dataset);
+	console.log(totalSales);
 
 	//Width and height
 	let w = 500;
