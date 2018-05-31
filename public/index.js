@@ -166,6 +166,22 @@ function doSomeD3(data) {
 	   		return yScale(d);
 	   	});
 
+	svg.selectAll("text")
+	   .data(dataset)
+	   .enter()
+	   .append("text")
+	   .text(function(d) {
+	   		return (d/totalSales*100).toFixed(2) + "%";
+	   })
+	   .attr("text-anchor", "middle")
+	   .attr("x", centeredX + barWidth/2)
+	   .attr("y", function(d, i) {
+	   		return svgHeight - arrayOfYs[i] + d/2;
+	   })
+	   .attr("font-family", "sans-serif")
+	   .attr("font-size", "11px")
+	   .attr("fill", "white");
+
 	 
 	
 
