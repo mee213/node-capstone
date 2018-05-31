@@ -86,6 +86,7 @@ function createGrossPayByDeptObj(salesWeek_, laborWeek_) {
 		grossPayByDeptData.drvrsTotalGrossPay = laborWeek1.drvrsTotalGrossPay;
 		grossPayByDeptData.jntrsTotalGrossPay = laborWeek1.jntrsTotalGrossPay;
 		grossPayByDeptData.pckrsTotalGrossPay = laborWeek1.pckrsTotalGrossPay;
+		grossPayByDeptData.totalSales = salesWeek1.totalSales;
 		console.log(grossPayByDeptData);
 		return grossPayByDeptData;
 	} else {
@@ -104,7 +105,7 @@ function doSomeD3(data) {
 	//Width and height
 	let w = 500;
 	let h = 300;
-	let padding = 20;
+	
 
 	//Create scale functions
 	var xScale = d3.scaleBand()
@@ -127,38 +128,12 @@ function doSomeD3(data) {
 	   .data(dataset)
 	   .enter()
 	   .append("rect")
-	   .attr("x", function(d, i) {
-	   		return xScale(i);
-	   })
-	   .attr("y", function(d) {
-	   		return h - yScale(d);
-	   })
-	   .attr("width", xScale.bandwidth())
-	   .attr("height", function(d) {
-	   		return yScale(d);
-	   })
-	   .attr("fill", function(d) {
-			return "rgb(0, 0, " + Math.round(d * 10) + ")";
-	   });
+	   .attr("x", 0)
+	   .attr("y", 0)
+	   .attr("width", 20)
+	   .attr("height", 100);
 
-	//Create labels
-	svg.selectAll("text")
-	   .data(dataset)
-	   .enter()
-	   .append("text")
-	   .text(function(d) {
-	   		return d;
-	   })
-	   .attr("text-anchor", "middle")
-	   .attr("x", function(d, i) {
-	   		return xScale(i) + xScale.bandwidth() / 2;
-	   })
-	   .attr("y", function(d) {
-	   		return h - yScale(d) + 14;
-	   })
-	   .attr("font-family", "sans-serif")
-	   .attr("font-size", "11px")
-	   .attr("fill", "white");
+	
 
 }
 /*
