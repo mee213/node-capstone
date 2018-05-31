@@ -138,14 +138,12 @@ function doSomeD3(data) {
 	   .data(dataset)
 	   .enter()
 	   .append("rect")
-	   .attr("x", ((svgWidth/2)-(barWidth/2)) // center the bar inside the svg space
+	   .attr("x", svgWidth/2-barWidth/2) // center the bar inside the svg space
 	   .attr("y", function(d) {
 	   		return yScale(d);
 	   })
 	   .attr("width", barWidth)
-	   .attr("height", (yScale(d)));
-
-	
+	   .attr("height", yScale(d) );
 
 }
 /*
