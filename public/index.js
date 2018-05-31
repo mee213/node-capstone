@@ -154,6 +154,40 @@ function doSomeD3(data) {
 	   		return yScale(d);
 	   	});
 
+	svg.append("rect")
+		.attr("x", 0)
+		.attr("y", 0)
+		.attr("width", 30)
+		.attr("height", 30)
+		.attr("fill", "purple");
+
+	svg.append("rect")
+		.attr("x", 20)
+		.attr("y", 5)
+		.attr("width", 30)
+		.attr("height", 30)
+		.attr("fill", "blue");
+
+	svg.append("rect")
+		.attr("x", 40)
+		.attr("y", 10)
+		.attr("width", 30)
+		.attr("height", 30)
+		.attr("fill", "green");
+
+	svg.append("rect")
+		.attr("x", 60)
+		.attr("y", 15)
+		.attr("width", 30)
+		.attr("height", 30)
+		.attr("fill", "yellow");
+
+	svg.append("rect")
+		.attr("x", 80)
+		.attr("y", 20)
+		.attr("width", 30)
+		.attr("height", 30)
+		.attr("fill", "red");
 	
 
 }
