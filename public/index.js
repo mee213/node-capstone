@@ -101,11 +101,22 @@ function doSomeD3(data) {
 	// extract labor data into its own object, put sales data in a separate variable
 	const dataset = [];
 
-	dataset[0] = data.bakrsTotalGrossPay;
-	dataset[1] = data.csrvcTotalGrossPay;
-	dataset[2] = data.drvrsTotalGrossPay;
-	dataset[3] = data.jntrsTotalGrossPay;
-	dataset[4] = data.pckrsTotalGrossPay;
+	// typically this order will reflect greatest to least, i.e. bakers > packers > drivers, etc
+	dataset[0] = data.bakrsTotalGrossPay; // dataset[0] = bakers
+	dataset[1] = data.pckrsTotalGrossPay; // dataset[1] = packers
+	dataset[2] = data.drvrsTotalGrossPay; // dataset[2] = drivers
+	dataset[3] = data.jntrsTotalGrossPay; // dataset[3] = janitors
+	dataset[4] = data.csrvcTotalGrossPay; // dataset[4] = customer service
+	
+	let arrayOfYs = [];
+	let totalY = 0;
+
+	for (let i = 0; i < dataset.length; i++) {
+    	totalY += yScale(dataset[i]);
+    	arrayOfYs.push(totalY);
+	} 
+
+	console.log(arrayOfYs);
 
 	const totalSales = data.totalSales;
 
@@ -120,11 +131,9 @@ function doSomeD3(data) {
 	
 
 	//Create scale functions
-	
-
 	var yScale = d3.scaleLinear()
 							.domain([0, totalSales])
-							.range([0, svgHeight]);
+							.rangeRound([0, svgHeight]);
 
 	//Create SVG element
 	let svg = d3.select(".js-results")
@@ -141,7 +150,7 @@ function doSomeD3(data) {
 		.attr("height", yScale(totalSales))
 		.attr("fill", "gray");
 
-	//Create bars
+	//Create bars representing each department's labor
 	svg.selectAll("rect:not(.sales)") // select all rectangles except those with sales class
 	   .data(dataset)
 	   .enter()
