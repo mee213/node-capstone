@@ -132,6 +132,14 @@ function doSomeD3(data) {
 				.attr("width", svgWidth)
 				.attr("height", svgHeight);
 
+	// background rectangle represents totalSales
+	svg.append("rect")
+		.attr("x", centeredX)
+		.attr("y", 0)
+		.attr("width", barWidth)
+		.attr("height", yScale(totalSales))
+		.attr("fill", "gray");
+
 	//Create bars
 	svg.selectAll("rect")
 	   .data(dataset)
@@ -146,12 +154,7 @@ function doSomeD3(data) {
 	   		return yScale(d);
 	   	});
 
-	svg.append("rect")
-		.attr("x", centeredX)
-		.attr("y", 0)
-		.attr("width", barWidth)
-		.attr("height", yScale(totalSales))
-		.attr("fill", "gray");
+	
 
 }
 /*
