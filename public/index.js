@@ -108,15 +108,7 @@ function doSomeD3(data) {
 	dataset[3] = data.jntrsTotalGrossPay; // dataset[3] = janitors
 	dataset[4] = data.csrvcTotalGrossPay; // dataset[4] = customer service
 	
-	let arrayOfYs = [];
-	let totalY = 0;
 
-	for (let i = 0; i < dataset.length; i++) {
-    	totalY += yScale(dataset[i]);
-    	arrayOfYs.push(totalY);
-	} 
-
-	console.log(arrayOfYs);
 
 	const totalSales = data.totalSales;
 
@@ -131,9 +123,19 @@ function doSomeD3(data) {
 	
 
 	//Create scale functions
-	var yScale = d3.scaleLinear()
-							.domain([0, totalSales])
-							.rangeRound([0, svgHeight]);
+	let yScale = d3.scaleLinear()
+					.domain([0, totalSales])
+					.rangeRound([0, svgHeight]);
+
+	let arrayOfYs = [];
+	let totalY = 0;
+
+	for (let i = 0; i < dataset.length; i++) {
+    	totalY += yScale(dataset[i]);
+    	arrayOfYs.push(totalY);
+	} 
+
+	console.log(arrayOfYs);
 
 	//Create SVG element
 	let svg = d3.select(".js-results")
