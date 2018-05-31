@@ -135,7 +135,7 @@ function doSomeD3(data) {
 
 	// background rectangle represents totalSales
 	svg.append("rect")
-		.classed("sales", true); // add sales class to the sales rectangle
+		.classed("sales", true) // add sales class to the sales rectangle
 		.attr("x", centeredX)
 		.attr("y", 0)
 		.attr("width", barWidth)
