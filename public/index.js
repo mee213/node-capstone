@@ -124,7 +124,8 @@ function doSomeD3(data) {
 
 	var yScale = d3.scaleLinear()
 							.domain([0, totalSales])
-							.range([0, svgHeight]);
+							.rangeRound([0, svgHeight])
+							.nice();
 
 	//Create SVG element
 	let svg = d3.select(".js-results")
@@ -134,6 +135,7 @@ function doSomeD3(data) {
 
 	// background rectangle represents totalSales
 	svg.append("rect")
+		.classed("sales", true); // add sales class to the sales rectangle
 		.attr("x", centeredX)
 		.attr("y", 0)
 		.attr("width", barWidth)
@@ -141,7 +143,7 @@ function doSomeD3(data) {
 		.attr("fill", "gray");
 
 	//Create bars
-	svg.selectAll("rect")
+	svg.selectAll("rect:not(.sales)") // select all rectangles except those with sales class
 	   .data(dataset)
 	   .enter()
 	   .append("rect")
@@ -154,40 +156,7 @@ function doSomeD3(data) {
 	   		return yScale(d);
 	   	});
 
-	svg.append("rect")
-		.attr("x", 0)
-		.attr("y", 0)
-		.attr("width", 30)
-		.attr("height", 30)
-		.attr("fill", "purple");
-
-	svg.append("rect")
-		.attr("x", 20)
-		.attr("y", 5)
-		.attr("width", 30)
-		.attr("height", 30)
-		.attr("fill", "blue");
-
-	svg.append("rect")
-		.attr("x", 40)
-		.attr("y", 10)
-		.attr("width", 30)
-		.attr("height", 30)
-		.attr("fill", "green");
-
-	svg.append("rect")
-		.attr("x", 60)
-		.attr("y", 15)
-		.attr("width", 30)
-		.attr("height", 30)
-		.attr("fill", "yellow");
-
-	svg.append("rect")
-		.attr("x", 80)
-		.attr("y", 20)
-		.attr("width", 30)
-		.attr("height", 30)
-		.attr("fill", "red");
+	 
 	
 
 }
