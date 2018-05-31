@@ -176,7 +176,7 @@ function doSomeD3(data) {
 	   .attr("text-anchor", "middle")
 	   .attr("x", centeredX + barWidth/2)
 	   .attr("y", function(d, i) {
-	   		return svgHeight - arrayOfYs[i] + d/2;
+	   		return svgHeight - arrayOfYs[i] + yScale(d)/2;
 	   })
 	   .attr("font-family", "sans-serif")
 	   .attr("font-size", "11px")
