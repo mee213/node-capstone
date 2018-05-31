@@ -118,7 +118,7 @@ function doSomeD3(data) {
 	//Width and height
 	let svgWidth = 500;
 	let svgHeight = 500;
-	let barWidth = 100;
+	let barWidth = 300;
 	let centeredX = svgWidth/2-barWidth/2;
 	
 
