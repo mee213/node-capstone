@@ -116,6 +116,7 @@ function doSomeD3(data) {
 	let svgWidth = 500;
 	let svgHeight = 500;
 	let barWidth = 20;
+	let centeredX = svgWidth/2-barWidth/2;
 	
 
 	//Create scale functions
@@ -136,7 +137,7 @@ function doSomeD3(data) {
 	   .data(dataset)
 	   .enter()
 	   .append("rect")
-	   .attr("x", svgWidth/2-barWidth/2) // center the bar inside the svg space
+	   .attr("x", centeredX) // center the bar inside the svg space
 	   .attr("y", function(d) {
 	   		return yScale(d);
 	   })
@@ -144,6 +145,13 @@ function doSomeD3(data) {
 	   .attr("height", function(d) {
 	   		return yScale(d);
 	   	});
+
+	svg.append("rect")
+		.attr("x", centeredX)
+		.attr("y", 0)
+		.attr("width", barWidth)
+		.attr("height", yScale(totalSales))
+		.attr("fill", "gray");
 
 }
 /*
