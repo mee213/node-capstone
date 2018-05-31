@@ -60,9 +60,7 @@ function round(number, precision) {
 
 // *virtuals* (http://mongoosejs.com/docs/guide.html#virtuals)
 // allow us to define properties on our object that manipulate
-// properties that are stored in the database. Here we use it
-// to generate a human readable string based on the author object
-// we're storing in Mongo.
+// properties that are stored in the database. 
 laborWeekSchema.virtual('totalGrossPay').get(function() {
   const totalGrossPay = this.bakrsRegGrossPay + 
   						this.bakrsOTGrossPay + 
