@@ -99,20 +99,18 @@ function doSomeD3(data) {
 	unhideResultsDiv();
 
 	// extract labor data into its own object, put sales data in a separate variable
-	const dataset = [];
+	const totalGrossPayByDept = [];
 
 	// typically this order will reflect greatest to least, i.e. bakers > packers > drivers, etc
-	dataset[0] = data.bakrsTotalGrossPay; // dataset[0] = bakers
-	dataset[1] = data.pckrsTotalGrossPay; // dataset[1] = packers
-	dataset[2] = data.drvrsTotalGrossPay; // dataset[2] = drivers
-	dataset[3] = data.jntrsTotalGrossPay; // dataset[3] = janitors
-	dataset[4] = data.csrvcTotalGrossPay; // dataset[4] = customer service
+	totalGrossPayByDept[0] = data.bakrsTotalGrossPay; // totalGrossPayByDept[0] = bakers
+	totalGrossPayByDept[1] = data.pckrsTotalGrossPay; // totalGrossPayByDept[1] = packers
+	totalGrossPayByDept[2] = data.drvrsTotalGrossPay; // totalGrossPayByDept[2] = drivers
+	totalGrossPayByDept[3] = data.jntrsTotalGrossPay; // totalGrossPayByDept[3] = janitors
+	totalGrossPayByDept[4] = data.csrvcTotalGrossPay; // totalGrossPayByDept[4] = customer service
 	
-
-
 	const totalSales = data.totalSales;
 
-	console.log(dataset);
+	console.log(totalGrossPayByDept);
 	console.log(totalSales);
 
 	//Width and height
@@ -127,15 +125,21 @@ function doSomeD3(data) {
 					.domain([0, totalSales])
 					.rangeRound([0, svgHeight]);
 
+	let arrayOfPercents = [];
 	let arrayOfYs = [];
 	let totalY = 0;
 
-	for (let i = 0; i < dataset.length; i++) {
-    	totalY += yScale(dataset[i]);
+	for (let i = 0; i < totalGrossPayByDept.length; i++) {
+    	totalY += yScale(totalGrossPayByDept[i]);
     	arrayOfYs.push(totalY);
 	} 
 
+	for (let i = 0; i < totalGrossPayByDept.length; i++) {
+		arrayOfPercents.push(totalGrossPayByDept[i]/totalSales*100);
+	}
+
 	console.log(arrayOfYs);
+	console.log(arrayOfPercents);
 
 	//Create SVG element
 	let svg = d3.select(".js-results")
@@ -154,7 +158,7 @@ function doSomeD3(data) {
 
 	//Create bars representing each department's labor
 	svg.selectAll("rect:not(.sales)") // select all rectangles except those with sales class
-	   .data(dataset)
+	   .data(totalGrossPayByDept)
 	   .enter()
 	   .append("rect")
 	   .attr("x", centeredX) // center the bar inside the svg space
@@ -167,7 +171,7 @@ function doSomeD3(data) {
 	   	});
 
 	svg.selectAll("text")
-	   .data(dataset)
+	   .data(totalGrossPayByDept)
 	   .enter()
 	   .append("text")
 	   .text(function(d) {
