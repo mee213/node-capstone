@@ -167,7 +167,7 @@ function doSomeD3(data) {
 		.attr("y", 0)
 		.attr("width", barWidth)
 		.attr("height", yScale(totalSales))
-		.attr("fill", "gray");
+		.attr("fill", "wheat");
 
 	//Create bars representing each department's labor
 	svg.selectAll("rect:not(.sales)") // select all rectangles except those with sales class
