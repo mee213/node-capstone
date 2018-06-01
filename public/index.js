@@ -126,7 +126,6 @@ function doSomeD3(data) {
 					.rangeRound([0, svgHeight]);
 
 	const arrayOfGoalPercents = [ 14, 7, 7, 3, 2 ];
-	let totalGoalPercent;
 	const arrayOfDeptNames = [ "Bakers", "Packers", "Drivers", "Janitors", "Office" ];
 	let arrayOfActualPercents = [];
 	let arrayOfFillColors = [];
@@ -159,6 +158,8 @@ function doSomeD3(data) {
 		totalLabor += totalGrossPayByDept[i];
 	}
 
+	let totalGoalPercent;
+	
 	console.log(arrayOfGoalPercents);
 	console.log(totalGoalPercent);
 
