@@ -125,9 +125,13 @@ function doSomeD3(data) {
 					.domain([0, totalSales])
 					.rangeRound([0, svgHeight]);
 
-	let arrayOfPercents = [];
+	let arrayOfGoalPercents = [ 0.14, 0.07, 0.07, 0.03, 0.02 ];
+	let arrayOfActualPercents = [];
+	let arrayOfFillColors = [];
 	let arrayOfYs = [];
 	let totalY = 0;
+	let passingFillColor = "palegreen";
+	let failingFillColor = "salmon";
 
 	for (let i = 0; i < totalGrossPayByDept.length; i++) {
     	totalY += yScale(totalGrossPayByDept[i]);
@@ -135,11 +139,20 @@ function doSomeD3(data) {
 	} 
 
 	for (let i = 0; i < totalGrossPayByDept.length; i++) {
-		arrayOfPercents.push(totalGrossPayByDept[i]/totalSales*100);
+		arrayOfActualPercents.push(totalGrossPayByDept[i]/totalSales*100);
+	}
+
+	for (let i = 0; i < totalGrossPayByDept.length; i++) {
+		if (arrayOfActualPercents[i] <= arrayOfGoalPercents[i]) {
+			arrayOfFillColors.push(passingFillColor);
+		} else {
+			arrayOfFillColors.push(failingFillColor);
+		}
 	}
 
 	console.log(arrayOfYs);
-	console.log(arrayOfPercents);
+	console.log(arrayOfActualPercents);
+	console.log(arrayOfFillColors);
 
 	//Create SVG element
 	let svg = d3.select(".js-results")
@@ -168,14 +181,17 @@ function doSomeD3(data) {
 	   .attr("width", barWidth)
 	   .attr("height", function(d) {
 	   		return yScale(d);
-	   	});
+	   	})
+	   .attr("fill", function(d, i) {
+	   		return arrayOfFillColors[i];
+	   });
 
 	svg.selectAll("text")
 	   .data(totalGrossPayByDept)
 	   .enter()
 	   .append("text")
-	   .text(function(d) {
-	   		return (d/totalSales*100).toFixed(2) + "%";
+	   .text(function(d, i) {
+	   		return arrayOfActualPercents[i].toFixed(2) + "%";
 	   })
 	   .attr("text-anchor", "middle")
 	   .attr("x", centeredX + barWidth/2)
