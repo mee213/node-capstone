@@ -125,7 +125,7 @@ function doSomeD3(data) {
 					.domain([0, totalSales])
 					.rangeRound([0, svgHeight]);
 
-	let arrayOfGoalPercents = [ 0.14, 0.07, 0.07, 0.03, 0.02 ];
+	let arrayOfGoalPercents = [ 14.0, 7.0, 7.0, 3.0, 2.0 ];
 	let arrayOfActualPercents = [];
 	let arrayOfFillColors = [];
 	let arrayOfYs = [];
