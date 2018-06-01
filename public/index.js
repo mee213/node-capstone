@@ -167,7 +167,7 @@ function doSomeD3(data) {
 		.attr("y", 0)
 		.attr("width", barWidth)
 		.attr("height", yScale(totalSales))
-		.attr("fill", "wheat")
+		.attr("fill", "papayaWhip")
 		.append("text")
 		.classed("sales", true)
 		.text("$" + totalSales.toFixed(2));
