@@ -136,6 +136,7 @@ function doSomeD3(data) {
 	let passingIcon = "✅";
 	let failingIcon = "❌";
 	let totalLabor = 0;
+	let totalGoalPercent = 0;
 
 	for (let i = 0; i < totalGrossPayByDept.length; i++) {
     	totalY += yScale(totalGrossPayByDept[i]);
@@ -158,8 +159,8 @@ function doSomeD3(data) {
 		totalLabor += totalGrossPayByDept[i];
 	}
 
-	let totalGoalPercent;
 	
+
 	console.log(arrayOfGoalPercents);
 	console.log(totalGoalPercent);
 
