@@ -133,6 +133,8 @@ function doSomeD3(data) {
 	let totalY = 0;
 	let passingFillColor = "palegreen";
 	let failingFillColor = "salmon";
+	let totalLabor = 0;
+	let totalPercent;
 
 	for (let i = 0; i < totalGrossPayByDept.length; i++) {
     	totalY += yScale(totalGrossPayByDept[i]);
@@ -151,6 +153,13 @@ function doSomeD3(data) {
 		}
 	}
 
+	for (let i = 0; i < totalGrossPayByDept.length; i++) {
+		totalLabor += totalGrossPayByDept[i];
+	}
+
+	totalPercent = totalLabor/totalSales*100;
+
+	console.log(totalLabor);
 	console.log(arrayOfYs);
 	console.log(arrayOfActualPercents);
 	console.log(arrayOfFillColors);
@@ -173,13 +182,23 @@ function doSomeD3(data) {
 	// add label for sales figure
 	svg.append("text")
 		.classed("sales", true)
-		.text("$" + totalSales.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'))
+		.text("Total Sales - $" + totalSales.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'))
 		.attr("font-family", "sans-serif")
 	   	.attr("font-size", "11px")
 	   	.attr("fill", "black")
 	   	.attr("text-anchor", "middle")
 	   	.attr("x", centeredX + barWidth/2)
-	   	.attr("y", 100);
+	   	.attr("y", 50);
+
+	svg.append("text")
+		.classed("sales", true)
+		.text("Total Labor - " + totalPercent.toFixed(2) + "%")
+		.attr("font-family", "sans-serif")
+	   	.attr("font-size", "11px")
+	   	.attr("fill", "black")
+	   	.attr("text-anchor", "middle")
+	   	.attr("x", centeredX + barWidth/2)
+	   	.attr("y", svgHeight - arrayOfYs[4] - 50);
 
 	//Create bars representing each department's labor
 	svg.selectAll("rect:not(.sales)") // select all rectangles except those with sales class
@@ -214,7 +233,7 @@ function doSomeD3(data) {
 	   })
 	   .attr("font-family", "sans-serif")
 	   .attr("font-size", "11px")
-	   .attr("fill", "white");
+	   .attr("fill", "black");
 
 	 
 	
