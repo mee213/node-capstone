@@ -193,6 +193,7 @@ function doSomeD3(data) {
 	   .text(function(d, i) {
 	   		return arrayOfActualPercents[i].toFixed(2) + "%";
 	   })
+	   .attr("dominant-baseline", "middle")
 	   .attr("text-anchor", "middle")
 	   .attr("x", centeredX + barWidth/2)
 	   .attr("y", function(d, i) {
