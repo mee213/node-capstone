@@ -126,6 +126,7 @@ function doSomeD3(data) {
 					.rangeRound([0, svgHeight]);
 
 	let arrayOfGoalPercents = [ 14.0, 7.0, 7.0, 3.0, 2.0 ];
+	let arrayOfDeptNames = [ "bakers", "packers", "drivers", "janitors", "office" ];
 	let arrayOfActualPercents = [];
 	let arrayOfFillColors = [];
 	let arrayOfYs = [];
@@ -203,7 +204,7 @@ function doSomeD3(data) {
 	   .enter()
 	   .append("text")
 	   .text(function(d, i) {
-	   		return arrayOfActualPercents[i].toFixed(2) + "%";
+	   		return arrayOfDeptNames[i] + " - " + arrayOfActualPercents[i].toFixed(2) + "%";
 	   })
 	   .attr("dominant-baseline", "middle")
 	   .attr("text-anchor", "middle")
