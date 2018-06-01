@@ -159,8 +159,6 @@ function doSomeD3(data) {
 		totalLabor += totalGrossPayByDept[i];
 	}
 
-	
-
 	console.log(arrayOfGoalPercents);
 	console.log(totalGoalPercent);
 
@@ -192,7 +190,8 @@ function doSomeD3(data) {
 		.attr("y", 0)
 		.attr("width", barWidth)
 		.attr("height", yScale(totalSales))
-		.attr("fill", "papayaWhip");
+		.attr("fill", "papayaWhip")
+		.attr("stroke", "black");
 		
 	// add label for sales figure
 	svg.append("text")
@@ -237,7 +236,8 @@ function doSomeD3(data) {
 	   	})
 	   .attr("fill", function(d, i) {
 	   		return arrayOfFillColors[i];
-	   });
+	   })
+	   .attr("stroke", "black");
 
 	// add labels for labor percents
 	svg.selectAll("text:not(.sales)")
