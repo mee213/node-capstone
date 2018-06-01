@@ -219,7 +219,7 @@ function doSomeD3(data) {
 	   	.attr("fill", "black")
 	   	.attr("text-anchor", "middle")
 	   	.attr("x", centeredX + barWidth/2)
-	   	.attr("y", svgHeight - arrayOfYs[4] - 50);
+	   	.attr("y", svgHeight - arrayOfYs[4] - 25);
 
 	//Create bars representing each department's labor
 	svg.selectAll("rect:not(.sales)") // select all rectangles except those with sales class
