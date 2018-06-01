@@ -159,8 +159,14 @@ function doSomeD3(data) {
 		totalLabor += totalGrossPayByDept[i];
 	}
 
+	console.log(arrayOfGoalPercents);
+	console.log(totalGoalPercent);
+
 	for (let i = 0; i < arrayOfGoalPercents.length; i++) {
 		totalGoalPercent += arrayOfGoalPercents[i];
+		console.log(i);
+		console.log(arrayOfGoalPercents[i]);
+		console.log(totalGoalPercent);
 	}
 
 	const totalPercent = totalLabor/totalSales*100;
@@ -202,9 +208,9 @@ function doSomeD3(data) {
 		.text(function() {
 			const laborPercentAndLabel = "Total Labor - " + totalPercent.toFixed(2) + "%";
 			if (totalPercent <= totalGoalPercent) {
-				return laborPercentAndLabel + passingIcon;
+				return laborPercentAndLabel + " " + passingIcon;
 			} else {
-				return laborPercentAndLabel + failingIcon;
+				return laborPercentAndLabel + " " + failingIcon;
 			}	
 		})
 		.attr("font-family", "sans-serif")
