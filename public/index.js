@@ -167,8 +167,10 @@ function doSomeD3(data) {
 		.attr("y", 0)
 		.attr("width", barWidth)
 		.attr("height", yScale(totalSales))
-		.attr("fill", "papayaWhip")
-		.append("text")
+		.attr("fill", "papayaWhip");
+		
+	// add label for sales figure
+	svg.append("text")
 		.classed("sales", true)
 		.text("$" + totalSales.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'))
 		.attr("font-family", "sans-serif")
@@ -195,6 +197,7 @@ function doSomeD3(data) {
 	   		return arrayOfFillColors[i];
 	   });
 
+	// add labels for labor percents
 	svg.selectAll("text:not(.sales)")
 	   .data(totalGrossPayByDept)
 	   .enter()
