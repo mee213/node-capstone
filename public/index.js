@@ -115,7 +115,7 @@ function doSomeD3(data) {
 
 	//Width and height
 	let svgWidth = 500;
-	let svgHeight = 500;
+	let svgHeight = 600;
 	let barWidth = 300;
 	let centeredX = svgWidth/2-barWidth/2;
 	
@@ -167,7 +167,10 @@ function doSomeD3(data) {
 		.attr("y", 0)
 		.attr("width", barWidth)
 		.attr("height", yScale(totalSales))
-		.attr("fill", "wheat");
+		.attr("fill", "wheat")
+		.append("text")
+		.classed("sales", true)
+		.text("$" + totalSales.toFixed(2));
 
 	//Create bars representing each department's labor
 	svg.selectAll("rect:not(.sales)") // select all rectangles except those with sales class
@@ -186,7 +189,7 @@ function doSomeD3(data) {
 	   		return arrayOfFillColors[i];
 	   });
 
-	svg.selectAll("text")
+	svg.selectAll("text:not(.sales)")
 	   .data(totalGrossPayByDept)
 	   .enter()
 	   .append("text")
