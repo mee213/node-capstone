@@ -170,7 +170,10 @@ function doSomeD3(data) {
 		.attr("fill", "papayaWhip")
 		.append("text")
 		.classed("sales", true)
-		.text("$" + totalSales.toFixed(2));
+		.text("$" + totalSales.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'))
+		.attr("font-family", "sans-serif")
+	   	.attr("font-size", "11px")
+	   	.attr("fill", "black");;
 
 	//Create bars representing each department's labor
 	svg.selectAll("rect:not(.sales)") // select all rectangles except those with sales class
