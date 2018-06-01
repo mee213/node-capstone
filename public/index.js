@@ -125,16 +125,18 @@ function doSomeD3(data) {
 					.domain([0, totalSales])
 					.rangeRound([0, svgHeight]);
 
-	let arrayOfGoalPercents = [ 14.0, 7.0, 7.0, 3.0, 2.0 ];
-	let arrayOfDeptNames = [ "bakers", "packers", "drivers", "janitors", "office" ];
+	const arrayOfGoalPercents = [ 14.0, 7.0, 7.0, 3.0, 2.0 ];
+	let totalGoalPercent;
+	const arrayOfDeptNames = [ "Bakers", "Packers", "Drivers", "Janitors", "Office" ];
 	let arrayOfActualPercents = [];
 	let arrayOfFillColors = [];
 	let arrayOfYs = [];
 	let totalY = 0;
-	let passingFillColor = "palegreen";
-	let failingFillColor = "salmon";
+	const passingFillColor = "palegreen";
+	const failingFillColor = "salmon";
+	let passingIcon = "✅";
+	let failingIcon = "❌";
 	let totalLabor = 0;
-	let totalPercent;
 
 	for (let i = 0; i < totalGrossPayByDept.length; i++) {
     	totalY += yScale(totalGrossPayByDept[i]);
@@ -157,8 +159,13 @@ function doSomeD3(data) {
 		totalLabor += totalGrossPayByDept[i];
 	}
 
-	totalPercent = totalLabor/totalSales*100;
+	for (let i = 0; i < arrayOfGoalPercents.length; i++) {
+		totalGoalPercent += arrayOfGoalPercents[i];
+	}
 
+	const totalPercent = totalLabor/totalSales*100;
+
+	console.log(totalGoalPercent);
 	console.log(totalLabor);
 	console.log(arrayOfYs);
 	console.log(arrayOfActualPercents);
@@ -192,7 +199,14 @@ function doSomeD3(data) {
 
 	svg.append("text")
 		.classed("sales", true)
-		.text("Total Labor - " + totalPercent.toFixed(2) + "%")
+		.text(function() {
+			const laborPercentAndLabel = "Total Labor - " + totalPercent.toFixed(2) + "%";
+			if (totalPercent <= totalGoalPercent) {
+				return laborPercentAndLabel + passingIcon;
+			} else {
+				return laborPercentAndLabel + failingIcon;
+			}	
+		})
 		.attr("font-family", "sans-serif")
 	   	.attr("font-size", "11px")
 	   	.attr("fill", "black")
