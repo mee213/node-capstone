@@ -9,17 +9,42 @@
           src="https://code.jquery.com/jquery-3.2.1.min.js"
           integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
           crossorigin="anonymous"></script>
-    <script src="https://d3js.org/d3.v5.min.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.css" rel="stylesheet">
-    <link href="float-grid.css" rel="stylesheet" />
-    <link href="index.css" rel="stylesheet" />
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.css" rel="stylesheet">
+  <link href="float-grid.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet">
+  <link href="index.css" rel="stylesheet" />
 </head>
 
 <body>
 	<header role="banner">
 		<div class="row">
 			<div class="col-12">
-				<h1>Weekly Sales and Labor Report</h1>
+        <div id="logo" class="menuUp">
+          <h1>Weekly Sales & Labor</h1>
+          <div id="navToggle"><a href="#">Menu</a></div>
+        </div>
+				<nav>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Search</a>
+              <nav>
+                <ul>
+                  <li><a href="#">One Week</a></li>
+                  <li><a href="#">Many Weeks</a></li>
+                </ul>
+              </nav>
+            </li>
+            <li><a href="#">Add</a>
+              <nav>
+                <ul>
+                  <li><a href="#">Sales Week</a></li>
+                  <li><a href="#">Labor Week</a></li>
+                </ul>
+              </nav>
+            </li>
+          </ul>
+        </nav>
 			</div>
 		</div>
 	</header>
@@ -28,6 +53,7 @@
 
 		<div class="row">
             <div class="col-12">
+              <h1>Weekly Sales and Labor Report</h1>
              	<form action="#" class="js-search-form">
                 	<label for="search">Which week would you like to search for?</label>
                 	<input type="text" class="js-query" id="search">
