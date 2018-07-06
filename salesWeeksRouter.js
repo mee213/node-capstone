@@ -34,6 +34,61 @@ router.get('/:weekId', (req, res) => {
       res.status(500).json({ message: 'Internal server error' });
     });
 });
+
+// when new sales week added, ensure has required fields. if not,
+// log error and return 400 status code with helpful message.
+// if okay, add new sales week, and return it with a status 201.
+router.post('/', (req, res) => {
+
+  const requiredFields = ['week_id',
+                          'sunSales',
+                          'monSales',
+                          'tueSales',
+                          'wedSales',
+                          'thuSales',
+                          'friSales',
+                          'satSales',
+                          'sunDate',
+                          'monDate',
+                          'tueDate',
+                          'wedDate',
+                          'thuDate',
+                          'friDate',
+                          'satDate'];
+  for (let i = 0; i < requiredFields.length; i++) {
+    const field = requiredFields[i];
+    if (!(field in req.body)) {
+      const message = `Missing \`${field}\` in request body`;
+      console.error(message);
+      return res.status(400).send(message);
+    }
+  }
+
+  SalesWeek
+    .create({
+      week_id: req.body.week_id,
+      sunSales: req.body.sunSales,
+      monSales: req.body.monSales,
+      tueSales: req.body.tueSales,
+      wedSales: req.body.wedSales,
+      thuSales: req.body.thuSales,
+      friSales: req.body.friSales,
+      satSales: req.body.satSales,
+      sunDate: req.body.sunDate,
+      monDate: req.body.monDate,
+      tueDate: req.body.tueDate,
+      wedDate: req.body.wedDate,
+      thuDate: req.body.thuDate,
+      friDate: req.body.friDate,
+      satDate: req.body.satDate 
+    })
+    .then(salesweek => res.status(201).json(salesweek.serialize()))
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({ message: 'Internal server error' });
+    });
+});
+
 /*
 // catch-all endpoint if client makes request to non-existent endpoint
 router.use('*', function (req, res) {
