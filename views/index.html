@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Sales & Labor</title>
 	<script
           src="https://code.jquery.com/jquery-3.2.1.min.js"
@@ -11,40 +11,82 @@
           crossorigin="anonymous"></script>
   <script src="https://d3js.org/d3.v5.min.js"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.css" rel="stylesheet">
-  <link href="float-grid.css" rel="stylesheet" />
+  <link href="../public/float-grid.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet">
-  <link href="index.css" rel="stylesheet" />
+  <link href="../public/index.css" rel="stylesheet" />
 </head>
 
 <body>
 	<header role="banner">
 		<div class="row">
 			<div class="col-12">
-        <div id="logo" class="menuUp">
-          <h1>Weekly Sales & Labor</h1>
-          <div id="navToggle"><a href="#">Menu</a></div>
+       
+				<div class="splash-nav">
+          <div class="hamburger">
+            <div class="hamburger-stripe"></div>
+            <div class="hamburger-stripe"></div>
+            <div class="hamburger-stripe"></div>
+          </div>
+          <div class="splash-nav-desktop-grid splash-nav-desktop-grid-closed">
+            <ul class="splash-nav-primary">
+              <li class="splash-nav-item splash-nav-item__logo"><a href="#">Weekly Sales and Labor Report</a></li>
+              <li class="splash-nav-item"><a href="#">Home</a></li>
+              <li class="splash-nav-item">
+                <a href="#" class="splash-nav-toggle" id="splash-nav-search-toggle">Search <span aria-hidden="true" class="icon-navigatedown"></span></a>
+
+                <div id="splash-nav-search-dropdown" class="splash-nav-dropdown splash-nav-dropdown-hidden">
+                  <ul>
+                    <li class="splash-nav-dropdown-item"><div class="splash-nav-dropdown-padding">
+                      <a class="splash-nav-web-dev-bootcamp-link" href="#">
+                        <img class="splash-nav-dropdown-image" src="http://tf-assets-prod.s3.amazonaws.com/wow-next/course-icons/career.gz.svg" alt="Web Development Bootcamp">
+                        <h4 class="splash-nav-dropdown-title splash-nav-dropdown-title__wdcp">Web Development Bootcamp</h4>
+                      </a>
+                    </li>
+                    <li class="splash-nav-dropdown-item"><a class="splash-nav-dropdown-padding" href="#">
+                      <img class="splash-nav-dropdown-image" class="splash-nav-dropdown-image" src="http://tf-assets-prod.s3.amazonaws.com/splash/data-science/data_science.svg" alt="Data Science">
+                      <h4 class="splash-nav-dropdown-title">Data Science Bootcamp</h4>
+                    </a></li>
+                    <li class="splash-nav-dropdown-item"><a class="splash-nav-dropdown-padding" href="#">
+                      <img class="splash-nav-dropdown-image" src="http://tf-assets-prod.s3.amazonaws.com/wow-next/splash-nav/master-a-new-skill.gz.svg" alt="All courses">
+                      <h4 class="splash-nav-dropdown-title">All courses</h4>
+                    </a></li>
+                  </ul>
+                </div>
+              </li>
+              <li class="splash-nav-item">
+                <a href="#" class="splash-nav-toggle" id="splash-nav-add-toggle">Add <span aria-hidden="true" class="icon-navigatedown"></span></a>
+
+                <div id="splash-nav-add-dropdown" class="splash-nav-dropdown splash-nav-dropdown-hidden">
+                  <ul>
+                    <li class="splash-nav-dropdown-item"><a class="splash-nav-dropdown-padding" href="#">
+                      <img class="splash-nav-dropdown-image" src="http://tf-assets-prod.s3.amazonaws.com/splash/nav-icons/mentorship.gz.svg" alt="1-on-1 mentorship">
+                      <h4 class="splash-nav-dropdown-title">1-on-1 mentorship</h4>
+                    </a></li>
+                    <li class="splash-nav-dropdown-item"><a class="splash-nav-dropdown-padding" href="#">
+                      <img class="splash-nav-dropdown-image" src="http://tf-assets-prod.s3.amazonaws.com/splash/nav-icons/career-services.gz.svg" alt="Career prep">
+                      <h4 class="splash-nav-dropdown-title">Career prep</h4>
+                    </a></li>
+                    <li class="splash-nav-dropdown-item"><a class="splash-nav-dropdown-padding" href="#">
+                      <img class="splash-nav-dropdown-image" src="http://tf-assets-prod.s3.amazonaws.com/splash/nav-icons/guarantee.gz.svg" alt="Job guarantee">
+                      <h4 class="splash-nav-dropdown-title">Web Development job guarantee</h4>
+                    </a></li>
+                    <li class="splash-nav-dropdown-item"><a class="splash-nav-dropdown-padding" href="#">
+                      <img class="splash-nav-dropdown-image" src="http://tf-assets-prod.s3.amazonaws.com/splash/nav-icons/jobs-report.gz.svg" alt="Student outcomes">
+                      <h4 class="splash-nav-dropdown-title">Student outcomes</h4>
+                    </a></li>
+                  </ul>
+                </div>
+              </li>
+              
+            </ul>
+
+            <ul class="splash-nav-secondary">
+              <li class="splash-nav-item splash-nav-separator" style="display: none;"></li>
+              <li class="splash-nav-item"><a href="#">Sign in</a></li>
+            </ul>
+          </div>
         </div>
-				<nav>
-          <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Search</a>
-              <nav>
-                <ul>
-                  <li><a href="#">One Week</a></li>
-                  <li><a href="#">Many Weeks</a></li>
-                </ul>
-              </nav>
-            </li>
-            <li><a href="#">Add</a>
-              <nav>
-                <ul>
-                  <li><a href="#">Sales Week</a></li>
-                  <li><a href="#">Labor Week</a></li>
-                </ul>
-              </nav>
-            </li>
-          </ul>
-        </nav>
+
 			</div>
 		</div>
 	</header>
@@ -52,25 +94,40 @@
 	<main role="main">
 
 		<div class="row">
-            <div class="col-12">
-              <h1>Weekly Sales and Labor Report</h1>
-             	<form action="#" class="js-search-form">
-                	<label for="search">Which week would you like to search for?</label>
-                	<input type="text" class="js-query" id="search">
-                	<button type="submit">Search</button>
-              	</form>
-            </div>
-        </div>
-          
-        <div class="js-results row" aria-live="assertive" hidden>
-            
-        </div>
+      <div class="col-12">
+        
+       	<form action="#" class="js-search-form">
+          	<label for="search">Which week would you like to search for?</label>
+          	<input type="text" class="js-query" id="search">
+          	<button type="submit">Search</button>
+        	</form>
+      </div>
+    </div>
+      
+    <div class="js-results row" aria-live="assertive" hidden>
+        
+    </div>
 
 	</main>
 
 	
 
 	<script src="index.js"></script>
+  <script>
+    $('.splash-nav-toggle').click(e => {
+        const sibling = $(e.target).siblings('.splash-nav-dropdown');
+        const isHidden = sibling.hasClass('splash-nav-dropdown-hidden');
+        // Hide all dropdowns
+        $('.splash-nav-dropdown').addClass('splash-nav-dropdown-hidden');
+        if (isHidden) {
+            // Show the one we selected if it was hidden before
+            sibling.removeClass('splash-nav-dropdown-hidden');
+        }
+    });
+    $('.hamburger').click(e => {
+        $('.splash-nav-desktop-grid').toggleClass('splash-nav-desktop-grid-closed');
+    });
+    </script>
 </body>
 
 </html>

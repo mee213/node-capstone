@@ -1,11 +1,180 @@
 * {
-    
-    outline: none;
-    box-sizing: border-box;  
+    box-sizing: border-box;
 }
 
 body {
-	margin: 0;
+    margin: 0;
     padding: 0;
     font-family: 'Roboto', sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: #6799ff;
+}
+
+.hamburger {
+    width: 48px;
+    height: 42px;
+    border: 1px solid #eeeeef;
+    border-radius: 2px;
+    box-shadow: 0 0 2px #eeeeef;
+    padding: 10px 10px;
+    /* Hamburger menu is a bit out of place in the HTML flow, but it's always
+     * going to live top-right, so we can position absolutely and not worry
+     * too much */
+    position: absolute;
+    top: 8px;
+    right: 8px;
+}
+
+.hamburger-stripe {
+    background-color: #6799ff;
+    height: 3px;
+    margin-bottom: 5px;
+}
+
+.splash-nav-desktop-grid {
+    /* Restrict the width of the menu on large devices */
+    max-width: 1200px;
+    margin: auto;
+}
+
+.splash-nav-desktop-grid-closed .splash-nav-item:not(.splash-nav-item__logo) {
+    /* Hide the menu by default in the mobile view */
+    display: none;
+}
+
+.splash-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.splash-nav-item {
+    border-bottom: 1px solid #d0d2d5;
+}
+
+.splash-nav-item > a {
+    text-transform: uppercase;
+    padding: 14px 18px;
+    display: block;
+}
+
+.splash-nav-dropdown {
+    background-color: #f9fbff;
+}
+
+
+.splash-nav-dropdown-hidden {
+    display: none;
+}
+
+.splash-nav-dropdown-title {
+    font-weight: normal;
+    padding: 8px 18px;
+    margin: 0;
+    color: black;
+}
+
+.splash-nav-dropdown > ul {
+    /* Restrict the width of the dropdowns on large devices */
+    max-width: 1200px;
+    margin: auto;
+}
+
+.splash-nav-dropdown-image {
+    display: none;
+    width: 74px;
+}
+
+@media (min-width: 576px) {
+    .hamburger {
+        /* Only display the hamburger on mobile devices */
+        display: none;
+    }
+
+
+    .splash-nav-desktop-grid-closed .splash-nav-item:not(.splash-nav-item__logo) {
+        /* Display the whole menu when not on mobile */
+        display: initial;
+    }
+
+    .splash-nav-desktop-grid {
+        /* Left and right menu sections are displayed in a row */
+        display: flex;
+    }
+
+    .splash-nav-primary, .splash-nav-secondary {
+        height: 60px;
+        /* Menu items are displayed in a row */
+        display: flex;
+    }
+
+    .splash-nav-primary {
+        /* Left menu section should expand to fill the space */
+        flex: 1;
+    }
+
+    .splash-nav-item {
+        border: 0;
+        padding: 8px 0;
+    }
+
+    .splash-nav-item > a {
+        /* Fix the line-height so the link text lines up with the logo */
+        line-height: 30px;
+    }
+
+    .splash-nav-item:not(.splash-nav-item__logo):hover {
+        /* Show a line when we hover over the items */
+        border-bottom: 1px solid #6799ff;
+    }
+
+    .splash-nav-dropdown {
+        /* Show dropdowns when not on mobile devices */
+        display: initial;
+        /* Dropdowns are always positioned below the fixed-height menu. */
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        border-top: 1px solid #eeeeef;
+        padding: 40px;
+    }
+
+    .splash-nav-dropdown-hidden {
+        display: none;
+    }
+
+    .splash-nav-dropdown > ul {
+        /* Images/items in the dropdown appear in a spaced-out row */
+        display: flex;
+        justify-content: space-around;
+    }
+
+
+    .splash-nav-dropdown-item {
+        text-align: center;
+        /* Don't let the items/images in the dropdown get too wide */
+        max-width: 200px;
+    }
+
+    .splash-nav-dropdown-item img {
+        width: 74px;
+        display: inline;
+    }
+
+
+    .splash-nav-web-dev-bootcamp-link {
+        display: block;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+    .splash-nav-item > a {
+        /* Reduce the padding between menu items on smaller devices */
+        padding-left: 6px;
+        padding-right: 6px;
+    }
 }
