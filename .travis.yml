@@ -9,3 +9,7 @@ deploy:
   app: fast-citadel-48845
   on:
     repo: mee213/node-capstone
+    branch: master
+
+
+
