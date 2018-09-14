@@ -1,7 +1,7 @@
 'use strict';
 
-const SALESWEEKS_URL = 'https://fast-citadel-48845.herokuapp.com/salesWeeks';
-const LABORWEEKS_URL = 'https://fast-citadel-48845.herokuapp.com/laborWeeks';
+const SALESWEEKS_URL = '/salesWeeks';
+const LABORWEEKS_URL = '/laborWeeks';
 
 const getDataFromAPIs = function(weekID) {
 
