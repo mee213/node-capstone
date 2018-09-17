@@ -1,0 +1,17 @@
+<script src="./javascripts/index.js"></script>
+
+<script>
+$('.splash-nav-toggle').click(e => {
+    const sibling = $(e.target).siblings('.splash-nav-dropdown');
+    const isHidden = sibling.hasClass('splash-nav-dropdown-hidden');
+    // Hide all dropdowns
+    $('.splash-nav-dropdown').addClass('splash-nav-dropdown-hidden');
+    if (isHidden) {
+        // Show the one we selected if it was hidden before
+        sibling.removeClass('splash-nav-dropdown-hidden');
+    }
+});
+$('.hamburger').click(e => {
+    $('.splash-nav-desktop-grid').toggleClass('splash-nav-desktop-grid-closed');
+});
+</script>

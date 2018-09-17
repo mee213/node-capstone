@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.use(express.json());
 
-const {SalesWeek} = require('./models');
+const {SalesWeek} = require('../models');
 
 // send back JSON representation of all sales data
 // on GET requests to root
