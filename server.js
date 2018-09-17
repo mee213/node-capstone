@@ -29,6 +29,14 @@ app.get('/', (req, res) => {
   res.render('pages/index');
 });
 
+app.get('/addLabor', (req, res) => {
+  res.render('pages/addLabor');
+});
+
+app.get('/addSales', (req, res) => {
+  res.render('pages/addSales');
+});
+
 // when requests come into `/labor` or
 // `/sales`, we'll route them to the express
 // router instances we've imported. Remember,
