@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <% include ../partials/head %>
+	
+</head>
+
+<body>
+  <% include ../partials/menu %>
+	
+
+	<main role="main">
+
+		<div class="row">
+      <div class="col-12">
+        
+       	<form action="#" class="js-search-form">
+          	<label for="search">Which week would you like to search for?</label>
+          	<input type="text" class="js-query" id="search">
+          	<button type="submit">Search</button>
+        	</form>
+      </div>
+    </div>
+      
+    <div class="js-results row" aria-live="assertive" hidden>
+        
+    </div>
+
+	</main>
+
+	
+
+	
+</body>
+<% include ../partials/script %>
+</html>

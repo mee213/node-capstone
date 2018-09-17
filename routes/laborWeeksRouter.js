@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.use(express.json());
 
-const {LaborWeek} = require('./models');
+const {LaborWeek} = require('../models');
 
 // send back JSON representation of all labor data
 // on GET requests to root

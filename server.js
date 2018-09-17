@@ -14,8 +14,11 @@ const { PORT, DATABASE_URL } = require('./config');
 
 const app = express();
 
-const laborWeeksRouter = require('./laborWeeksRouter');
-const salesWeeksRouter = require('./salesWeeksRouter');
+//set the view engine to ejs
+app.set('view engine', 'ejs');
+
+const laborWeeksRouter = require('./routes/laborWeeksRouter');
+const salesWeeksRouter = require('./routes/salesWeeksRouter');
 
 // log the http layer
 app.use(morgan('common'));
@@ -23,7 +26,7 @@ app.use(morgan('common'));
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/views/index.html');
+  res.render('pages/index');
 });
 
 // when requests come into `/labor` or
