@@ -4,6 +4,7 @@ const express = require('express');
 const router = express.Router();
 
 router.use(express.json());
+router.use(express.urlencoded());
 
 const {LaborWeek} = require('../models');
 
@@ -44,8 +45,6 @@ router.post('/', (req, res) => {
 
   console.log('laborWeeksRouter post endpoint ran');
   console.log(req.body);
-  console.log(req);
-
 
   const requiredFields = ['week_id',
                           'periodEndDate',
@@ -72,7 +71,7 @@ router.post('/', (req, res) => {
 
   for (let i = 0; i < requiredFields.length; i++) {
     const field = requiredFields[i];
-    if (!req.body[field]) {
+    if (!(field in req.body)) {
       const message = `Missing \`${field}\` in request body`;
       console.error(message);
       return res.status(400).send(message);
@@ -107,7 +106,12 @@ router.post('/', (req, res) => {
     .then(laborweek => res.status(201).json(laborweek.serialize()))
     .catch(err => {
       console.error(err);
-      res.status(500).json({ message: 'Internal server error' });
+      if (err.code==11000) {
+        res.status(500).json({ message: 'A labor entry with this week number already exists' });
+      } else {
+        res.status(500).json({ message: 'Internal server error' });
+      }
+      
     });
 });
 
