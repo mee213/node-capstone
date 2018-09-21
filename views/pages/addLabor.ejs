@@ -15,12 +15,51 @@
 			<div class="row">
 				<div class="col-12">
 
-					add Labor
+					<h1>Add Labor Data</h1>
+
+					<form action="/laborWeeks" method="post">
+					    
+					    <label for="week_id">Week Number (YYYYWW)</label>
+					    <input type="text" name="week_id" id="week_id" pattern="^20[1-9][0-9][1-5][0-9]" required/>
+					    <br>
+					    <label for="periodEndDate">Period End Date (YYYYMMDD)</label>
+					    <input type="text" name="periodEndDate" id="periodEndDate" pattern="^20[1-9][0-9][0-1][0-9][0-3][0-9]" required/>
+					    
+					    
+					    <%
+					       	let fields = ['bakrsRegHours', 'bakrsOTHours','bakrsRegGrossPay','bakrsOTGrossPay',
+											'csrvcRegHours', 'csrvcOTHours','csrvcRegGrossPay','csrvcOTGrossPay',
+											'drvrsRegHours', 'drvrsOTHours','drvrsRegGrossPay','drvrsOTGrossPay',
+											'jntrsRegHours', 'jntrsOTHours','jntrsRegGrossPay','jntrsOTGrossPay',
+											'pckrsRegHours', 'pckrsOTHours','pckrsRegGrossPay','pckrsOTGrossPay'];
+					       	let labels = ['Bakers Regular Hours', 'Bakers Overtime Hours', 'Bakers Regular Gross Pay $', 'Bakers Overtime Gross Pay $',
+											'Customer Service Regular Hours', 'Customer Service Overtime Hours', 'Customer Service Regular Gross Pay $', 'Customer Service Overtime Gross Pay $',
+											'Drivers Regular Hours', 'Drivers Overtime Hours', 'Drivers Regular Gross Pay $', 'Drivers Overtime Gross Pay $',
+											'Janitors Regular Hours', 'Janitors Overtime Hours', 'Janitors Regular Gross Pay $', 'Janitors Overtime Gross Pay $',
+											'Packers Regular Hours', 'Packers Overtime Hours', 'Packers Regular Gross Pay $', 'Packers Overtime Gross Pay $'];
+
+					       
+					       for (let i = 0; i < fields.length; ++i) { 
+					       	
+					         %>
+					         <br>
+					         <label for="<%=fields[i]%>"><%=labels[i]%></label>
+					         <input type="number" name="<%=fields[i]%>" id="<%=fields[i]%>" step="0.01" min="0" required/>
+
+					         <% 
+					       } 
+					       
+					    %>
+					    <br>
+					    <br>
+					    <button type="submit">Submit</button>
+					</form>
 				</div>
 			</div>
 
 		</main>
 		
 	</body>
+	
 	<% include ../partials/script %>
 </html>

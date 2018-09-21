@@ -4,6 +4,8 @@ const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 
+
+
 // Mongoose internally uses a promise-like object,
 // but its better to make Mongoose use built in es6 promises
 mongoose.Promise = global.Promise;
@@ -24,6 +26,9 @@ const salesWeeksRouter = require('./routes/salesWeeksRouter');
 app.use(morgan('common'));
 
 app.use(express.static('public'));
+
+app.use(express.json());
+
 
 app.get('/', (req, res) => {
   res.render('pages/index');

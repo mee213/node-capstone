@@ -4,6 +4,7 @@ const express = require('express');
 const router = express.Router();
 
 router.use(express.json());
+router.use(express.urlencoded());
 
 const {SalesWeek} = require('../models');
 
@@ -85,7 +86,11 @@ router.post('/', (req, res) => {
     .then(salesweek => res.status(201).json(salesweek.serialize()))
     .catch(err => {
       console.error(err);
-      res.status(500).json({ message: 'Internal server error' });
+      if (err.code==11000) {
+        res.status(500).json({ message: 'A sales entry with this week number already exists' });
+      } else {
+        res.status(500).json({ message: 'Internal server error' });
+      }
     });
 });
 

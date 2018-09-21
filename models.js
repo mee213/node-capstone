@@ -5,7 +5,7 @@ mongoose.Promise = global.Promise;
 
 // this is our schema to represent a week's worth of labor data
 const laborWeekSchema = mongoose.Schema({
-	week_id: {type: String, required: true}, // format YYYYWW
+	week_id: {type: String, required: true, unique: true}, // format YYYYWW
 	periodEndDate: {type: String, required: true}, // format YYYYMMDD
 	bakrsRegHours: {type: Number, required: true},
 	bakrsOTHours: {type: Number, required: true},
@@ -31,7 +31,7 @@ const laborWeekSchema = mongoose.Schema({
 
 // this is our schema to represent a week's worth of sales
 const salesWeekSchema = mongoose.Schema({
-	week_id: {type: String, required: true}, // format YYYYWW
+	week_id: {type: String, required: true, unique: true}, // format YYYYWW
 	sunSales: {type: Number, required: true},
 	monSales: {type: Number, required: true},
 	tueSales: {type: Number, required: true},
