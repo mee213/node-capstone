@@ -40,6 +40,9 @@ router.get('/:weekId', (req, res) => {
 // if okay, add new labor week, and return it with a status 201.
 router.post('/', (req, res) => {
 
+  console.log('laborWeeksRouter post endpoint ran');
+  console.log(req.body);
+
   const requiredFields = ['week_id',
                           'periodEndDate',
                           'bakrsRegHours',

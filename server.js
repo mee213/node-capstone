@@ -29,8 +29,8 @@ app.get('/', (req, res) => {
   res.render('pages/index');
 });
 
-app.get('/addLabor', (req, res) => {
-  res.render('pages/addLabor');
+app.get('/laborWeeks', (req, res) => {
+  res.render('pages/laborWeeks');
 });
 
 app.get('/addSales', (req, res) => {
