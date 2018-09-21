@@ -7,6 +7,8 @@ router.use(express.json());
 
 const {LaborWeek} = require('../models');
 
+
+
 // send back JSON representation of all labor data
 // on GET requests to root
 router.get('/', (req, res) => {
@@ -42,6 +44,8 @@ router.post('/', (req, res) => {
 
   console.log('laborWeeksRouter post endpoint ran');
   console.log(req.body);
+  console.log(req);
+
 
   const requiredFields = ['week_id',
                           'periodEndDate',
@@ -68,7 +72,7 @@ router.post('/', (req, res) => {
 
   for (let i = 0; i < requiredFields.length; i++) {
     const field = requiredFields[i];
-    if (!(field in req.body)) {
+    if (!req.body[field]) {
       const message = `Missing \`${field}\` in request body`;
       console.error(message);
       return res.status(400).send(message);

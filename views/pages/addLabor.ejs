@@ -17,7 +17,7 @@
 
 					<h1>Add Labor Data</h1>
 
-					<form method="post">
+					<form action="/laborWeeks" method="post">
 					    
 					    <label for="week_id">Week Number (YYYYWW)</label>
 					    <input type="text" name="week_id" id="week_id" pattern="^20[1-9][0-9][1-5][0-3]" required/>
@@ -59,6 +59,6 @@
 		</main>
 		
 	</body>
-	<script src="./javascripts/laborWeeks.js"></script>
+	
 	<% include ../partials/script %>
 </html>
