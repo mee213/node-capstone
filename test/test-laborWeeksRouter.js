@@ -9,7 +9,7 @@ const mongoose = require('mongoose');
 const {LaborWeek} = require('../models');
 const {app, runServer, closeServer} = require('../server');
 const {TEST_DATABASE_URL} = require('../config');
-const seedData = require('../../labor-seed-data.json')
+const seedData = require('../labor-seed-data.json')
 
 // this lets us use *expect* style syntax in our tests
 // so we can do things like `expect(1 + 1).to.equal(2);`
@@ -23,11 +23,11 @@ chai.use(chaiHttp);
 
 // used to put seed documents in db
 // so we have data to work with and assert about.
-function seedLaborWeeksData(seedData) {
-  console.info('seeding blog post data');
+function seedLaborWeeksData(data) {
+  console.info('seeding labor weeks data');
   
   // this will return a promise
-  return LaborWeek.insertMany(seedData);
+  return LaborWeek.insertMany(data);
 }
 
 // this function deletes the entire database.
@@ -42,11 +42,13 @@ function tearDownDb() {
 describe('Labor Weeks Router', function() {
 
     before(function() {
+      console.log('before function ran');
     return runServer(TEST_DATABASE_URL);
     });
 
     beforeEach(function() {
-    return seedLaborWeeksData();
+      console.log('beforeEach function ran');
+    return seedLaborWeeksData(seedData);
     });
 
     afterEach(function() {
@@ -66,20 +68,28 @@ describe('Labor Weeks Router', function() {
         //
         // need to have access to mutate and access `res` across
         // `.then()` calls below, so declare it here so can modify in place
-        let res;
-        return chai.request(app)
-        .get('/laborWeeks')
-        .then(function(_res) {
-          // so subsequent .then blocks can access response object
-          res = _res;
-          expect(res).to.have.status(200);
-          // otherwise our db seeding didn't work
-          expect(res.body).to.have.lengthOf.at.least(1);
-          return BlogPost.count();
-        })
-        .then(function(count) {
-          expect(res.body).to.have.lengthOf(count);
-        });
-    })
-})
-*/
+        
+
+        it('should return all exising labor weeks', function() {
+
+          let res;
+        
+          return chai.request(app)
+            .get('/laborWeeks')
+            .then(function(_res) {
+              // so subsequent .then blocks can access response object
+              res = _res;
+              expect(res).to.have.status(200);
+
+              
+
+              // otherwise our db seeding didn't work
+              expect(res.body).to.have.lengthOf.at.least(1);
+              return LaborWeek.count();
+            })
+            .then(function(count) {
+              expect(res.body).to.have.lengthOf(count);
+            });
+        });  
+    });
+});
