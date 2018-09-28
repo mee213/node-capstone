@@ -35,6 +35,7 @@ function seedLaborWeeksData(data) {
 // to ensure data from one test does not stick
 // around for next one
 function tearDownDb() {
+  
   console.warn('Deleting database');
   return mongoose.connection.dropDatabase();
 }
@@ -52,10 +53,13 @@ describe('Labor Weeks Router', function() {
     });
 
     afterEach(function() {
+
     return tearDownDb();
     });
 
     after(function() {
+
+    
     return closeServer();
     });
 
@@ -81,15 +85,71 @@ describe('Labor Weeks Router', function() {
               res = _res;
               expect(res).to.have.status(200);
 
-              
+              console.log(res.body);
 
               // otherwise our db seeding didn't work
               expect(res.body).to.have.lengthOf.at.least(1);
-              return LaborWeek.count();
+              console.log('here is the count');
+              console.log(LaborWeek.find().count({}));
+              return LaborWeek.find().count({});
             })
             .then(function(count) {
               expect(res.body).to.have.lengthOf(count);
             });
-        });  
+        }); 
+/*
+        it('should return labor weeks with right fields', function() {
+        // Strategy: Get back all labor weeks, and ensure they have expected keys
+
+        let resLaborWeek;
+        return chai.request(app)
+          .get('/laborWeeks')
+          .then(function(res) {
+            expect(res).to.have.status(200);
+            expect(res).to.be.json;
+            expect(res.body).to.be.a('array');
+            expect(res.body).to.have.lengthOf.at.least(1);
+
+            res.body.forEach(function(laborWeek) {
+              expect(laborWeek).to.be.a('object');
+              expect(laborWeek).to.include.keys(
+                'week_id',
+                'periodEndDate', 
+                'bakrsRegHours',
+                'bakrsOTHours',
+                'bakrsRegGrossPay',
+                'bakrsOTGrossPay',
+                'csrvcRegHours',
+                'csrvcOTHours',
+                'csrvcRegGrossPay',
+                'csrvcOTGrossPay',
+                'drvrsRegHours',
+                'drvrsOTHours',
+                'drvrsRegGrossPay',
+                'drvrsOTGrossPay',
+                'jntrsRegHours',
+                'jntrsOTHours',
+                'jntrsRegGrossPay',
+                'jntrsOTGrossPay',
+                'pckrsRegHours',
+                'pckrsOTHours',
+                'pckrsRegGrossPay',
+                'pckrsOTGrossPay',
+                );
+            });
+            resLaborWeek = res.body[0];
+            console.log(LaborWeek.findById(resLaborWeek.id));
+            return LaborWeek.findById(resLaborWeek.id);
+          })
+          .then(function(laborWeek) {
+
+            expect(resLaborWeek.week_id).to.equal(laborWeek.week_id);
+            expect(resLaborWeek.title).to.equal(laborWeek.title);
+            expect(resLaborWeek.content).to.equal(laborWeek.content);
+            expect(resLaborWeek.author).to.equal(laborWeek.authorName);
+            expect(resLaborWeek.created).to.not.be.null;
+          });
+        });
+*/
     });
 });
