@@ -89,15 +89,13 @@ describe('Labor Weeks Router', function() {
 
               // otherwise our db seeding didn't work
               expect(res.body).to.have.lengthOf.at.least(1);
-              console.log('here is the count');
-              console.log(LaborWeek.find().count({}));
-              return LaborWeek.find().count({});
+              return LaborWeek.count();
             })
             .then(function(count) {
               expect(res.body).to.have.lengthOf(count);
             });
         }); 
-/*
+
         it('should return labor weeks with right fields', function() {
         // Strategy: Get back all labor weeks, and ensure they have expected keys
 
@@ -138,18 +136,17 @@ describe('Labor Weeks Router', function() {
                 );
             });
             resLaborWeek = res.body[0];
-            console.log(LaborWeek.findById(resLaborWeek.id));
-            return LaborWeek.findById(resLaborWeek.id);
+            console.log(resLaborWeek);
+            //console.log(LaborWeek.findById(resLaborWeek.id));
+            return LaborWeek.findOne({week_id: resLaborWeek.week_id});
           })
           .then(function(laborWeek) {
-
+            console.log(laborWeek);
             expect(resLaborWeek.week_id).to.equal(laborWeek.week_id);
-            expect(resLaborWeek.title).to.equal(laborWeek.title);
-            expect(resLaborWeek.content).to.equal(laborWeek.content);
-            expect(resLaborWeek.author).to.equal(laborWeek.authorName);
+            
             expect(resLaborWeek.created).to.not.be.null;
           });
         });
-*/
+
     });
 });
