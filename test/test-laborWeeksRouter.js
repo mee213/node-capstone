@@ -85,8 +85,6 @@ describe('Labor Weeks Router', function() {
               res = _res;
               expect(res).to.have.status(200);
 
-              console.log(res.body);
-
               // otherwise our db seeding didn't work
               expect(res.body).to.have.lengthOf.at.least(1);
               return LaborWeek.count();
@@ -136,14 +134,31 @@ describe('Labor Weeks Router', function() {
                 );
             });
             resLaborWeek = res.body[0];
-            console.log(resLaborWeek);
-            //console.log(LaborWeek.findById(resLaborWeek.id));
             return LaborWeek.findOne({week_id: resLaborWeek.week_id});
           })
           .then(function(laborWeek) {
-            console.log(laborWeek);
             expect(resLaborWeek.week_id).to.equal(laborWeek.week_id);
-            
+            expect(resLaborWeek.periodEndDate).to.equal(laborWeek.periodEndDate);
+            expect(resLaborWeek.bakrsRegHours).to.equal(laborWeek.bakrsRegHours);
+            expect(resLaborWeek.bakrsOTHours).to.equal(laborWeek.bakrsOTHours);
+            expect(resLaborWeek.bakrsRegGrossPay).to.equal(laborWeek.bakrsRegGrossPay);
+            expect(resLaborWeek.bakrsOTGrossPay).to.equal(laborWeek.bakrsOTGrossPay);
+            expect(resLaborWeek.csrvcRegHours).to.equal(laborWeek.csrvcRegHours);
+            expect(resLaborWeek.csrvcOTHours).to.equal(laborWeek.csrvcOTHours);
+            expect(resLaborWeek.csrvcRegGrossPay).to.equal(laborWeek.csrvcRegGrossPay);
+            expect(resLaborWeek.csrvcOTGrossPay).to.equal(laborWeek.csrvcOTGrossPay);
+            expect(resLaborWeek.drvrsRegHours).to.equal(laborWeek.drvrsRegHours);
+            expect(resLaborWeek.drvrsOTHours).to.equal(laborWeek.drvrsOTHours);
+            expect(resLaborWeek.drvrsRegGrossPay).to.equal(laborWeek.drvrsRegGrossPay);
+            expect(resLaborWeek.drvrsOTGrossPay).to.equal(laborWeek.drvrsOTGrossPay);
+            expect(resLaborWeek.jntrsRegHours).to.equal(laborWeek.jntrsRegHours);
+            expect(resLaborWeek.jntrsOTHours).to.equal(laborWeek.jntrsOTHours);
+            expect(resLaborWeek.jntrsRegGrossPay).to.equal(laborWeek.jntrsRegGrossPay);
+            expect(resLaborWeek.jntrsOTGrossPay).to.equal(laborWeek.jntrsOTGrossPay);
+            expect(resLaborWeek.pckrsRegHours).to.equal(laborWeek.pckrsRegHours);
+            expect(resLaborWeek.pckrsOTHours).to.equal(laborWeek.pckrsOTHours);
+            expect(resLaborWeek.pckrsRegGrossPay).to.equal(laborWeek.pckrsRegGrossPay);
+            expect(resLaborWeek.pckrsOTGrossPay).to.equal(laborWeek.pckrsOTGrossPay);
             expect(resLaborWeek.created).to.not.be.null;
           });
         });
