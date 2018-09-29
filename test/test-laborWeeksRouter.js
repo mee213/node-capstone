@@ -43,24 +43,19 @@ function tearDownDb() {
 describe('Labor Weeks Router', function() {
 
     before(function() {
-      console.log('before function ran');
-    return runServer(TEST_DATABASE_URL);
+      return runServer(TEST_DATABASE_URL);
     });
 
     beforeEach(function() {
-      console.log('beforeEach function ran');
-    return seedLaborWeeksData(seedData);
+      return seedLaborWeeksData(seedData);
     });
 
     afterEach(function() {
-
-    return tearDownDb();
+      return tearDownDb();
     });
 
     after(function() {
-
-    
-    return closeServer();
+      return closeServer();
     });
 
     describe('GET /', function() {
@@ -164,4 +159,73 @@ describe('Labor Weeks Router', function() {
         });
 
     });
+
+    describe('POST /', function() {
+    // strategy: make a POST request with data,
+    // then prove that the labor week we get back has
+    // right keys, and that `id` is there (which means
+    // the data was inserted into db)
+      it('should add a new labor week', function() {
+
+        const newLaborWeek = {
+          title: faker.lorem.sentence(),
+          author: {
+            firstName: faker.name.firstName(),
+            lastName: faker.name.lastName(),
+          },
+          content: faker.lorem.text()
+        };
+
+        let authorName = `${newLaborWeek.author.firstName} ${newLaborWeek.author.lastName}`.trim();
+
+        return chai.request(app)
+          .post('/laborWeeks')
+          .send(newLaborWeek)
+          .then(function(res) {
+            expect(res).to.have.status(201);
+            expect(res).to.be.json;
+            expect(res.body).to.be.a('object');
+            expect(res.body).to.include.keys(
+              'id', 'author', 'title', 'content', 'created');
+            // cause Mongo should have created id on insertion
+            expect(res.body.id).to.not.be.null;
+            expect(res.body.title).to.equal(newBlogPost.title);
+            expect(res.body.content).to.equal(newBlogPost.content);
+            expect(res.body.author).to.equal(authorName);
+            return LaborWeek.findById(res.body.id);
+          })
+          .then(function(laborWeek) {
+            expect(blogPost.id).to.not.be.null;
+            expect(blogPost.title).to.equal(newBlogPost.title);
+            expect(blogPost.content).to.equal(newBlogPost.content);
+            expect(blogPost.author.firstName).to.equal(newBlogPost.author.firstName);
+            expect(blogPost.author.lastName).to.equal(newBlogPost.author.lastName);
+          });
+      });
+  });
+
+
+
+
+
+
+
+
+
+    it('should add an item on POST', function() {
+      const newItem = {name: 'coffee', checked: false};
+      return chai.request(app)
+        .post('/shopping-list')
+        .send(newItem)
+        .then(function(res) {
+          expect(res).to.have.status(201);
+          expect(res).to.be.json;
+          expect(res.body).to.be.a('object');
+          expect(res.body).to.include.keys('id', 'name', 'checked');
+          expect(res.body.id).to.not.equal(null);
+          // response should be deep equal to `newItem` from above if we assign
+          // `id` to it from `res.body.id`
+          expect(res.body).to.deep.equal(Object.assign(newItem, {id: res.body.id}));
+    });
+});
 });
