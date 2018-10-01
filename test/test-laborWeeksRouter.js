@@ -125,7 +125,7 @@ describe('Labor Weeks Router', function() {
                 'pckrsRegHours',
                 'pckrsOTHours',
                 'pckrsRegGrossPay',
-                'pckrsOTGrossPay',
+                'pckrsOTGrossPay'
                 );
             });
             resLaborWeek = res.body[0];
@@ -168,15 +168,29 @@ describe('Labor Weeks Router', function() {
       it('should add a new labor week', function() {
 
         const newLaborWeek = {
-          title: faker.lorem.sentence(),
-          author: {
-            firstName: faker.name.firstName(),
-            lastName: faker.name.lastName(),
-          },
-          content: faker.lorem.text()
+          "week_id": "201609",
+          "periodEndDate": "20160226",
+          "bakrsRegHours": 1425.63,
+          "bakrsOTHours": 154.57,
+          "bakrsRegGrossPay": 18139.55,
+          "bakrsOTGrossPay": 2893.66,
+          "csrvcRegHours": 117.94,
+          "csrvcOTHours": 6.73,
+          "csrvcRegGrossPay": 1659.66,
+          "csrvcOTGrossPay": 142.33,
+          "drvrsRegHours": 664.94,
+          "drvrsOTHours": 103.20,
+          "drvrsRegGrossPay": 7730.30,
+          "drvrsOTGrossPay": 2070.20,
+          "jntrsRegHours": 400.78,
+          "jntrsOTHours": 11.33,
+          "jntrsRegGrossPay": 4646.45,
+          "jntrsOTGrossPay": 243.87,
+          "pckrsRegHours": 976.80,
+          "pckrsOTHours": 31.10,
+          "pckrsRegGrossPay": 9645.75,
+          "pckrsOTGrossPay": 500.60
         };
-
-        let authorName = `${newLaborWeek.author.firstName} ${newLaborWeek.author.lastName}`.trim();
 
         return chai.request(app)
           .post('/laborWeeks')
@@ -186,46 +200,79 @@ describe('Labor Weeks Router', function() {
             expect(res).to.be.json;
             expect(res.body).to.be.a('object');
             expect(res.body).to.include.keys(
-              'id', 'author', 'title', 'content', 'created');
+              'week_id',
+              'periodEndDate', 
+              'bakrsRegHours',
+              'bakrsOTHours',
+              'bakrsRegGrossPay',
+              'bakrsOTGrossPay',
+              'csrvcRegHours',
+              'csrvcOTHours',
+              'csrvcRegGrossPay',
+              'csrvcOTGrossPay',
+              'drvrsRegHours',
+              'drvrsOTHours',
+              'drvrsRegGrossPay',
+              'drvrsOTGrossPay',
+              'jntrsRegHours',
+              'jntrsOTHours',
+              'jntrsRegGrossPay',
+              'jntrsOTGrossPay',
+              'pckrsRegHours',
+              'pckrsOTHours',
+              'pckrsRegGrossPay',
+              'pckrsOTGrossPay');
             // cause Mongo should have created id on insertion
             expect(res.body.id).to.not.be.null;
-            expect(res.body.title).to.equal(newBlogPost.title);
-            expect(res.body.content).to.equal(newBlogPost.content);
-            expect(res.body.author).to.equal(authorName);
-            return LaborWeek.findById(res.body.id);
+            expect(res.body.week_id).to.equal(newLaborWeek.week_id);
+            expect(res.body.periodEndDate).to.equal(newLaborWeek.periodEndDate);
+            expect(res.body.bakrsRegHours).to.equal(newLaborWeek.bakrsRegHours);
+            expect(res.body.bakrsOTHours).to.equal(newLaborWeek.bakrsOTHours);
+            expect(res.body.bakrsRegGrossPay).to.equal(newLaborWeek.bakrsRegGrossPay);
+            expect(res.body.bakrsOTGrossPay).to.equal(newLaborWeek.bakrsOTGrossPay);
+            expect(res.body.csrvcRegHours).to.equal(newLaborWeek.csrvcRegHours);
+            expect(res.body.csrvcOTHours).to.equal(newLaborWeek.csrvcOTHours);
+            expect(res.body.csrvcRegGrossPay).to.equal(newLaborWeek.csrvcRegGrossPay);
+            expect(res.body.csrvcOTGrossPay).to.equal(newLaborWeek.csrvcOTGrossPay);
+            expect(res.body.drvrsRegHours).to.equal(newLaborWeek.drvrsRegHours);
+            expect(res.body.drvrsOTHours).to.equal(newLaborWeek.drvrsOTHours);
+            expect(res.body.drvrsRegGrossPay).to.equal(newLaborWeek.drvrsRegGrossPay);
+            expect(res.body.drvrsOTGrossPay).to.equal(newLaborWeek.drvrsOTGrossPay);
+            expect(res.body.jntrsRegHours).to.equal(newLaborWeek.jntrsRegHours);
+            expect(res.body.jntrsOTHours).to.equal(newLaborWeek.jntrsOTHours);
+            expect(res.body.jntrsRegGrossPay).to.equal(newLaborWeek.jntrsRegGrossPay);
+            expect(res.body.jntrsOTGrossPay).to.equal(newLaborWeek.jntrsOTGrossPay);
+            expect(res.body.pckrsRegHours).to.equal(newLaborWeek.pckrsRegHours);
+            expect(res.body.pckrsOTHours).to.equal(newLaborWeek.pckrsOTHours);
+            expect(res.body.pckrsRegGrossPay).to.equal(newLaborWeek.pckrsRegGrossPay);
+            expect(res.body.pckrsOTGrossPay).to.equal(newLaborWeek.pckrsOTGrossPay);
+            return LaborWeek.findOne({week_id: res.body.week_id});
           })
           .then(function(laborWeek) {
-            expect(blogPost.id).to.not.be.null;
-            expect(blogPost.title).to.equal(newBlogPost.title);
-            expect(blogPost.content).to.equal(newBlogPost.content);
-            expect(blogPost.author.firstName).to.equal(newBlogPost.author.firstName);
-            expect(blogPost.author.lastName).to.equal(newBlogPost.author.lastName);
+            expect(laborWeek.id).to.not.be.null;
+            expect(laborWeek.week_id).to.equal(newLaborWeek.week_id);
+            expect(laborWeek.periodEndDate).to.equal(newLaborWeek.periodEndDate);
+            expect(laborWeek.bakrsRegHours).to.equal(newLaborWeek.bakrsRegHours);
+            expect(laborWeek.bakrsOTHours).to.equal(newLaborWeek.bakrsOTHours);
+            expect(laborWeek.bakrsRegGrossPay).to.equal(newLaborWeek.bakrsRegGrossPay);
+            expect(laborWeek.bakrsOTGrossPay).to.equal(newLaborWeek.bakrsOTGrossPay);
+            expect(laborWeek.csrvcRegHours).to.equal(newLaborWeek.csrvcRegHours);
+            expect(laborWeek.csrvcOTHours).to.equal(newLaborWeek.csrvcOTHours);
+            expect(laborWeek.csrvcRegGrossPay).to.equal(newLaborWeek.csrvcRegGrossPay);
+            expect(laborWeek.csrvcOTGrossPay).to.equal(newLaborWeek.csrvcOTGrossPay);
+            expect(laborWeek.drvrsRegHours).to.equal(newLaborWeek.drvrsRegHours);
+            expect(laborWeek.drvrsOTHours).to.equal(newLaborWeek.drvrsOTHours);
+            expect(laborWeek.drvrsRegGrossPay).to.equal(newLaborWeek.drvrsRegGrossPay);
+            expect(laborWeek.drvrsOTGrossPay).to.equal(newLaborWeek.drvrsOTGrossPay);
+            expect(laborWeek.jntrsRegHours).to.equal(newLaborWeek.jntrsRegHours);
+            expect(laborWeek.jntrsOTHours).to.equal(newLaborWeek.jntrsOTHours);
+            expect(laborWeek.jntrsRegGrossPay).to.equal(newLaborWeek.jntrsRegGrossPay);
+            expect(laborWeek.jntrsOTGrossPay).to.equal(newLaborWeek.jntrsOTGrossPay);
+            expect(laborWeek.pckrsRegHours).to.equal(newLaborWeek.pckrsRegHours);
+            expect(laborWeek.pckrsOTHours).to.equal(newLaborWeek.pckrsOTHours);
+            expect(laborWeek.pckrsRegGrossPay).to.equal(newLaborWeek.pckrsRegGrossPay);
+            expect(laborWeek.pckrsOTGrossPay).to.equal(newLaborWeek.pckrsOTGrossPay);
           });
       });
-  });
-
-
-
-
-
-
-
-
-
-    it('should add an item on POST', function() {
-      const newItem = {name: 'coffee', checked: false};
-      return chai.request(app)
-        .post('/shopping-list')
-        .send(newItem)
-        .then(function(res) {
-          expect(res).to.have.status(201);
-          expect(res).to.be.json;
-          expect(res.body).to.be.a('object');
-          expect(res.body).to.include.keys('id', 'name', 'checked');
-          expect(res.body.id).to.not.equal(null);
-          // response should be deep equal to `newItem` from above if we assign
-          // `id` to it from `res.body.id`
-          expect(res.body).to.deep.equal(Object.assign(newItem, {id: res.body.id}));
     });
-});
 });
