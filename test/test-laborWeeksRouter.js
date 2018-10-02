@@ -9,7 +9,7 @@ const mongoose = require('mongoose');
 const {LaborWeek} = require('../models');
 const {app, runServer, closeServer} = require('../server');
 const {TEST_DATABASE_URL} = require('../config');
-const seedData = require('../labor-seed-data.json')
+const seedData = require('../labor-seed-data.json');
 
 // this lets us use *expect* style syntax in our tests
 // so we can do things like `expect(1 + 1).to.equal(2);`
