@@ -22,8 +22,8 @@ const expect = chai.expect;
 // see: https://github.com/chaijs/chai-http
 chai.use(chaiHttp);
 
-describe('Index Page', function() {
-
+describe('Server Routes', function() {
+  
   // Before our tests run, we activate the server. Our `runServer`
   // function returns a promise, and we return the that promise by
   // doing `return runServer`. If we didn't return a promise here,
@@ -42,18 +42,60 @@ describe('Index Page', function() {
     return closeServer();
   });
 
-  // test strategy:
-  //   1. make request to `/`
-  //   2. inspect response object and prove has right code in response object.
-  it('should exist', function() {
-    // for Mocha tests, when we're dealing with asynchronous operations,
-    // we must either return a Promise object or else call a `done` callback
-    // at the end of the test. The `chai.request(server).get...` call is asynchronous
-    // and returns a Promise, so we just return it.
-    return chai.request(app)
-      .get('/')
-      .then(function(res) {
-        expect(res).to.have.status(200);
-      });
+  describe('Index Page', function() {
+
+    // test strategy:
+    //   1. make request to `/`
+    //   2. inspect response object and prove has right code in response object.
+    it('should exist', function() {
+      // for Mocha tests, when we're dealing with asynchronous operations,
+      // we must either return a Promise object or else call a `done` callback
+      // at the end of the test. The `chai.request(server).get...` call is asynchronous
+      // and returns a Promise, so we just return it.
+      return chai.request(app)
+        .get('/')
+        .then(function(res) {
+          expect(res).to.have.status(200);
+        });
+    });
   });
-});
+
+  describe('Add Labor Page', function() {
+
+    it('should return an HTML response', function() {
+
+      return chai.request(app)
+        .get('/addLabor')
+        .then(function(res) {
+          expect(res).to.have.status(200);
+          expect(res).to.be.html;
+          expect(res.body).to.not.be.null;
+          expect(res.text.includes('<form>')).to.be.true;
+        });
+
+    })
+
+  })
+
+  describe('Add Sales Page', function() {
+
+    it('should return an HTML response', function() {
+
+      return chai.request(app)
+        .get('/addSales')
+        .then(function(res) {
+          expect(res).to.have.status(200);
+          expect(res).to.be.html;
+          expect(res.body).to.not.be.null;
+          expect(res.text.includes('<form>')).to.be.true;
+        });
+
+    })
+
+  })
+
+})
+
+
+
+

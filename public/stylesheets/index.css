@@ -13,6 +13,19 @@ a {
     color: #6799ff;
 }
 
+.js-message {
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 10px;
+
+}
+
+.hidden {
+    display: none;
+}
+
 .hamburger {
     width: 48px;
     height: 42px;

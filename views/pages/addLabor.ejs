@@ -13,11 +13,20 @@
 		<main role="main">
 
 			<div class="row">
+				<div class="col-6">
+					<div class="js-message hidden" aria-live="assertive">
+						
+						
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
 				<div class="col-12">
 
 					<h1>Add Labor Data</h1>
 
-					<form action="/laborWeeks" method="post">
+					<form>
 					    
 					    <label for="week_id">Week Number (YYYYWW)</label>
 					    <input type="text" name="week_id" id="week_id" pattern="^20[1-9][0-9][1-5][0-9]" required/>
@@ -62,4 +71,5 @@
 	</body>
 	
 	<% include ../partials/script %>
+	<script type="text/javascript" src="/javascripts/addLabor.js"></script>
 </html>

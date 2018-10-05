@@ -6,7 +6,7 @@ mongoose.Promise = global.Promise;
 // this is our schema to represent a week's worth of labor data
 const laborWeekSchema = mongoose.Schema({
 	week_id: {type: String, required: true, unique: true}, // format YYYYWW
-	periodEndDate: {type: String, required: true}, // format YYYYMMDD
+	periodEndDate: {type: String, required: true, unique: true}, // format YYYYMMDD
 	bakrsRegHours: {type: Number, required: true},
 	bakrsOTHours: {type: Number, required: true},
 	bakrsRegGrossPay: {type: Number, required: true},
@@ -39,13 +39,13 @@ const salesWeekSchema = mongoose.Schema({
 	thuSales: {type: Number, required: true},
 	friSales: {type: Number, required: true},
 	satSales: {type: Number, required: true},
-	sunDate: {type: String, required: true}, // format YYYYMMDD
-	monDate: {type: String, required: true},
-	tueDate: {type: String, required: true},
-	wedDate: {type: String, required: true},
-	thuDate: {type: String, required: true},
-	friDate: {type: String, required: true},
-	satDate: {type: String, required: true}  		
+	sunDate: {type: String, required: true, unique: true}, // format YYYYMMDD
+	monDate: {type: String, required: true, unique: true},
+	tueDate: {type: String, required: true, unique: true},
+	wedDate: {type: String, required: true, unique: true},
+	thuDate: {type: String, required: true, unique: true},
+	friDate: {type: String, required: true, unique: true},
+	satDate: {type: String, required: true, unique: true}  		
 });
 
 
@@ -211,36 +211,36 @@ laborWeekSchema.methods.serialize = function() {
   	totalGrossPay: this.totalGrossPay,
   	totalRegGrossPay: this.totalRegGrossPay,
   	totalOTGrossPay: this.totalOTGrossPay,
-	bakrsTotalHours: this.bakrsTotalHours,
-	bakrsRegHours: this.bakrsRegHours,
-	bakrsOTHours: this.bakrsOTHours,
-	bakrsTotalGrossPay: this.bakrsTotalGrossPay,
-	bakrsRegGrossPay: this.bakrsRegGrossPay,
-	bakrsOTGrossPay: this.bakrsOTGrossPay,
-	csrvcTotalHours: this.csrvcTotalHours,
-	csrvcRegHours: this.csrvcRegHours,
-	csrvcOTHours: this.csrvcOTHours,
-	csrvcTotalGrossPay: this.csrvcTotalGrossPay,
-	csrvcRegGrossPay: this.csrvcRegGrossPay,
-	csrvcOTGrossPay: this.csrvcOTGrossPay,
-	drvrsTotalHours: this.drvrsTotalHours,
-	drvrsRegHours: this.drvrsRegHours,
-	drvrsOTHours: this.drvrsOTHours,
-	drvrsTotalGrossPay: this.drvrsTotalGrossPay,
-	drvrsRegGrossPay: this.drvrsRegGrossPay,
-	drvrsOTGrossPay: this.drvrsOTGrossPay,
-	jntrsTotalHours: this.jntrsTotalHours,
-	jntrsRegHours: this.jntrsRegHours,
-	jntrsOTHours: this.jntrsOTHours,
-	jntrsTotalGrossPay: this.jntrsTotalGrossPay,
-	jntrsRegGrossPay: this.jntrsRegGrossPay,
-	jntrsOTGrossPay: this.jntrsOTGrossPay,
-	pckrsTotalHours: this.pckrsTotalHours,
-	pckrsRegHours: this.pckrsRegHours,
-	pckrsOTHours: this.pckrsOTHours,
-	pckrsTotalGrossPay: this.pckrsTotalGrossPay,
-	pckrsRegGrossPay: this.pckrsRegGrossPay,
-	pckrsOTGrossPay: this.pckrsOTGrossPay
+  	bakrsTotalHours: this.bakrsTotalHours,
+  	bakrsRegHours: this.bakrsRegHours,
+  	bakrsOTHours: this.bakrsOTHours,
+  	bakrsTotalGrossPay: this.bakrsTotalGrossPay,
+  	bakrsRegGrossPay: this.bakrsRegGrossPay,
+  	bakrsOTGrossPay: this.bakrsOTGrossPay,
+  	csrvcTotalHours: this.csrvcTotalHours,
+  	csrvcRegHours: this.csrvcRegHours,
+  	csrvcOTHours: this.csrvcOTHours,
+  	csrvcTotalGrossPay: this.csrvcTotalGrossPay,
+  	csrvcRegGrossPay: this.csrvcRegGrossPay,
+  	csrvcOTGrossPay: this.csrvcOTGrossPay,
+  	drvrsTotalHours: this.drvrsTotalHours,
+  	drvrsRegHours: this.drvrsRegHours,
+  	drvrsOTHours: this.drvrsOTHours,
+  	drvrsTotalGrossPay: this.drvrsTotalGrossPay,
+  	drvrsRegGrossPay: this.drvrsRegGrossPay,
+  	drvrsOTGrossPay: this.drvrsOTGrossPay,
+  	jntrsTotalHours: this.jntrsTotalHours,
+  	jntrsRegHours: this.jntrsRegHours,
+  	jntrsOTHours: this.jntrsOTHours,
+  	jntrsTotalGrossPay: this.jntrsTotalGrossPay,
+  	jntrsRegGrossPay: this.jntrsRegGrossPay,
+  	jntrsOTGrossPay: this.jntrsOTGrossPay,
+  	pckrsTotalHours: this.pckrsTotalHours,
+  	pckrsRegHours: this.pckrsRegHours,
+  	pckrsOTHours: this.pckrsOTHours,
+  	pckrsTotalGrossPay: this.pckrsTotalGrossPay,
+  	pckrsRegGrossPay: this.pckrsRegGrossPay,
+  	pckrsOTGrossPay: this.pckrsOTGrossPay
   };
 };
 
