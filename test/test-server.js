@@ -70,7 +70,24 @@ describe('Server Routes', function() {
           expect(res).to.have.status(200);
           expect(res).to.be.html;
           expect(res.body).to.not.be.null;
-          expect(res.text.includes('<form action="/laborWeeks" method="post">')).to.be.true;
+          expect(res.text.includes('<form>')).to.be.true;
+        });
+
+    })
+
+  })
+
+  describe('Add Sales Page', function() {
+
+    it('should return an HTML response', function() {
+
+      return chai.request(app)
+        .get('/addSales')
+        .then(function(res) {
+          expect(res).to.have.status(200);
+          expect(res).to.be.html;
+          expect(res.body).to.not.be.null;
+          expect(res.text.includes('<form>')).to.be.true;
         });
 
     })

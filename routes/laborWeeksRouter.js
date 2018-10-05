@@ -44,7 +44,6 @@ router.get('/:weekId', (req, res) => {
 router.post('/', (req, res) => {
 
   console.log('laborWeeksRouter post endpoint ran');
-  console.log(req.body);
 
   const requiredFields = ['week_id',
                           'periodEndDate',

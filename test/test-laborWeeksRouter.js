@@ -106,24 +106,40 @@ describe('Labor Weeks Router', function() {
               expect(laborWeek).to.include.keys(
                 'week_id',
                 'periodEndDate', 
+                'totalHours',
+                'totalRegHours',
+                'totalOTHours',
+                'totalGrossPay',
+                'totalRegGrossPay',
+                'totalOTGrossPay',
+                'bakrsTotalHours',
                 'bakrsRegHours',
                 'bakrsOTHours',
+                'bakrsTotalGrossPay',
                 'bakrsRegGrossPay',
                 'bakrsOTGrossPay',
+                'csrvcTotalHours',
                 'csrvcRegHours',
                 'csrvcOTHours',
+                'csrvcTotalGrossPay',
                 'csrvcRegGrossPay',
                 'csrvcOTGrossPay',
+                'drvrsTotalHours',
                 'drvrsRegHours',
                 'drvrsOTHours',
+                'drvrsTotalGrossPay',
                 'drvrsRegGrossPay',
                 'drvrsOTGrossPay',
+                'jntrsTotalHours',
                 'jntrsRegHours',
                 'jntrsOTHours',
+                'jntrsTotalGrossPay',
                 'jntrsRegGrossPay',
                 'jntrsOTGrossPay',
+                'pckrsTotalHours',
                 'pckrsRegHours',
                 'pckrsOTHours',
+                'pckrsTotalGrossPay',
                 'pckrsRegGrossPay',
                 'pckrsOTGrossPay'
                 );
@@ -134,24 +150,40 @@ describe('Labor Weeks Router', function() {
           .then(function(laborWeek) {
             expect(resLaborWeek.week_id).to.equal(laborWeek.week_id);
             expect(resLaborWeek.periodEndDate).to.equal(laborWeek.periodEndDate);
+            expect(resLaborWeek.totalHours).to.equal(laborWeek.totalHours);
+            expect(resLaborWeek.totalRegHours).to.equal(laborWeek.totalRegHours);
+            expect(resLaborWeek.totalOTHours).to.equal(laborWeek.totalOTHours);
+            expect(resLaborWeek.totalGrossPay).to.equal(laborWeek.totalGrossPay);
+            expect(resLaborWeek.totalRegGrossPay).to.equal(laborWeek.totalRegGrossPay);
+            expect(resLaborWeek.totalOTGrossPay).to.equal(laborWeek.totalOTGrossPay);
+            expect(resLaborWeek.bakrsTotalHours).to.equal(laborWeek.bakrsTotalHours);
             expect(resLaborWeek.bakrsRegHours).to.equal(laborWeek.bakrsRegHours);
             expect(resLaborWeek.bakrsOTHours).to.equal(laborWeek.bakrsOTHours);
+            expect(resLaborWeek.bakrsTotalGrossPay).to.equal(laborWeek.bakrsTotalGrossPay);
             expect(resLaborWeek.bakrsRegGrossPay).to.equal(laborWeek.bakrsRegGrossPay);
             expect(resLaborWeek.bakrsOTGrossPay).to.equal(laborWeek.bakrsOTGrossPay);
+            expect(resLaborWeek.csrvcTotalHours).to.equal(laborWeek.csrvcTotalHours);
             expect(resLaborWeek.csrvcRegHours).to.equal(laborWeek.csrvcRegHours);
             expect(resLaborWeek.csrvcOTHours).to.equal(laborWeek.csrvcOTHours);
+            expect(resLaborWeek.csrvcTotalGrossPay).to.equal(laborWeek.csrvcTotalGrossPay);
             expect(resLaborWeek.csrvcRegGrossPay).to.equal(laborWeek.csrvcRegGrossPay);
             expect(resLaborWeek.csrvcOTGrossPay).to.equal(laborWeek.csrvcOTGrossPay);
+            expect(resLaborWeek.drvrsTotalHours).to.equal(laborWeek.drvrsTotalHours);
             expect(resLaborWeek.drvrsRegHours).to.equal(laborWeek.drvrsRegHours);
             expect(resLaborWeek.drvrsOTHours).to.equal(laborWeek.drvrsOTHours);
+            expect(resLaborWeek.drvrsTotalGrossPay).to.equal(laborWeek.drvrsTotalGrossPay);
             expect(resLaborWeek.drvrsRegGrossPay).to.equal(laborWeek.drvrsRegGrossPay);
             expect(resLaborWeek.drvrsOTGrossPay).to.equal(laborWeek.drvrsOTGrossPay);
+            expect(resLaborWeek.jntrsTotalHours).to.equal(laborWeek.jntrsTotalHours);
             expect(resLaborWeek.jntrsRegHours).to.equal(laborWeek.jntrsRegHours);
             expect(resLaborWeek.jntrsOTHours).to.equal(laborWeek.jntrsOTHours);
+            expect(resLaborWeek.jntrsTotalGrossPay).to.equal(laborWeek.jntrsTotalGrossPay);
             expect(resLaborWeek.jntrsRegGrossPay).to.equal(laborWeek.jntrsRegGrossPay);
             expect(resLaborWeek.jntrsOTGrossPay).to.equal(laborWeek.jntrsOTGrossPay);
+            expect(resLaborWeek.pckrsTotalHours).to.equal(laborWeek.pckrsTotalHours);
             expect(resLaborWeek.pckrsRegHours).to.equal(laborWeek.pckrsRegHours);
             expect(resLaborWeek.pckrsOTHours).to.equal(laborWeek.pckrsOTHours);
+            expect(resLaborWeek.pckrsTotalGrossPay).to.equal(laborWeek.pckrsTotalGrossPay);
             expect(resLaborWeek.pckrsRegGrossPay).to.equal(laborWeek.pckrsRegGrossPay);
             expect(resLaborWeek.pckrsOTGrossPay).to.equal(laborWeek.pckrsOTGrossPay);
             expect(resLaborWeek.created).to.not.be.null;
