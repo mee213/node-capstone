@@ -1,13 +1,13 @@
 'use strict';
 
-const LABORWEEKS_URL = '/laborWeeks';
+const SALESWEEKS_URL = '/salesWeeks';
 
-const postDataToLaborWeeksAPI = (data) => {
+const postDataToSalesWeeksAPI = (data) => {
 
-    console.log('postDataToLaborWeeksAPI ran');
+    console.log('postDataToSalesWeeksAPI ran');
 
     const settings = {
-        url: `${LABORWEEKS_URL}`,
+        url: `${SALESWEEKS_URL}`,
         data: data,
         success: () => {
             const successMessage = 'Your data has been successfully added';
@@ -22,7 +22,7 @@ const postDataToLaborWeeksAPI = (data) => {
             });
         },
         error: () => {
-            console.error('There has been an error in postDataToLaborWeeksAPI');
+            console.error('There has been an error in postDataToSalesWeeksAPI');
             const errorMessage = "That didn't work. Your data has NOT been added";
             console.log(errorMessage);
             const $messageDiv = $('.js-message');
@@ -58,10 +58,10 @@ function ready() {
 
         // currentValue is the value of the current array element. 
         function reducer(accumulator, currentValue) {
-            if (currentValue.name == "week_id" || currentValue.name == "periodEndDate") {
-                accumulator[currentValue.name] = currentValue.value;
-            } else {
+            if (currentValue.name == "sunSales" || currentValue.name == "monSales" || currentValue.name == "tueSales" || currentValue.name == "wedSales" || currentValue.name == "thuSales" || currentValue.name == "friSales" || currentValue.name == "satSales") {
                 accumulator[currentValue.name] = parseFloat(currentValue.value);
+            } else {
+                accumulator[currentValue.name] = currentValue.value;
             }
 
             return accumulator;
@@ -71,7 +71,7 @@ function ready() {
 
         console.log(formDataObj);
 
-        postDataToLaborWeeksAPI(formDataObj);
+        postDataToSalesWeeksAPI(formDataObj);
 
     });
 }
