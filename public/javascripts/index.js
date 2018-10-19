@@ -45,6 +45,7 @@ const getDataFromSalesWeeksAPI = function(weekID) {
 	    })
 	    	.fail(function() {
 	    		console.error("There has been an error in getDataFromSalesWeeksAPI");
+	    		
 	    	});
 	});
 }
