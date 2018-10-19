@@ -23,7 +23,7 @@ const postDataToSalesWeeksAPI = (data) => {
         },
         error: () => {
             console.error('There has been an error in postDataToSalesWeeksAPI');
-            const errorMessage = "That didn't work. Your data has NOT been added";
+            const errorMessage = `That didn't work. ${jqXHR.responseJSON.message}.`;
             console.log(errorMessage);
             const $messageDiv = $('.js-message');
             $messageDiv.removeClass('hidden');

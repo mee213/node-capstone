@@ -21,9 +21,9 @@ const postDataToLaborWeeksAPI = (data) => {
                 $messageDiv.toggleClass('hidden');
             });
         },
-        error: () => {
+        error: (jqXHR, textStatus, errorThrown) => {
             console.error('There has been an error in postDataToLaborWeeksAPI');
-            const errorMessage = "That didn't work. Your data has NOT been added";
+            const errorMessage = `That didn't work. ${jqXHR.responseJSON.message}.`;
             console.log(errorMessage);
             const $messageDiv = $('.js-message');
             $messageDiv.removeClass('hidden');
