@@ -174,12 +174,10 @@ router.delete('/:week_id', (req, res) => {
 });
 
 
-/*
 // catch-all endpoint if client makes request to non-existent endpoint
 router.use('*', function (req, res) {
   res.status(404).json({ message: 'Not Found' });
 });
-*/
 
 module.exports = router;
 

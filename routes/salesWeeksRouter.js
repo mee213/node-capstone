@@ -122,7 +122,7 @@ router.put('/:week_id', (req, res) => {
     }
   });
 
-  LaborWeek
+  SalesWeek
     .findOneAndUpdate({week_id: req.params.week_id}, { $set: updated }, { new: true })
     .then(updatedSalesWeek => res.status(200).json(updatedSalesWeek.serialize()))
     .catch(err => res.status(500).json({ message: 'Something went wrong' }));
@@ -138,11 +138,11 @@ router.delete('/:week_id', (req, res) => {
     });
 });
 
-/*
+
 // catch-all endpoint if client makes request to non-existent endpoint
 router.use('*', function (req, res) {
   res.status(404).json({ message: 'Not Found' });
 });
-*/
+
 
 module.exports = router;
