@@ -31,7 +31,13 @@ router.get('/', (req, res) => {
 router.get('/:weekId', (req, res) => {
   LaborWeek
     .findOne({week_id: req.params.weekId})
-    .then(laborweek => res.json(laborweek.serialize()))
+    .then(laborweek => {
+      if (!(laborweek)) {
+        const message = `The week_id ${req.params.weekId} does not exist.`;
+        return res.status(404).send(message);
+      }
+      res.json(laborweek.serialize())
+    })
     .catch(err => {
       console.error(err);
       res.status(500).json({ message: 'Internal server error' });
@@ -114,12 +120,64 @@ router.post('/', (req, res) => {
     });
 });
 
-/*
+
+
+router.put('/:week_id', (req, res) => {
+  if (!(req.params.week_id && req.body.week_id && req.params.week_id === req.body.week_id)) {
+    res.status(400).json({
+      error: 'Request path week_id and request body week_id values must match'
+    });
+  }
+
+  const updated = {};
+  const updateableFields = ['periodEndDate',
+                          'bakrsRegHours',
+                          'bakrsOTHours',
+                          'bakrsRegGrossPay',
+                          'bakrsOTGrossPay',
+                          'csrvcRegHours',
+                          'csrvcOTHours',
+                          'csrvcRegGrossPay',
+                          'csrvcOTGrossPay',
+                          'drvrsRegHours',
+                          'drvrsOTHours',
+                          'drvrsRegGrossPay',
+                          'drvrsOTGrossPay',
+                          'jntrsRegHours',
+                          'jntrsOTHours',
+                          'jntrsRegGrossPay',
+                          'jntrsOTGrossPay',
+                          'pckrsRegHours',
+                          'pckrsOTHours',
+                          'pckrsRegGrossPay',
+                          'pckrsOTGrossPay'];
+  updateableFields.forEach(field => {
+    if (field in req.body) {
+      updated[field] = req.body[field];
+    }
+  });
+
+  LaborWeek
+    .findOneAndUpdate({week_id: req.params.week_id}, { $set: updated }, { new: true })
+    .then(updatedLaborWeek => res.status(200).json(updatedLaborWeek.serialize()))
+    .catch(err => res.status(500).json({ message: 'Something went wrong' }));
+});
+
+
+router.delete('/:week_id', (req, res) => {
+  LaborWeek
+    .findOneAndRemove({week_id: req.params.week_id})
+    .then(() => {
+      console.log(`Deleted labor week with week_id \`${req.params.week_id}\``);
+      res.status(204).end();
+    });
+});
+
+
 // catch-all endpoint if client makes request to non-existent endpoint
 router.use('*', function (req, res) {
   res.status(404).json({ message: 'Not Found' });
 });
-*/
 
 module.exports = router;
 

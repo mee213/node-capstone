@@ -307,4 +307,68 @@ describe('Labor Weeks Router', function() {
           });
       });
     });
+
+    describe('PUT /', function() {
+
+      // strategy:
+      //  1. Get an existing labor week from db
+      //  2. Make a PUT request to update that labor week
+      //  3. Prove labor week returned by request contains data we sent
+      //  4. Prove labor week in db is correctly updated
+      it('should update fields you send over', function() {
+        const updateData = {
+          bakrsRegHours: 1323.62,
+          csrvcOTGrossPay: 150.00,
+          jntrsRegGrossPay: 6464.54
+        };
+
+        return LaborWeek
+          .findOne()
+          .then(function(laborWeek) {
+            updateData.week_id = laborWeek.week_id;
+
+            // make request then inspect it to make sure it reflects
+            // data we sent
+            return chai.request(app)
+              .put(`/laborWeeks/${laborWeek.week_id}`)
+              .send(updateData);
+          })
+          .then(function(res) {
+            expect(res).to.have.status(200);
+
+            return LaborWeek.findOne({week_id: updateData.week_id});
+          })
+          .then(function(laborWeek) {
+            expect(laborWeek.bakrsRegHours).to.equal(updateData.bakrsRegHours);
+            expect(laborWeek.csrvcOTGrossPay).to.equal(updateData.csrvcOTGrossPay);
+            expect(laborWeek.jntrsRegGrossPay).to.equal(updateData.jntrsRegGrossPay);
+          });
+      });
+    });
+
+    describe('DELETE /', function() {
+    // strategy:
+    //  1. get a labor week
+    //  2. make a DELETE request for that labor week's week_id
+    //  3. assert that response has right status code
+    //  4. prove that labor week with the week_id doesn't exist in db anymore
+    it('delete a labor week by week_id', function() {
+
+      let laborWeek;
+
+      return LaborWeek
+        .findOne()
+        .then(function(_laborWeek) {
+          laborWeek = _laborWeek;
+          return chai.request(app).delete(`/laborWeeks/${laborWeek.week_id}`);
+        })
+        .then(function(res) {
+          expect(res).to.have.status(204);
+          return LaborWeek.findOne({week_id: laborWeek.week_id});
+        })
+        .then(function(_laborWeek) {
+          expect(_laborWeek).to.be.null;
+        });
+    });
+  });
 });
