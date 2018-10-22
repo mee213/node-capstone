@@ -43,9 +43,20 @@ const getDataFromSalesWeeksAPI = function(weekID) {
 	    $.get(settings, function(data) {
 	    	resolve(data);
 	    })
-	    	.fail(function() {
+	    	.fail(function(jqXHR, textStatus, errorThrown) {
 	    		console.error("There has been an error in getDataFromSalesWeeksAPI");
-	    		
+	    		const errorMessage = `Sales data for week ${weekID} not found.`;
+	            const $messageDiv = $('.js-message-sales');
+	            $messageDiv.removeClass('hidden');
+	            $messageDiv.append(`<p>${errorMessage}</p><button type="button">X</button>`);
+	            $messageDiv.css("background-color", "#ffcccc");
+	            $messageDiv.on("click", "button", e => {
+				    $messageDiv.addClass('hidden');
+				    //only clear input when both messages have been hidden
+				    if ($('.js-message-labor').hasClass('hidden')) {
+				    	clearInput();
+				    }
+				});
 	    	});
 	});
 }
@@ -66,6 +77,18 @@ const getDataFromLaborWeeksAPI = function(weekID) {
 	    })
 	    	.fail(function() {
 	    		console.error("There has been an error in getDataFromLaborWeeksAPI");
+	    		const errorMessage = `Labor data for week ${weekID} not found.`;
+	            const $messageDiv = $('.js-message-labor');
+	            $messageDiv.removeClass('hidden');
+	            $messageDiv.append(`<p>${errorMessage}</p><button type="button">X</button>`);
+	            $messageDiv.css("background-color", "#ffcccc");
+	            $messageDiv.on("click", "button", e => {
+				    $messageDiv.addClass('hidden');
+				    //only clear input when both messages have been hidden
+				    if ($('.js-message-sales').hasClass('hidden')) {
+				    	clearInput();
+					}	
+				});
 	    	});
 	});
 }
@@ -262,42 +285,50 @@ function doSomeD3(data) {
 	
 
 }
-/*
-function populateResultsToDOM(results_1) {
-	console.log('populateResultsToDOM ran');
-	$('.js-results').html(results_1);
-}
-*/
+
 function unhideResultsDiv() {
 	console.log('unhideResultsDiv ran');
 	$('.js-results').prop('hidden', false);
+}
+
+function clearMessage($aMessageDiv) {
+	$aMessageDiv.html('');
+    $aMessageDiv.addClass('hidden');
+}
+
+function clearInput() {
+	console.log('clearInput ran');
+	$('.js-query').val("");
 }
 
 function watchSubmitSearch() {
 
 	console.log('watchSubmitSearch ran');
 
-    clearInput();
+	clearInput();
 
     $('.js-search-form').submit(event => {
       event.preventDefault();
       console.log('Search button clicked');
+
+      //grab input, save input, then clear input
       const queryTarget = $(event.currentTarget).find('.js-query');
       const query = queryTarget.val();
+      
 
       //clear results div in case of previous results displayed
       $('.js-results').html('');
+
+      //clear all messages in case of previous message 
+      clearMessage($('.js-message'));
+      clearMessage($('.js-message-labor'));
+      clearMessage($('.js-message-sales'));
 
       getDataFromAPIs(query)
       	.then(doSomeD3)
       	.catch(err => console.error(err));
       
     });
-}
-
-function clearInput() {
-	console.log('clearInput ran');
-	$('.js-query').val("");
 }
 
 $(watchSubmitSearch);

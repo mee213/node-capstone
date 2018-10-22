@@ -13,7 +13,11 @@ a {
     color: #6799ff;
 }
 
-.js-message {
+.js-search-form {
+    padding: 10px;
+}
+
+.js-message, .js-message-labor, .js-message-sales {
     overflow: hidden;
     display: flex;
     align-items: center;
