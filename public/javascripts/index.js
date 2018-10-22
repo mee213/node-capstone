@@ -284,6 +284,10 @@ function watchSubmitSearch() {
       console.log('Search button clicked');
       const queryTarget = $(event.currentTarget).find('.js-query');
       const query = queryTarget.val();
+
+      //clear results div in case of previous results displayed
+      $('.js-results').html('');
+
       getDataFromAPIs(query)
       	.then(doSomeD3)
       	.catch(err => console.error(err));
