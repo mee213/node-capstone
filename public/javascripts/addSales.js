@@ -17,6 +17,7 @@ const postDataToSalesWeeksAPI = (data) => {
             $messageDiv.html(`<p>${successMessage}</p><button type="button" class="remove">X</button>`);
             $messageDiv.css("background-color", "#ccffcc");
             $(':input').val("");
+            $('form').get(0).reset()
             $('button.remove').click( e => {
                 $messageDiv.toggleClass('hidden');
             });
