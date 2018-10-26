@@ -89,35 +89,35 @@ describe('Sales Weeks Router', function() {
         });
 
         it('should return sales weeks with right fields', function() {
-	        // Strategy: Get back all sales weeks, and ensure they have expected keys
+            // Strategy: Get back all sales weeks, and ensure they have expected keys
 
-	        let resSalesWeek;
-	        return chai.request(app)
-	          .get('/salesWeeks')
-	          .then(function(res) {
-	            expect(res).to.have.status(200);
-	            expect(res).to.be.json;
-	            expect(res.body).to.be.a('array');
-	            expect(res.body).to.have.lengthOf.at.least(1);
+            let resSalesWeek;
+            return chai.request(app)
+              .get('/salesWeeks')
+              .then(function(res) {
+                expect(res).to.have.status(200);
+                expect(res).to.be.json;
+                expect(res.body).to.be.a('array');
+                expect(res.body).to.have.lengthOf.at.least(1);
 
-	            res.body.forEach(function(salesWeek) {
-	              expect(salesWeek).to.be.a('object');
-	              expect(salesWeek).to.include.keys(
-	                'week_id',
-	                'totalSales', 
-	                'startDate'
-	                );
-	            });
-	            resSalesWeek = res.body[0];
-	            return SalesWeek.findOne({week_id: resSalesWeek.week_id});
-	          })
-	          .then(function(salesWeek) {
-	            expect(resSalesWeek.week_id).to.equal(salesWeek.week_id);
-	            expect(resSalesWeek.totalSales).to.equal(salesWeek.totalSales);
-	            expect(resSalesWeek.startDate).to.equal(salesWeek.sunDate);
-	            expect(resSalesWeek.created).to.not.be.null;
-	          });
-	        });
+                res.body.forEach(function(salesWeek) {
+                  expect(salesWeek).to.be.a('object');
+                  expect(salesWeek).to.include.keys(
+                    'week_id',
+                    'totalSales', 
+                    'startDate'
+                    );
+                });
+                resSalesWeek = res.body[0];
+                return SalesWeek.findOne({week_id: resSalesWeek.week_id});
+              })
+              .then(function(salesWeek) {
+                expect(resSalesWeek.week_id).to.equal(salesWeek.week_id);
+                expect(resSalesWeek.totalSales).to.equal(salesWeek.totalSales);
+                expect(resSalesWeek.startDate).to.equal(salesWeek.sunDate);
+                expect(resSalesWeek.created).to.not.be.null;
+              });
+            });
 
     });
 
@@ -154,7 +154,7 @@ describe('Sales Weeks Router', function() {
             expect(res).to.be.json;
             expect(res.body).to.be.a('object');
             expect(res.body).to.include.keys(
-          		'week_id',
+                'week_id',
                 'totalSales', 
                 'startDate');
             // cause Mongo should have created id on insertion
@@ -223,28 +223,28 @@ describe('Sales Weeks Router', function() {
     });
 
     describe('DELETE /', function() {
-	    // strategy:
-	    //  1. get a sales week
-	    //  2. make a DELETE request for that sales week's week_id
-	    //  3. assert that response has right status code
-	    //  4. prove that sales week with the week_id doesn't exist in db anymore
-	    it('delete a sales week by week_id', function() {
+        // strategy:
+        //  1. get a sales week
+        //  2. make a DELETE request for that sales week's week_id
+        //  3. assert that response has right status code
+        //  4. prove that sales week with the week_id doesn't exist in db anymore
+        it('delete a sales week by week_id', function() {
 
-	      let salesWeek;
+          let salesWeek;
 
-	      return SalesWeek
-	        .findOne()
-	        .then(function(_salesWeek) {
-	          salesWeek = _salesWeek;
-	          return chai.request(app).delete(`/salesWeeks/${salesWeek.week_id}`);
-	        })
-	        .then(function(res) {
-	          expect(res).to.have.status(204);
-	          return SalesWeek.findOne({week_id: salesWeek.week_id});
-	        })
-	        .then(function(_salesWeek) {
-	          expect(_salesWeek).to.be.null;
-	        });
-	    });
-	});
+          return SalesWeek
+            .findOne()
+            .then(function(_salesWeek) {
+              salesWeek = _salesWeek;
+              return chai.request(app).delete(`/salesWeeks/${salesWeek.week_id}`);
+            })
+            .then(function(res) {
+              expect(res).to.have.status(204);
+              return SalesWeek.findOne({week_id: salesWeek.week_id});
+            })
+            .then(function(_salesWeek) {
+              expect(_salesWeek).to.be.null;
+            });
+        });
+    });
 });

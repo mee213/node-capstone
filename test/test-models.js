@@ -1,7 +1,6 @@
 'use strict';
 
 const chai = require('chai');
-const mongoose = require('mongoose');
 
 const {LaborWeek, SalesWeek} = require('../models');
 
