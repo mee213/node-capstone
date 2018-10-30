@@ -139,7 +139,7 @@ function doSomeD3(data) {
     
 
     //Create scale functions
-    let yScale = d3.scaleLinear() // eslint-disable-line no-undef
+    let yScale = d3.scaleLinear() 
                     .domain([0, totalSales])
                     .rangeRound([0, svgHeight]);
 
@@ -184,7 +184,7 @@ function doSomeD3(data) {
     const totalPercent = totalLabor/totalSales*100;
 
     //Create SVG element
-    let svg = d3.select(".js-results") // eslint-disable-line no-undef
+    let svg = d3.select(".js-results") 
                 .append("svg")
                 .attr("width", svgWidth)
                 .attr("height", svgHeight);

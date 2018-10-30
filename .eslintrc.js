@@ -9,6 +9,9 @@ module.exports = {
         "mocha": true,
         "browser": true,
         "jquery": true
+    },
+    "globals": {
+        "d3": true
     }
 };
 

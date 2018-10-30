@@ -27,8 +27,29 @@
 					    <label for="periodEndDate">Period End Date (YYYYMMDD)</label>
 					    <input type="text" name="periodEndDate" id="periodEndDate" pattern="^20[1-9][0-9][0-1][0-9][0-3][0-9]" required/>
 					    
-					    
+
 					    <%
+
+					    	let fieldsets = [ 
+					    		{ 	legend: "Bakers", 
+					    			fields: [
+					    				{ 	label: "Bakers Regular Hours", 
+					    					name: "bakrsRegHours"
+					    				},
+					    				{ 	label: "Bakers Overtime Hours", 
+					    					name: "bakrsOTHours"
+					    				},
+					    				{ 	label: "Bakers Regular Gross Pay $", 
+					    					name: "bakrsRegGrossPay"
+					    				},
+					    				{ 	label: "Bakers Overtime Gross Pay $", 
+					    					name: "bakrsOTGrossPay"
+					    				},
+					    			]
+					    		},
+
+					    	]
+
 					       	let fields = ['bakrsRegHours', 'bakrsOTHours','bakrsRegGrossPay','bakrsOTGrossPay',
 											'csrvcRegHours', 'csrvcOTHours','csrvcRegGrossPay','csrvcOTGrossPay',
 											'drvrsRegHours', 'drvrsOTHours','drvrsRegGrossPay','drvrsOTGrossPay',
@@ -40,7 +61,7 @@
 											'Janitors Regular Hours', 'Janitors Overtime Hours', 'Janitors Regular Gross Pay $', 'Janitors Overtime Gross Pay $',
 											'Packers Regular Hours', 'Packers Overtime Hours', 'Packers Regular Gross Pay $', 'Packers Overtime Gross Pay $'];
 
-					       
+					       // use foreach instead of for since will use labels instead of index
 					       for (let i = 0; i < fields.length; ++i) { 
 					       	
 					         %>

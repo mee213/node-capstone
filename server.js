@@ -68,7 +68,7 @@ function runServer(DATABASE_URL, port=PORT) {
 
       server = app.listen(port, () => {
         // eslint-disable-next-line no-console
-        console.log(`Your app is listening on port ${port}`); //lookup comment
+        console.log(`Your app is listening on port ${port}`);
         resolve();
       })
       .on('error', err => {

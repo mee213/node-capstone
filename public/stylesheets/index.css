@@ -13,13 +13,6 @@ a {
     color: #6799ff;
 }
 
-.page-title {
-    text-transform: uppercase;
-    padding: 14px 18px;
-    display: block;
-    line-height: 30px;
-}
-
 .js-search-form {
     padding: 10px;
 }
@@ -83,6 +76,13 @@ a {
     text-transform: uppercase;
     padding: 14px 18px;
     display: block;
+}
+
+.splash-nav-item > span {
+    text-transform: uppercase;
+    padding: 14px 18px;
+    display: block;
+    line-height: 30px;
 }
 
 .splash-nav-dropdown {
