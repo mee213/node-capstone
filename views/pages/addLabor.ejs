@@ -20,18 +20,22 @@
 					<h1>Add Labor Data</h1>
 
 					<form>
-					    
-					    <label for="week_id">Week Number (YYYYWW)</label>
-					    <input type="text" name="week_id" id="week_id" pattern="^20[1-9][0-9][1-5][0-9]" required/>
-					    <br>
-					    <label for="periodEndDate">Period End Date (YYYYMMDD)</label>
-					    <input type="text" name="periodEndDate" id="periodEndDate" pattern="^20[1-9][0-9][0-1][0-9][0-3][0-9]" required/>
-					    
+					    <fieldset>
+					    	<legend>Time Period</legend>
+						    <label for="week_id">Week Number (YYYYWW)</label>
+						    <br>
+						    <input type="text" name="week_id" id="week_id" pattern="^20[1-9][0-9][1-5][0-9]" required/>
+						    <br>
+						    <br>
+						    <label for="periodEndDate">Period End Date (YYYYMMDD)</label>
+						    <br>
+						    <input type="text" name="periodEndDate" id="periodEndDate" pattern="^20[1-9][0-9][0-1][0-9][0-3][0-9]" required/>
+					    </fieldset>
 
 					    <%
 
 					    	let fieldsets = [ 
-					    		{ 	legend: "Bakers", 
+					    		{ 	legend: "Production Department", 
 					    			fields: [
 					    				{ 	label: "Bakers Regular Hours", 
 					    					name: "bakrsRegHours"
@@ -39,42 +43,103 @@
 					    				{ 	label: "Bakers Overtime Hours", 
 					    					name: "bakrsOTHours"
 					    				},
-					    				{ 	label: "Bakers Regular Gross Pay $", 
+					    				{ 	label: "Bakers Regular Gross Pay ($)", 
 					    					name: "bakrsRegGrossPay"
 					    				},
-					    				{ 	label: "Bakers Overtime Gross Pay $", 
+					    				{ 	label: "Bakers Overtime Gross Pay ($)", 
 					    					name: "bakrsOTGrossPay"
 					    				},
 					    			]
 					    		},
+					    		{ 	legend: "Customer Service Department", 
+					    			fields: [
+					    				{ 	label: "Customer Service Regular Hours", 
+					    					name: "csrvcRegHours"
+					    				},
+					    				{ 	label: "Customer Service Overtime Hours", 
+					    					name: "csrvcOTHours"
+					    				},
+					    				{ 	label: "Customer Service Regular Gross Pay ($)", 
+					    					name: "csrvcRegGrossPay"
+					    				},
+					    				{ 	label: "Customer Service Overtime Gross Pay ($)", 
+					    					name: "csrvcOTGrossPay"
+					    				},
+					    			]
+					    		},
+					    		{ 	legend: "Distribution Department", 
+					    			fields: [
+					    				{ 	label: "Drivers Regular Hours", 
+					    					name: "drvrsRegHours"
+					    				},
+					    				{ 	label: "Drivers Overtime Hours", 
+					    					name: "drvrsOTHours"
+					    				},
+					    				{ 	label: "Drivers Regular Gross Pay ($)", 
+					    					name: "drvrsRegGrossPay"
+					    				},
+					    				{ 	label: "Drivers Overtime Gross Pay ($)", 
+					    					name: "drvrsOTGrossPay"
+					    				},
+					    			]
+					    		},
+					    		{ 	legend: "Sanitation Department", 
+					    			fields: [
+					    				{ 	label: "Janitors Regular Hours", 
+					    					name: "jntrsRegHours"
+					    				},
+					    				{ 	label: "Janitors Overtime Hours", 
+					    					name: "jntrsOTHours"
+					    				},
+					    				{ 	label: "Janitors Regular Gross Pay ($)", 
+					    					name: "jntrsRegGrossPay"
+					    				},
+					    				{ 	label: "Janitors Overtime Gross Pay ($)", 
+					    					name: "jntrsOTGrossPay"
+					    				},
+					    			]
+					    		},
+					    		{ 	legend: "Packing Department", 
+					    			fields: [
+					    				{ 	label: "Packers Regular Hours", 
+					    					name: "pckrsRegHours"
+					    				},
+					    				{ 	label: "Packers Overtime Hours", 
+					    					name: "pckrsOTHours"
+					    				},
+					    				{ 	label: "Packers Regular Gross Pay ($)", 
+					    					name: "pckrsRegGrossPay"
+					    				},
+					    				{ 	label: "Packers Overtime Gross Pay ($)", 
+					    					name: "pckrsOTGrossPay"
+					    				},
+					    			]
+					    		}
+					    	];
 
-					    	]
+					       fieldsets.forEach( (fieldset) => {
+					       	%>
+					       		<fieldset>
+					       			<legend><%=fieldset.legend%></legend>
 
-					       	let fields = ['bakrsRegHours', 'bakrsOTHours','bakrsRegGrossPay','bakrsOTGrossPay',
-											'csrvcRegHours', 'csrvcOTHours','csrvcRegGrossPay','csrvcOTGrossPay',
-											'drvrsRegHours', 'drvrsOTHours','drvrsRegGrossPay','drvrsOTGrossPay',
-											'jntrsRegHours', 'jntrsOTHours','jntrsRegGrossPay','jntrsOTGrossPay',
-											'pckrsRegHours', 'pckrsOTHours','pckrsRegGrossPay','pckrsOTGrossPay'];
-					       	let labels = ['Bakers Regular Hours', 'Bakers Overtime Hours', 'Bakers Regular Gross Pay $', 'Bakers Overtime Gross Pay $',
-											'Customer Service Regular Hours', 'Customer Service Overtime Hours', 'Customer Service Regular Gross Pay $', 'Customer Service Overtime Gross Pay $',
-											'Drivers Regular Hours', 'Drivers Overtime Hours', 'Drivers Regular Gross Pay $', 'Drivers Overtime Gross Pay $',
-											'Janitors Regular Hours', 'Janitors Overtime Hours', 'Janitors Regular Gross Pay $', 'Janitors Overtime Gross Pay $',
-											'Packers Regular Hours', 'Packers Overtime Hours', 'Packers Regular Gross Pay $', 'Packers Overtime Gross Pay $'];
+					       			<%
+					       				fieldset.fields.forEach( (field) => {
+					       					%>
+					       						<label for="<%field.name%>"><%=field.label%></label>
+					       						<br>
+					       						<input type="number" name="<%=field.name%>" id="<%=field.name%>" step="0.01" min="0" required/>
+					       						<br>
+					       						<br>
+					       					<%
+					       				});
+					       			%>
+					       			
+					       		</fieldset>
+					       	<%
+					       });
 
-					       // use foreach instead of for since will use labels instead of index
-					       for (let i = 0; i < fields.length; ++i) { 
-					       	
-					         %>
-					         <br>
-					         <label for="<%=fields[i]%>"><%=labels[i]%></label>
-					         <input type="number" name="<%=fields[i]%>" id="<%=fields[i]%>" step="0.01" min="0" required/>
-
-					         <% 
-					       } 
-					       
 					    %>
-					    <br>
-					    <br>
+					    
 					    <button type="submit">Submit</button>
 					</form>
 				</div>
