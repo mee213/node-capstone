@@ -298,8 +298,8 @@ function watchSubmitSearch() {
 
       getDataFromAPIs(query)
         .then(doSomeD3)
-        .catch(err => {
-            const errorMessage = `Something went wrong. Error code ${err.code}`;
+        .catch( () => {
+            const errorMessage = 'Cannot search without a week number.';
             const $messageDiv = $('.js-message');
             $messageDiv.removeClass('hidden');
             $messageDiv.html(`<p>${errorMessage}</p><button type="button" class="remove">X</button>`);
