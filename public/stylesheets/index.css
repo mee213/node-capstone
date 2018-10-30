@@ -30,7 +30,7 @@ legend {
 }
 
 button {
-    margin: 0px 0px 50px 50px;
+    margin: 0px 0px 50px 0px;
     padding: 10px 20px;
     border-radius: 10px;
     background-color: white;
@@ -120,6 +120,7 @@ svg text {
     padding: 14px 18px;
     display: block;
     line-height: 30px;
+    padding-left: 0px;
 }
 
 .splash-nav-dropdown {
