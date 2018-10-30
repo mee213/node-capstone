@@ -35,6 +35,8 @@ button {
     border-radius: 10px;
     background-color: white;
     cursor: pointer;
+    font-family: 'Rubik', sans-serif;
+    text-transform: uppercase;
 }
 
 button:hover {
@@ -43,6 +45,10 @@ button:hover {
 
 label {
     line-height: 30px;
+}
+
+input {
+    font-family: courier-prime, monospace;
 }
 
 svg text {

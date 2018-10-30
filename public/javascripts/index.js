@@ -132,7 +132,7 @@ function doSomeD3(data) {
     const totalSales = data.totalSales;
 
     //Width and height
-    let svgWidth = 500;
+    let svgWidth = 320;
     let svgHeight = 600;
     let barWidth = 300;
     let centeredX = svgWidth/2-barWidth/2;
