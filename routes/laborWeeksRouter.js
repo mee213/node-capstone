@@ -8,8 +8,6 @@ router.use(express.urlencoded({ extended: true }));
 
 const {LaborWeek} = require('../models');
 
-
-
 // send back JSON representation of all labor data
 // on GET requests to root
 router.get('/', (req, res) => {
@@ -21,8 +19,7 @@ router.get('/', (req, res) => {
     .then(laborweeks => {
       res.json(laborweeks.map(laborweek => laborweek.serialize()));
     })
-    .catch(err => {
-      console.error(err);
+    .catch( () => {
       res.status(500).json({ message: 'Internal server error' });
     });
 });
@@ -38,8 +35,7 @@ router.get('/:weekId', (req, res) => {
       }
       res.json(laborweek.serialize())
     })
-    .catch(err => {
-      console.error(err);
+    .catch( () => {
       res.status(500).json({ message: 'Internal server error' });
     });
 });
@@ -48,8 +44,6 @@ router.get('/:weekId', (req, res) => {
 // log error and return 400 status code with helpful message.
 // if okay, add new labor week, and return it with a status 201.
 router.post('/', (req, res) => {
-
-  console.log('laborWeeksRouter post endpoint ran');
 
   const requiredFields = ['week_id',
                           'periodEndDate',
@@ -78,7 +72,6 @@ router.post('/', (req, res) => {
     const field = requiredFields[i];
     if (!(field in req.body)) {
       const message = `Missing \`${field}\` in request body`;
-      console.error(message);
       return res.status(400).send(message);
     }
   }
@@ -110,7 +103,6 @@ router.post('/', (req, res) => {
     })
     .then(laborweek => res.status(201).json(laborweek.serialize()))
     .catch(err => {
-      console.error(err);
       if (err.code==11000) {
         res.status(500).json({ message: 'A labor entry with this week number already exists' });
       } else {
@@ -119,7 +111,6 @@ router.post('/', (req, res) => {
       
     });
 });
-
 
 
 router.put('/:week_id', (req, res) => {
@@ -160,7 +151,7 @@ router.put('/:week_id', (req, res) => {
   LaborWeek
     .findOneAndUpdate({week_id: req.params.week_id}, { $set: updated }, { new: true })
     .then(updatedLaborWeek => res.status(200).json(updatedLaborWeek.serialize()))
-    .catch(err => res.status(500).json({ message: 'Something went wrong' }));
+    .catch( () => res.status(500).json({ message: 'Something went wrong' }));
 });
 
 
@@ -168,7 +159,6 @@ router.delete('/:week_id', (req, res) => {
   LaborWeek
     .findOneAndRemove({week_id: req.params.week_id})
     .then(() => {
-      console.log(`Deleted labor week with week_id \`${req.params.week_id}\``);
       res.status(204).end();
     });
 });

@@ -24,6 +24,7 @@ chai.use(chaiHttp);
 // used to put seed documents in db
 // so we have data to work with and assert about.
 function seedSalesWeeksData(data) {
+  // eslint-disable-next-line no-console
   console.info('seeding sales weeks data');
   
   // this will return a promise
@@ -35,7 +36,7 @@ function seedSalesWeeksData(data) {
 // to ensure data from one test does not stick
 // around for next one
 function tearDownDb() {
-  
+  // eslint-disable-next-line no-console
   console.warn('Deleting database');
   return mongoose.connection.dropDatabase();
 }

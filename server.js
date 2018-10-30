@@ -4,8 +4,6 @@ const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 
-
-
 // Mongoose internally uses a promise-like object,
 // but its better to make Mongoose use built in es6 promises
 mongoose.Promise = global.Promise;
@@ -88,6 +86,7 @@ function runServer(DATABASE_URL, port=PORT) {
 function closeServer() {
   return mongoose.disconnect().then(() => {
     return new Promise((resolve, reject) => {
+      // eslint-disable-next-line no-console
       console.log('Closing server');
       server.close(err => {
         if (err) {
@@ -103,6 +102,7 @@ function closeServer() {
 // if server.js is called directly (aka, with `node server.js`), this block
 // runs. but we also export the runServer command so other code (for instance, test code) can start the server as needed.
 if (require.main === module) {
+  // eslint-disable-next-line no-console
   runServer(DATABASE_URL).catch(err => console.error(err));
 }
 

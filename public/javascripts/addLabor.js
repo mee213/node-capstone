@@ -4,33 +4,28 @@ const LABORWEEKS_URL = '/laborWeeks';
 
 const postDataToLaborWeeksAPI = (data) => {
 
-    console.log('postDataToLaborWeeksAPI ran');
-
     const settings = {
         url: `${LABORWEEKS_URL}`,
         data: data,
         success: () => {
             const successMessage = 'Your data has been successfully added';
-            console.log(successMessage);
             const $messageDiv = $('.js-message');
             $messageDiv.removeClass('hidden');
             $messageDiv.html(`<p>${successMessage}</p><button type="button" class="remove">X</button>`);
             $messageDiv.css("background-color", "#ccffcc");
             $(':input').val("");
             $('form').get(0).reset()
-            $('button.remove').click( e => {
+            $('button.remove').click( () => {
                 $messageDiv.toggleClass('hidden');
             });
         },
-        error: (jqXHR, textStatus, errorThrown) => {
-            console.error('There has been an error in postDataToLaborWeeksAPI');
+        error: (jqXHR) => {
             const errorMessage = `That didn't work. ${jqXHR.responseJSON.message}.`;
-            console.log(errorMessage);
             const $messageDiv = $('.js-message');
             $messageDiv.removeClass('hidden');
             $messageDiv.html(`<p>${errorMessage}</p><button type="button" class="remove">X</button>`);
             $messageDiv.css("background-color", "#ffcccc");
-            $('button.remove').click( e => {
+            $('button.remove').click( () => {
                 $messageDiv.toggleClass('hidden');
             });
         }
@@ -44,11 +39,8 @@ function ready() {
     
     $('form').submit( event => {
         event.preventDefault();
-        console.log('Submit button clicked');
 
         var formDataArray = $(':input').serializeArray();
-
-        console.log(formDataArray);
 
         // we have an array of objects, 
         //var myArray = [ { name: 'a', value: 1 }, { name: 'b', value: 2 }, { name: 'c', value: 3 } ];
@@ -69,8 +61,6 @@ function ready() {
         }
 
         var formDataObj = formDataArray.reduce(reducer, {});
-
-        console.log(formDataObj);
 
         postDataToLaborWeeksAPI(formDataObj);
 

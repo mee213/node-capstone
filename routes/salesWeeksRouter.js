@@ -19,8 +19,7 @@ router.get('/', (req, res) => {
     .then(salesweeks => {
       res.json(salesweeks.map(salesweek => salesweek.serialize()));
     })
-    .catch(err => {
-      console.error(err);
+    .catch( () => {
       res.status(500).json({ message: 'Internal server error' });
     });
 });
@@ -30,8 +29,7 @@ router.get('/:weekId', (req, res) => {
   SalesWeek
     .findOne({week_id: req.params.weekId})
     .then(salesweek => res.json(salesweek.serialize()))
-    .catch(err => {
-      console.error(err);
+    .catch( () => {
       res.status(500).json({ message: 'Internal server error' });
     });
 });
@@ -60,7 +58,6 @@ router.post('/', (req, res) => {
     const field = requiredFields[i];
     if (!(field in req.body)) {
       const message = `Missing \`${field}\` in request body`;
-      console.error(message);
       return res.status(400).send(message);
     }
   }
@@ -85,7 +82,6 @@ router.post('/', (req, res) => {
     })
     .then(salesweek => res.status(201).json(salesweek.serialize()))
     .catch(err => {
-      console.error(err);
       if (err.code==11000) {
         res.status(500).json({ message: 'A sales entry with this week number already exists' });
       } else {
@@ -125,7 +121,7 @@ router.put('/:week_id', (req, res) => {
   SalesWeek
     .findOneAndUpdate({week_id: req.params.week_id}, { $set: updated }, { new: true })
     .then(updatedSalesWeek => res.status(200).json(updatedSalesWeek.serialize()))
-    .catch(err => res.status(500).json({ message: 'Something went wrong' }));
+    .catch( () => res.status(500).json({ message: 'Something went wrong' }));
 });
 
 
@@ -133,7 +129,6 @@ router.delete('/:week_id', (req, res) => {
   SalesWeek
     .findOneAndRemove({week_id: req.params.week_id})
     .then(() => {
-      console.log(`Deleted sales week with week_id \`${req.params.week_id}\``);
       res.status(204).end();
     });
 });

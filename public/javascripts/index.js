@@ -31,9 +31,7 @@ const getDataFromAPIs = function(weekID) {
 
 const getDataFromSalesWeeksAPI = function(weekID) {
 
-    return new Promise(function(resolve, reject) {
-
-        let sales_Week;
+    return new Promise(function(resolve) {
 
         const settings = {
             url: `${SALESWEEKS_URL}/${weekID}`,
@@ -43,14 +41,13 @@ const getDataFromSalesWeeksAPI = function(weekID) {
         $.get(settings, function(data) {
             resolve(data);
         })
-            .fail(function(jqXHR, textStatus, errorThrown) {
-                console.error("There has been an error in getDataFromSalesWeeksAPI");
+            .fail(function() {
                 const errorMessage = `Sales data for week ${weekID} not found.`;
                 const $messageDiv = $('.js-message-sales');
                 $messageDiv.removeClass('hidden');
                 $messageDiv.append(`<p>${errorMessage}</p><button type="button">X</button>`);
                 $messageDiv.css("background-color", "#ffcccc");
-                $messageDiv.on("click", "button", e => {
+                $messageDiv.on("click", "button", () => {
                     $messageDiv.addClass('hidden');
                     //only clear input when both messages have been hidden
                     if ($('.js-message-labor').hasClass('hidden')) {
@@ -63,9 +60,7 @@ const getDataFromSalesWeeksAPI = function(weekID) {
 
 const getDataFromLaborWeeksAPI = function(weekID) {
 
-    return new Promise(function(resolve, reject) {
-
-        let labor_Week;
+    return new Promise(function(resolve) {
 
         const settings = {
             url: `${LABORWEEKS_URL}/${weekID}`,
@@ -76,13 +71,12 @@ const getDataFromLaborWeeksAPI = function(weekID) {
             resolve(data);
         })
             .fail(function() {
-                console.error("There has been an error in getDataFromLaborWeeksAPI");
                 const errorMessage = `Labor data for week ${weekID} not found.`;
                 const $messageDiv = $('.js-message-labor');
                 $messageDiv.removeClass('hidden');
                 $messageDiv.append(`<p>${errorMessage}</p><button type="button">X</button>`);
                 $messageDiv.css("background-color", "#ffcccc");
-                $messageDiv.on("click", "button", e => {
+                $messageDiv.on("click", "button", () => {
                     $messageDiv.addClass('hidden');
                     //only clear input when both messages have been hidden
                     if ($('.js-message-sales').hasClass('hidden')) {
@@ -102,19 +96,22 @@ function createGrossPayByDeptObj(salesWeek_, laborWeek_) {
     let grossPayByDeptData = {};
 
     if (salesWeek1.week_id === laborWeek1.week_id) { // only merge if both weeks are the same
-        console.log('this happened');
-        console.log(laborWeek1);
-        console.log(salesWeek1);
         grossPayByDeptData.bakrsTotalGrossPay = laborWeek1.bakrsTotalGrossPay;
         grossPayByDeptData.csrvcTotalGrossPay = laborWeek1.csrvcTotalGrossPay;
         grossPayByDeptData.drvrsTotalGrossPay = laborWeek1.drvrsTotalGrossPay;
         grossPayByDeptData.jntrsTotalGrossPay = laborWeek1.jntrsTotalGrossPay;
         grossPayByDeptData.pckrsTotalGrossPay = laborWeek1.pckrsTotalGrossPay;
         grossPayByDeptData.totalSales = salesWeek1.totalSales;
-        console.log(grossPayByDeptData);
         return grossPayByDeptData;
     } else {
-        console.log("salesWeek1.week_id does not match laborWeek1.week_id");
+        const errorMessage = "salesWeek1.week_id does not match laborWeek1.week_id";
+        const $messageDiv = $('.js-message');
+        $messageDiv.removeClass('hidden');
+        $messageDiv.html(`<p>${errorMessage}</p><button type="button" class="remove">X</button>`);
+        $messageDiv.css("background-color", "#ffcccc");
+        $('button.remove').click( () => {
+            $messageDiv.toggleClass('hidden');
+        });
     }
 }
 
@@ -134,9 +131,6 @@ function doSomeD3(data) {
     
     const totalSales = data.totalSales;
 
-    console.log(totalGrossPayByDept);
-    console.log(totalSales);
-
     //Width and height
     let svgWidth = 500;
     let svgHeight = 600;
@@ -145,7 +139,7 @@ function doSomeD3(data) {
     
 
     //Create scale functions
-    let yScale = d3.scaleLinear()
+    let yScale = d3.scaleLinear() // eslint-disable-line no-undef
                     .domain([0, totalSales])
                     .rangeRound([0, svgHeight]);
 
@@ -183,26 +177,14 @@ function doSomeD3(data) {
         totalLabor += totalGrossPayByDept[i];
     }
 
-    console.log(arrayOfGoalPercents);
-    console.log(totalGoalPercent);
-
     for (let i = 0; i < arrayOfGoalPercents.length; i++) {
         totalGoalPercent += arrayOfGoalPercents[i];
-        console.log(i);
-        console.log(arrayOfGoalPercents[i]);
-        console.log(totalGoalPercent);
     }
 
     const totalPercent = totalLabor/totalSales*100;
 
-    console.log(totalGoalPercent);
-    console.log(totalLabor);
-    console.log(arrayOfYs);
-    console.log(arrayOfActualPercents);
-    console.log(arrayOfFillColors);
-
     //Create SVG element
-    let svg = d3.select(".js-results")
+    let svg = d3.select(".js-results") // eslint-disable-line no-undef
                 .append("svg")
                 .attr("width", svgWidth)
                 .attr("height", svgHeight);
@@ -280,14 +262,9 @@ function doSomeD3(data) {
        .attr("font-family", "sans-serif")
        .attr("font-size", "11px")
        .attr("fill", "black");
-
-     
-    
-
 }
 
 function unhideResultsDiv() {
-    console.log('unhideResultsDiv ran');
     $('.js-results').prop('hidden', false);
 }
 
@@ -297,25 +274,20 @@ function clearMessage($aMessageDiv) {
 }
 
 function clearInput() {
-    console.log('clearInput ran');
     $('.js-query').val("");
 }
 
 function watchSubmitSearch() {
 
-    console.log('watchSubmitSearch ran');
-
     clearInput();
 
     $('.js-search-form').submit(event => {
       event.preventDefault();
-      console.log('Search button clicked');
 
       //grab input, save input, then clear input
       const queryTarget = $(event.currentTarget).find('.js-query');
       const query = queryTarget.val();
       
-
       //clear results div in case of previous results displayed
       $('.js-results').html('');
 
@@ -326,7 +298,16 @@ function watchSubmitSearch() {
 
       getDataFromAPIs(query)
         .then(doSomeD3)
-        .catch(err => console.error(err));
+        .catch(err => {
+            const errorMessage = `Something went wrong. Error code ${err.code}`;
+            const $messageDiv = $('.js-message');
+            $messageDiv.removeClass('hidden');
+            $messageDiv.html(`<p>${errorMessage}</p><button type="button" class="remove">X</button>`);
+            $messageDiv.css("background-color", "#ffcccc");
+            $('button.remove').click( () => {
+                $messageDiv.toggleClass('hidden');
+            });
+        });
       
     });
 }
