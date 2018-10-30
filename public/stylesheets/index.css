@@ -111,7 +111,15 @@ a {
     display: none;
     width: 74px;
 }
+/*
+#sales-img {
+    height: 106px;
+}
 
+#labor-img {
+    width: 74px;
+}
+*/
 @media (min-width: 576px) {
     .hamburger {
         /* Only display the hamburger on mobile devices */
