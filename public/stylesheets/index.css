@@ -44,7 +44,7 @@ button:hover {
     background-color: #DCDCDC;
 }
 
-.search-button {
+button[type="submit"] {
     margin-bottom: 30px;
 }
 
