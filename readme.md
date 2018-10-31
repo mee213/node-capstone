@@ -12,7 +12,9 @@ The database currently contains sample data for weeks 201610 through 201620 for 
 
 live app: <https://fast-citadel-48845.herokuapp.com/>
 
-API docs: <https://documenter.getpostman.com/view/4144574/RzZ3LhFN>
+API docs: <a href="https://documenter.getpostman.com/view/4144574/RzZ3LhFN" target="_blank">https://documenter.getpostman.com/view/4144574/RzZ3LhFN</a>
+
+<https://documenter.getpostman.com/view/4144574/RzZ3LhFN>
 
 Technology Used:
 
