@@ -10,9 +10,9 @@ This app allows the user to input weekly sales and labor data manually from silo
 
 The database currently contains sample data for weeks 201610 through 201620 for the purpose of testing and demonstration.
 
-<a href="https://fast-citadel-48845.herokuapp.com" target="_blank">Click here for Live App</a>
+Live app: <https://fast-citadel-48845.herokuapp.com>
 
-<a href="https://documenter.getpostman.com/view/4144574/RzZ3LhFN" target="_blank">Click here for API Docs</a>
+API docs: <https://documenter.getpostman.com/view/4144574/RzZ3LhFN>
 
 Technology Used:
 
