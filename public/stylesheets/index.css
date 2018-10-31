@@ -48,6 +48,7 @@ button[type="submit"] {
 
 label {
     line-height: 30px;
+    font-size: 0.8em;
 }
 
 input {
@@ -158,6 +159,11 @@ svg text {
 }
 
 @media (min-width: 576px) {
+
+    label {
+        font-size: 1em;
+    }
+
     fieldset {
         padding: 30px 50px;
     }
