@@ -89,7 +89,7 @@ svg text {
      * too much */
     position: absolute;
     top: 8px;
-    right: 8px;
+    right: 22px;
 }
 
 .hamburger-stripe {
@@ -242,11 +242,12 @@ svg text {
         display: block;
     }
 }
-
+/*
 @media (min-width: 576px) and (max-width: 767px) {
     .splash-nav-item > a {
         /* Reduce the padding between menu items on smaller devices */
-        padding-left: 6px;
+  /*      padding-left: 6px;
         padding-right: 6px;
     }
-}
+    
+}*/
