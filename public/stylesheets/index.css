@@ -20,7 +20,7 @@ a {
 }
 
 fieldset {
-    padding: 30px 50px;
+    padding: 20px 20px;
     margin: 25px 0px;
 }
 
@@ -30,14 +30,12 @@ legend {
 }
 
 button {
-   
     padding: 10px 20px;
     border-radius: 10px;
     background-color: white;
     cursor: pointer;
     font-family: 'Rubik', sans-serif;
     text-transform: uppercase;
-   
 }
 
 button:hover {
@@ -70,7 +68,6 @@ svg text {
     align-items: center;
     justify-content: space-between;
     padding: 0px 10px;
-
 }
 
 .hidden {
@@ -138,7 +135,6 @@ svg text {
     background-color: #f9fbff;
 }
 
-
 .splash-nav-dropdown-hidden {
     display: none;
 }
@@ -162,11 +158,14 @@ svg text {
 }
 
 @media (min-width: 576px) {
+    fieldset {
+        padding: 30px 50px;
+    }
+
     .hamburger {
         /* Only display the hamburger on mobile devices */
         display: none;
     }
-
 
     .splash-nav-desktop-grid-closed .splash-nav-item:not(.splash-nav-item__logo) {
         /* Display the whole menu when not on mobile */
@@ -226,7 +225,6 @@ svg text {
         justify-content: space-around;
     }
 
-
     .splash-nav-dropdown-item {
         text-align: center;
         /* Don't let the items/images in the dropdown get too wide */
@@ -242,12 +240,3 @@ svg text {
         display: block;
     }
 }
-/*
-@media (min-width: 576px) and (max-width: 767px) {
-    .splash-nav-item > a {
-        /* Reduce the padding between menu items on smaller devices */
-  /*      padding-left: 6px;
-        padding-right: 6px;
-    }
-    
-}*/
