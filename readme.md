@@ -4,7 +4,7 @@ Node Capstone project for Thinkful curriculum
 ## Weekly Sales & Labor Report for a Bakery
 
 
-![Screenshot of Home Page](public/images/screenshot.png "Home Page")
+![Screenshot of Home Page](public/images/screenshot2.png "Home Page")
 
 This app allows the user to input weekly sales and labor data manually from siloed business systems to output a weekly report on total sales, total labor as a percent of sales, and labor by department as a percent of sales. It uses D3.js to draw the report. To search for a report, the user can enter the week number as a 4-digit year and 2-digit week number. To enter data for a new week, the user can select Add from the menu and then Add Labor Data and Add Sales Data.
 
