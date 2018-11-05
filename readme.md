@@ -18,7 +18,7 @@ Technology Used:
 
  - HTML/CSS
  - Javascript/JQuery
- - MongoDB
+ - MongoDB/Mongoose
  - Express/Node
  - D3.js
 
