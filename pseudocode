@@ -1,0 +1,47 @@
+home page:
+1. explanation of what the app is
+2."would you like to:?" (2 buttons)
+	a. "add data for a new week"
+		i.  "which week would you like to add data for?"
+			A. check to see if labor and/or sales data already exist for that week
+				1. sales and labor data both already exist
+					a. "data for week number YYYYWW already exists, what would you like to do?"
+						i. 	 update labor data
+							-GET addlabor/YYYYWW  -- displays the form pre-populated with existing labor data
+							-user makes changes and then "submit" makes a PUT request to API to update labor data
+						ii.  update sales data
+							-GET addsales/YYYYWW  -- displays the form pre-populated with existing sales data
+							-user makes changes and then "submit" makes a PUT request to API to update sales data
+						iii. view labor report for week number YYYYWW
+							- go to 2.c. (view labor report)
+							- i.e., GET report/YYYYWW
+						
+				2. sales data already exists but labor data is missing
+					a. "sales data for week number YYYYWW already exists, what would you like to do?"
+						i. update sales data
+							1. if (!labor) then add labor? (HEAD endpoint returns 200 or 404) (the if statement is polish)
+						ii. add labor data
+							1. add successful-- display report GET report/YYYYWW
+				3. labor data already exists but sales data is missing
+					a. "labor data for week number YYYYWW already exists, what would you like to do?"
+						i. update labor data
+							1. if (!sales) then add sales? (HEAD endpoint returns 200 or 404) (the if statement is polish)
+						ii. add sales data
+							1. add successful-- display report GET report/YYYYWW
+				4. both sales and labor data are missing
+					a. 
+	b. "update data for an existing week"
+	c. "view report for an existing week"
+		i. search box appears--enter week number
+			1. GET report/YYYYWW
+
+
+
+
+		laborweeks/YYYYWW (GET shows JSON)
+
+		salesweeks/YYYYWW
+
+
+
+		report/YYYYWW
