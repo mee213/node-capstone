@@ -40,6 +40,10 @@ app.get('/addSales', (req, res) => {
   res.render('pages/addSales');
 });
 
+app.get('/searchResults', (req, res) => {
+  res.render('pages/searchResults');
+});
+
 // when requests come into `/labor` or
 // `/sales`, we'll route them to the express
 // router instances we've imported. Remember,
