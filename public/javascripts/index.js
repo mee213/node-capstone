@@ -42,18 +42,7 @@ const getDataFromSalesWeeksAPI = function(weekID) {
             resolve(data);
         })
             .fail(function() {
-                const errorMessage = `Sales data for week ${weekID} not found.`;
-                const $messageDiv = $('.js-message-sales');
-                $messageDiv.removeClass('hidden');
-                $messageDiv.append(`<p>${errorMessage}</p><button type="button">X</button>`);
-                $messageDiv.css("background-color", "#ffcccc");
-                $messageDiv.on("click", "button", () => {
-                    $messageDiv.addClass('hidden');
-                    //only clear input when both messages have been hidden
-                    if ($('.js-message-labor').hasClass('hidden')) {
-                        clearInput();
-                    }
-                });
+                resolve(null);
             });
     });
 }
@@ -71,18 +60,7 @@ const getDataFromLaborWeeksAPI = function(weekID) {
             resolve(data);
         })
             .fail(function() {
-                const errorMessage = `Labor data for week ${weekID} not found.`;
-                const $messageDiv = $('.js-message-labor');
-                $messageDiv.removeClass('hidden');
-                $messageDiv.append(`<p>${errorMessage}</p><button type="button">X</button>`);
-                $messageDiv.css("background-color", "#ffcccc");
-                $messageDiv.on("click", "button", () => {
-                    $messageDiv.addClass('hidden');
-                    //only clear input when both messages have been hidden
-                    if ($('.js-message-sales').hasClass('hidden')) {
-                        clearInput();
-                    }   
-                });
+                resolve(null);
             });
     });
 }
