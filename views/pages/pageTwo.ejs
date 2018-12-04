@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <% include ../partials/head %>
+</head>
+
+<body>
+
+  <% include ../partials/menu %>
+
+	<main role="main">
+
+    <% include ../partials/message %>
+
+    <div class="row">
+      <div class="col-12">
+        <h2>Search by Week</h2>
+        
+        <form action="#" class="js-search-form">
+          <fieldset>
+            <label for="search">Week Number (YYYYWW)</label>
+            <br>
+            <input type="text" class="js-query" id="search">
+            <br>
+            <br>
+          </fieldset>
+          <button type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+</body>
+
+<script src="./javascripts/pageTwo.js"></script>
+
+<% include ../partials/script %>
+
+</html>
