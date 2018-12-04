@@ -19,6 +19,18 @@ a {
     color: #6799ff;
 }
 
+.description-div {
+    max-width: 360px;
+}
+
+.description-p {
+    padding-top: 10px;
+}
+
+.search-div {
+    max-width: 330px;
+}
+
 fieldset {
     padding: 20px 20px;
     margin: 25px 0px;
