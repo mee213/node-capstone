@@ -1,5 +1,5 @@
 'use strict';
-
+/*
 const SALESWEEKS_URL = '/salesWeeks';
 const LABORWEEKS_URL = '/laborWeeks';
 
@@ -250,11 +250,11 @@ function clearMessage($aMessageDiv) {
     $aMessageDiv.html('');
     $aMessageDiv.addClass('hidden');
 }
-
+*/
 function clearInput() {
     $('.js-query').val("");
 }
-
+/*
 function watchSubmitSearch() {
 
     clearInput();
@@ -268,7 +268,7 @@ function watchSubmitSearch() {
       
     });
 }
-
-$(watchSubmitSearch);
+*/
+$(clearInput);
 
 
