@@ -31,8 +31,12 @@ a {
     max-width: 330px;
 }
 
+.search-heading {
+    padding-top: 6px;
+}
+
 fieldset {
-    padding: 20px 20px;
+    padding: 20px 30px;
     margin: 25px 0px;
 }
 
