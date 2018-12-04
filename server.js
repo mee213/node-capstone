@@ -41,8 +41,7 @@ app.get('/addSales', (req, res) => {
 });
 
 app.get('/searchResults', (req, res) => {
-  var weekNumber = req.param('week_id');
-  res.render('pages/searchResults',{week_id: weekNumber});
+  res.render('pages/searchResults',{week_id: req.query['week_id']});
 });
 
 // when requests come into `/labor` or
