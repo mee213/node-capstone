@@ -251,24 +251,12 @@ function clearMessage($aMessageDiv) {
     $aMessageDiv.addClass('hidden');
 }
 */
+// if user has already filled in the search box but not submitted yet,
+// and they reload the page, the search box will refresh to be empty
 function clearInput() {
     $('.js-query').val("");
 }
-/*
-function watchSubmitSearch() {
 
-    clearInput();
-
-    $('.js-search-form').submit(event => {
-      
-      console.log('submit button was clicked');
-
-      //WHAT GOES HERE????
-      
-      
-    });
-}
-*/
 $(clearInput);
 
 
