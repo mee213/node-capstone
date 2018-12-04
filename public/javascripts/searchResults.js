@@ -1,4 +1,12 @@
-$();
+'use strict'
+
+function loadSearchResults() {
+    console.log('loadSearchResults ran');
+    console.log(weekID);
+}
+
+$(loadSearchResults);
+
 
 
 
@@ -6,6 +14,12 @@ $();
 
 
 /* some code brought over from index.js - might use later
+
+      //grab input, save input, then clear input
+      const queryTarget = $(event.currentTarget).find('.js-query');
+      const query = queryTarget.val();
+      
+
       //clear results div in case of previous results displayed
       $('.js-results').html('');
 

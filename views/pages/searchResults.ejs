@@ -15,25 +15,30 @@
 
     <div class="row">
       <div class="col-12">
-        <h2>Search by Week</h2>
-        
-        <form action="#" class="js-search-form">
-          <fieldset>
-            <label for="search">Week Number (YYYYWW)</label>
-            <br>
-            <input type="text" class="js-query" id="search">
-            <br>
-            <br>
-          </fieldset>
-          <button type="submit">Search</button>
-        </form>
+        <div class="search-div">
+          <h2>Search by Week</h2>
+          
+          <form action="#" class="js-search-form">
+            <fieldset>
+              <label for="search">Week Number (YYYYWW)</label>
+              <br>
+              <input type="text" class="js-query" id="search" value=<%= week_id%>>
+              <br>
+              <br>
+            </fieldset>
+            <button type="submit">Search</button>
+          </form>
+        </div>
       </div>
     </div>
   </main>
 
 </body>
 
-<!--<script src="./javascripts/searchResults.js"></script>-->
+<script>
+  const weekID = '<%= week_id%>';
+</script>
+<script src="./javascripts/searchResults.js"></script>
 
 <% include ../partials/script %>
 

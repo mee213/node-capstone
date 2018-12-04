@@ -263,11 +263,7 @@ function watchSubmitSearch() {
       
       console.log('submit button was clicked');
 
-      /* might not need this code
-      //grab input, save input, then clear input
-      const queryTarget = $(event.currentTarget).find('.js-query');
-      const query = queryTarget.val();
-      */
+      //WHAT GOES HERE????
       
       
     });
