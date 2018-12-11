@@ -1,69 +1,6 @@
 'use strict';
 /*
-const SALESWEEKS_URL = '/salesWeeks';
-const LABORWEEKS_URL = '/laborWeeks';
 
-const getDataFromAPIs = function(weekID) {
-
-    return new Promise(function(resolve, reject) {
-
-        const getSalesWeek = getDataFromSalesWeeksAPI(weekID);
-
-        const getLaborWeek = getDataFromLaborWeeksAPI(weekID);
-
-        const getSalesAndLaborWeeks = Promise.all([getSalesWeek, getLaborWeek]);
-
-        let grossPayByDept;
-
-        getSalesAndLaborWeeks
-            .then(function(responses) {
-                let salesWeek = responses[0];
-                let laborWeek = responses[1];
-                grossPayByDept = createGrossPayByDeptObj(salesWeek, laborWeek);
-                if (grossPayByDept != undefined) {
-                    resolve (grossPayByDept);
-                } else {
-                    reject(Error("There has been an error in getDataFromAPIs"));
-                }
-            });
-    });
-}
-
-const getDataFromSalesWeeksAPI = function(weekID) {
-
-    return new Promise(function(resolve) {
-
-        const settings = {
-            url: `${SALESWEEKS_URL}/${weekID}`,
-            dataType: 'json'
-        };
-
-        $.get(settings, function(data) {
-            resolve(data);
-        })
-            .fail(function() {
-                resolve(null);
-            });
-    });
-}
-
-const getDataFromLaborWeeksAPI = function(weekID) {
-
-    return new Promise(function(resolve) {
-
-        const settings = {
-            url: `${LABORWEEKS_URL}/${weekID}`,
-            dataType: 'json'
-        };
-
-        $.get(settings, function(data) {
-            resolve(data);
-        })
-            .fail(function() {
-                resolve(null);
-            });
-    });
-}
 
 // create a data object for D3 containing only the gross pay totals for each dept
 function createGrossPayByDeptObj(salesWeek_, laborWeek_) {
