@@ -11,11 +11,12 @@
 
 	<main role="main">
 
-    <% include ../partials/message %>
+    
 
     <div class="row">
       <div class="col-12">
         <h2>Week <%= week_id%></h2>
+        <% include ../partials/message %>
         <div class="js-buttons">
 
 
@@ -23,6 +24,14 @@
       
           
         
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <div class="js-results" aria-live="assertive" hidden>
+          
+        </div>
       </div>
     </div>
   </main>
