@@ -24,7 +24,7 @@
 					    	<legend>Time Period</legend>
 						    <label for="week_id">Week Number (YYYYWW)</label>
 						    <br>
-						    <input type="text" name="week_id" id="week_id" pattern="^20[1-9][0-9][1-5][0-9]" required/>
+						    <input type="text" name="week_id" id="week_id" pattern="^20[1-9][0-9][1-5][0-9]" value='<%= week_id%>' required/>
 						    <br>
 						    <br>
 						    <label for="periodEndDate">Period End Date (YYYYMMDD)</label>
@@ -152,5 +152,8 @@
 	</body>
 	
 	<% include ../partials/script %>
+	<script>
+  		const weekID = '<%= week_id%>';
+	</script>
 	<script type="text/javascript" src="/javascripts/addLabor.js"></script>
 </html>

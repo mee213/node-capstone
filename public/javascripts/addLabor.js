@@ -37,6 +37,8 @@ const postDataToLaborWeeksAPI = (data) => {
 
 function ready() {
     
+    console.log(weekID);
+
     $('form').submit( event => {
         event.preventDefault();
 

@@ -33,11 +33,12 @@ app.get('/', (req, res) => {
 });
 
 app.get('/addLabor', (req, res) => {
-  res.render('pages/addLabor');
+  res.render('pages/addLabor',{week_id: req.query['week_id']});
 });
 
 app.get('/addSales', (req, res) => {
-  res.render('pages/addSales');
+  res.render('pages/addSales',{week_id: req.query['week_id']});
+  
 });
 
 app.get('/searchResults', (req, res) => {
