@@ -38,7 +38,15 @@ const postDataToSalesWeeksAPI = (data) => {
 function ready() {
     
     console.log(weekID);
-    $('#week_id').val(weekID);
+    
+    if (dataExists) {
+        $('h1').text("Update Sales Data");
+    } else {
+        $('#week_id').val(weekID);
+    }
+    
+    console.log('dataExists?');
+    console.log(dataExists);
 
     $('form').submit( event => {
         event.preventDefault();

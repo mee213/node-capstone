@@ -153,7 +153,19 @@
   
   <% include ../partials/script %>
   <script>
+    const data_ = <%- JSON.stringify(data)%>;
+    console.log(data_);
+
+    let dataExists;
+
+    if (typeof data_ === "string") {
+      dataExists = false;
+    } else {
+      dataExists = true;
+    } 
     
+    console.log(dataExists);
+
     // in case the server returned empty week_id (ie, no data for that week)
     // then grab week_id from URL to send to JS file to populate field on Add Data page
     
@@ -169,10 +181,20 @@
       }
     };
 
-    console.log(GetURLParameter('week_id'));
-
-    const weekID = GetURLParameter('week_id');
+    const whichWeekID = () => {
+      if (dataExists) {
+        console.log('this week_id is from existing data');
+        return <%= data.week_id%>;
+      } else {
+        // use the GetURLParameter function to grab week_id from URL to pass it into the addLabor.js file
+        console.log('this week_id is from the URL because there is no existing data');
+        return GetURLParameter('week_id');
+      }
+    }
     
+    const weekID = whichWeekID();
+    console.log(weekID);
+
   </script>
   <script type="text/javascript" src="/javascripts/addLabor.js"></script>
 </html>

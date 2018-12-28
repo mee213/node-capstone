@@ -37,7 +37,15 @@ const postDataToLaborWeeksAPI = (data) => {
 function ready() {
     
     console.log(weekID);
-    $('#week_id').val(weekID);
+    
+    if (dataExists) {
+        $('h1').text("Update Labor Data");
+    } else {
+        $('#week_id').val(weekID);
+    }
+    
+    console.log('dataExists?');
+    console.log(dataExists);
 
     $('form').submit( event => {
         event.preventDefault();

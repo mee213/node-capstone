@@ -25,18 +25,20 @@ router.get('/', (req, res) => {
 });
 
 // send back JSON representation of single week of labor data on GET request by week_id
+// if there is either no data or an error, MUST return a string (an IF statement depends on it!)
 router.get('/:weekId', (req, res) => {
   LaborWeek
     .findOne({week_id: req.params.weekId})
     .then(laborweek => {
       if (!(laborweek)) {
         const message = `The week_id ${req.params.weekId} does not exist.`;
-        return res.status(404).send(message);
+        return res.status(404).send(message); // returns a string
       }
       res.json(laborweek.serialize())
     })
     .catch( () => {
-      res.status(500).json({ message: 'Internal server error' });
+      const message = 'Internal server error';
+      res.status(500).send(message); // returns a string
     });
 });
 
