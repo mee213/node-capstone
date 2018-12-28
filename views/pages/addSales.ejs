@@ -1,87 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
 
-	<head>
-	  <% include ../partials/head %>
-		
-	</head>
+    <head>
+      <% include ../partials/head %>
+        
+    </head>
 
-	<body>
-	  <% include ../partials/menu %>
-		
+    <body>
+      <% include ../partials/menu %>
+        
 
-		<main role="main">
+        <main role="main">
 
-			<% include ../partials/message %>
+            <% include ../partials/message %>
 
-			<div class="row">
-				<div class="col-12">
+            <div class="row">
+                <div class="col-12">
 
-					<h1>Add Sales Data</h1>
+                    <h1>Add Sales Data</h1>
 
-					<form>
-					    
-					    <fieldset>
-						    <label for="week_id">Week Number (YYYYWW)</label>
-						    <br>
-						    <input type="text" name="week_id" id="week_id" pattern="^20[1-9][0-9][1-5][0-9]" value='<%= week_id%>' required/>
-						    <br>
-						    <br>
-					    </fieldset>
+                    <form>
+                        
+                        <fieldset>
+                            <label for="week_id">Week Number (YYYYWW)</label>
+                            <br>
+                            <input type="text" name="week_id" id="week_id" pattern="^20[1-9][0-9][1-5][0-9]" value='<%= data.week_id%>' required/>
+                            <br>
+                            <br>
+                        </fieldset>
 
-					    <%
-					       	let fields = [{date: 'sunDate', sales: 'sunSales'},
-					       					{date: 'monDate', sales: 'monSales'},
-					       					{date: 'tueDate', sales: 'tueSales'},
-					       					{date: 'wedDate', sales: 'wedSales'},
-					       					{date: 'thuDate', sales: 'thuSales'},
-					       					{date: 'friDate', sales: 'friSales'},
-					       					{date: 'satDate', sales: 'satSales'}];
-					       					
-					       	let labels = [{date: 'Sunday Date (YYYYMMDD)', sales: 'Sunday Sales ($)'},
-					       					{date: 'Monday Date (YYYYMMDD)', sales: 'Monday Sales ($)'},
-					       					{date: 'Tuesday Date (YYYYMMDD)', sales: 'Tuesday Sales ($)'},
-					       					{date: 'Wednesday Date (YYYYMMDD)', sales: 'Wednesday Sales ($)'},
-					       					{date: 'Thursday Date (YYYYMMDD)', sales: 'Thursday Sales ($)'},
-					       					{date: 'Friday Date (YYYYMMDD)', sales: 'Friday Sales ($)'},
-					       					{date: 'Saturday Date (YYYYMMDD)', sales: 'Saturday Sales ($)'}];
+                        <%
+                               let fields = [{date: 'sunDate', sales: 'sunSales'},
+                                               {date: 'monDate', sales: 'monSales'},
+                                               {date: 'tueDate', sales: 'tueSales'},
+                                               {date: 'wedDate', sales: 'wedSales'},
+                                               {date: 'thuDate', sales: 'thuSales'},
+                                               {date: 'friDate', sales: 'friSales'},
+                                               {date: 'satDate', sales: 'satSales'}];
+                                               
+                               let labels = [{date: 'Sunday Date (YYYYMMDD)', sales: 'Sunday Sales ($)'},
+                                               {date: 'Monday Date (YYYYMMDD)', sales: 'Monday Sales ($)'},
+                                               {date: 'Tuesday Date (YYYYMMDD)', sales: 'Tuesday Sales ($)'},
+                                               {date: 'Wednesday Date (YYYYMMDD)', sales: 'Wednesday Sales ($)'},
+                                               {date: 'Thursday Date (YYYYMMDD)', sales: 'Thursday Sales ($)'},
+                                               {date: 'Friday Date (YYYYMMDD)', sales: 'Friday Sales ($)'},
+                                               {date: 'Saturday Date (YYYYMMDD)', sales: 'Saturday Sales ($)'}];
 
-					       
-					       for (let i = 0; i < fields.length; ++i) { 
-					       		
+                           
+                           for (let i = 0; i < fields.length; ++i) { 
+                                   
 
-							         %>
-							        
-							         <fieldset>
-								         <label for="<%=fields[i].date%>"><%=labels[i].date%></label>
-								         <br>
-								         <input type="text" name="<%=fields[i].date%>" id="<%=fields[i].date%>" pattern="^20[1-9][0-9][0-1][0-9][0-3][0-9]" required/>
-								         <br>
-								         <br>
-								         <label for="<%=fields[i].sales%>"><%=labels[i].sales%></label>
-								         <br>
-								         <input type="number" name="<%=fields[i].sales%>" id="<%=fields[i].sales%>" step="0.01" min="0" required/>
-								         <br>
-								         <br>
-								     </fieldset>
-							        
-							         <% 
-							    
-					       } 
-					       
-					    %>
-					   
-					    <button type="submit">Submit</button>
-					</form>
-				</div>
-			</div>
+                                     %>
+                                    
+                                     <fieldset>
+                                         <label for="<%=fields[i].date%>"><%=labels[i].date%></label>
+                                         <br>
+                                         <input type="text" name="<%=fields[i].date%>" id="<%=fields[i].date%>" pattern="^20[1-9][0-9][0-1][0-9][0-3][0-9]" required/>
+                                         <br>
+                                         <br>
+                                         <label for="<%=fields[i].sales%>"><%=labels[i].sales%></label>
+                                         <br>
+                                         <input type="number" name="<%=fields[i].sales%>" id="<%=fields[i].sales%>" step="0.01" min="0" required/>
+                                         <br>
+                                         <br>
+                                     </fieldset>
+                                    
+                                     <% 
+                                
+                           } 
+                           
+                        %>
+                       
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
 
-		</main>
-		
-	</body>
-	<% include ../partials/script %>
-	<script>
-  		const weekID = '<%= week_id%>';
-	</script>
-	<script type="text/javascript" src="/javascripts/addSales.js"></script>
+        </main>
+        
+    </body>
+    <% include ../partials/script %>
+    <script>
+      // in case the server returned empty week_id (ie, no data for that week)
+      // then grab week_id from URL to send to JS file to populate field on Add Data page
+      
+      // from http://www.jquerybyexample.net/2012/06/get-url-parameters-using-jquery.html  
+      const GetURLParameter = sParam => {
+        var sPageURL = window.location.search.substring(1);
+        var sURLVariables = sPageURL.split('&');
+        for (var i = 0; i < sURLVariables.length; i++) {
+          var sParameterName = sURLVariables[i].split('=');
+          if (sParameterName[0] == sParam) {
+            return sParameterName[1];
+          }
+        }
+      };
+
+      console.log(GetURLParameter('week_id'));
+      const weekID = GetURLParameter('week_id');
+    </script>
+    <script type="text/javascript" src="/javascripts/addSales.js"></script>
 </html>

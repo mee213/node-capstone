@@ -38,6 +38,7 @@ const postDataToSalesWeeksAPI = (data) => {
 function ready() {
     
     console.log(weekID);
+    $('#week_id').val(weekID);
 
     $('form').submit( event => {
         event.preventDefault();

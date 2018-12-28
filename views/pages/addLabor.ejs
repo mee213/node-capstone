@@ -1,162 +1,178 @@
 <!DOCTYPE html>
 <html lang="en">
 
-	<head>
-	  	<% include ../partials/head %>
-		
-	</head>
+  <head>
+      <% include ../partials/head %>
+    
+  </head>
 
-	<body>
-	  	<% include ../partials/menu %>
-		
+  <body>
+      <% include ../partials/menu %>
+    
 
-		<main role="main">
+    <main role="main">
 
-			<% include ../partials/message %>
+      <% include ../partials/message %>
 
-			<div class="row">
-				<div class="col-12">
+      <div class="row">
+        <div class="col-12">
 
-					<h1>Add Labor Data</h1>
+          <h1>Add Labor Data</h1>
 
-					<form>
-					    <fieldset>
-					    	<legend>Time Period</legend>
-						    <label for="week_id">Week Number (YYYYWW)</label>
-						    <br>
-						    <input type="text" name="week_id" id="week_id" pattern="^20[1-9][0-9][1-5][0-9]" value='<%= data.week_id%>' required/>
-						    <br>
-						    <br>
-						    <label for="periodEndDate">Period End Date (YYYYMMDD)</label>
-						    <br>
-						    <input type="text" name="periodEndDate" id="periodEndDate" pattern="^20[1-9][0-9][0-1][0-9][0-3][0-9]" value="<%= data.periodEndDate%>" required/>
-						    <br>
-						    <br>
-					    </fieldset>
+          <form>
+              <fieldset>
+                <legend>Time Period</legend>
+                <label for="week_id">Week Number (YYYYWW)</label>
+                <br>
+                <input type="text" name="week_id" id="week_id" pattern="^20[1-9][0-9][1-5][0-9]" value='<%= data.week_id%>' required/>
+                <br>
+                <br>
+                <label for="periodEndDate">Period End Date (YYYYMMDD)</label>
+                <br>
+                <input type="text" name="periodEndDate" id="periodEndDate" pattern="^20[1-9][0-9][0-1][0-9][0-3][0-9]" value="<%= data.periodEndDate%>" required/>
+                <br>
+                <br>
+              </fieldset>
 
-					    <%
+              <%
 
-					    	let fieldsets = [ 
-					    		{ 	legend: "Production Department", 
-					    			fields: [
-					    				{ 	label: "Bakers Regular Hours", 
-					    					name: "bakrsRegHours"
-					    				},
-					    				{ 	label: "Bakers Overtime Hours", 
-					    					name: "bakrsOTHours"
-					    				},
-					    				{ 	label: "Bakers Regular Gross Pay ($)", 
-					    					name: "bakrsRegGrossPay"
-					    				},
-					    				{ 	label: "Bakers Overtime Gross Pay ($)", 
-					    					name: "bakrsOTGrossPay"
-					    				},
-					    			]
-					    		},
-					    		{ 	legend: "Customer Service Department", 
-					    			fields: [
-					    				{ 	label: "Customer Service Regular Hours", 
-					    					name: "csrvcRegHours"
-					    				},
-					    				{ 	label: "Customer Service Overtime Hours", 
-					    					name: "csrvcOTHours"
-					    				},
-					    				{ 	label: "Customer Service Regular Gross Pay ($)", 
-					    					name: "csrvcRegGrossPay"
-					    				},
-					    				{ 	label: "Customer Service OT Gross Pay ($)", 
-					    					name: "csrvcOTGrossPay"
-					    				},
-					    			]
-					    		},
-					    		{ 	legend: "Distribution Department", 
-					    			fields: [
-					    				{ 	label: "Drivers Regular Hours", 
-					    					name: "drvrsRegHours"
-					    				},
-					    				{ 	label: "Drivers Overtime Hours", 
-					    					name: "drvrsOTHours"
-					    				},
-					    				{ 	label: "Drivers Regular Gross Pay ($)", 
-					    					name: "drvrsRegGrossPay"
-					    				},
-					    				{ 	label: "Drivers Overtime Gross Pay ($)", 
-					    					name: "drvrsOTGrossPay"
-					    				},
-					    			]
-					    		},
-					    		{ 	legend: "Sanitation Department", 
-					    			fields: [
-					    				{ 	label: "Janitors Regular Hours", 
-					    					name: "jntrsRegHours"
-					    				},
-					    				{ 	label: "Janitors Overtime Hours", 
-					    					name: "jntrsOTHours"
-					    				},
-					    				{ 	label: "Janitors Regular Gross Pay ($)", 
-					    					name: "jntrsRegGrossPay"
-					    				},
-					    				{ 	label: "Janitors Overtime Gross Pay ($)", 
-					    					name: "jntrsOTGrossPay"
-					    				},
-					    			]
-					    		},
-					    		{ 	legend: "Packing Department", 
-					    			fields: [
-					    				{ 	label: "Packers Regular Hours", 
-					    					name: "pckrsRegHours"
-					    				},
-					    				{ 	label: "Packers Overtime Hours", 
-					    					name: "pckrsOTHours"
-					    				},
-					    				{ 	label: "Packers Regular Gross Pay ($)", 
-					    					name: "pckrsRegGrossPay"
-					    				},
-					    				{ 	label: "Packers Overtime Gross Pay ($)", 
-					    					name: "pckrsOTGrossPay"
-					    				},
-					    			]
-					    		}
-					    	];
+                let fieldsets = [ 
+                  { 	legend: "Production Department", 
+                    fields: [
+                      { 	label: "Bakers Regular Hours", 
+                        name: "bakrsRegHours"
+                      },
+                      { 	label: "Bakers Overtime Hours", 
+                        name: "bakrsOTHours"
+                      },
+                      { 	label: "Bakers Regular Gross Pay ($)", 
+                        name: "bakrsRegGrossPay"
+                      },
+                      { 	label: "Bakers Overtime Gross Pay ($)", 
+                        name: "bakrsOTGrossPay"
+                      },
+                    ]
+                  },
+                  { 	legend: "Customer Service Department", 
+                    fields: [
+                      { 	label: "Customer Service Regular Hours", 
+                        name: "csrvcRegHours"
+                      },
+                      { 	label: "Customer Service Overtime Hours", 
+                        name: "csrvcOTHours"
+                      },
+                      { 	label: "Customer Service Regular Gross Pay ($)", 
+                        name: "csrvcRegGrossPay"
+                      },
+                      { 	label: "Customer Service OT Gross Pay ($)", 
+                        name: "csrvcOTGrossPay"
+                      },
+                    ]
+                  },
+                  { 	legend: "Distribution Department", 
+                    fields: [
+                      { 	label: "Drivers Regular Hours", 
+                        name: "drvrsRegHours"
+                      },
+                      { 	label: "Drivers Overtime Hours", 
+                        name: "drvrsOTHours"
+                      },
+                      { 	label: "Drivers Regular Gross Pay ($)", 
+                        name: "drvrsRegGrossPay"
+                      },
+                      { 	label: "Drivers Overtime Gross Pay ($)", 
+                        name: "drvrsOTGrossPay"
+                      },
+                    ]
+                  },
+                  { 	legend: "Sanitation Department", 
+                    fields: [
+                      { 	label: "Janitors Regular Hours", 
+                        name: "jntrsRegHours"
+                      },
+                      { 	label: "Janitors Overtime Hours", 
+                        name: "jntrsOTHours"
+                      },
+                      { 	label: "Janitors Regular Gross Pay ($)", 
+                        name: "jntrsRegGrossPay"
+                      },
+                      { 	label: "Janitors Overtime Gross Pay ($)", 
+                        name: "jntrsOTGrossPay"
+                      },
+                    ]
+                  },
+                  { 	legend: "Packing Department", 
+                    fields: [
+                      { 	label: "Packers Regular Hours", 
+                        name: "pckrsRegHours"
+                      },
+                      { 	label: "Packers Overtime Hours", 
+                        name: "pckrsOTHours"
+                      },
+                      { 	label: "Packers Regular Gross Pay ($)", 
+                        name: "pckrsRegGrossPay"
+                      },
+                      { 	label: "Packers Overtime Gross Pay ($)", 
+                        name: "pckrsOTGrossPay"
+                      },
+                    ]
+                  }
+                ];
 
-					       fieldsets.forEach( (fieldset) => {
-					       	%>
-					       		<fieldset>
-					       			<legend><%=fieldset.legend%></legend>
+                 fieldsets.forEach( (fieldset) => {
+                   %>
+                     <fieldset>
+                       <legend><%=fieldset.legend%></legend>
 
-					       			<%
-					       				fieldset.fields.forEach( (field) => {
-					       					%>
-					       						<label for="<%field.name%>"><%=field.label%></label>
-					       						<br>
-					       						<input type="number" name="<%=field.name%>" id="<%=field.name%>" value="<%= data[field.name]%>" step="0.01" min="0" required/>
-					       						<br>
-					       						<br>
-					       					<%
-					       				});
-					       			%>
-					       			
-					       		</fieldset>
-					       	<%
-					       });
+                       <%
+                         fieldset.fields.forEach( (field) => {
+                           %>
+                             <label for="<%field.name%>"><%=field.label%></label>
+                             <br>
+                             <input type="number" name="<%=field.name%>" id="<%=field.name%>" value="<%= data[field.name]%>" step="0.01" min="0" required/>
+                             <br>
+                             <br>
+                           <%
+                         });
+                       %>
+                       
+                     </fieldset>
+                   <%
+                 });
 
-					    %>
-					    
-					    <button type="submit">Submit</button>
-					</form>
-				</div>
-			</div>
+              %>
+              
+              <button type="submit">Submit</button>
+          </form>
+        </div>
+      </div>
 
-		</main>
-		
-	</body>
-	
-	<% include ../partials/script %>
-	<script>
-		const weekID = <%= data.week_id%>;
-		const data_ = <%- JSON.stringify(data)%>;
-		console.log(weekID);
-		console.log(data_);
-	</script>
-	<script type="text/javascript" src="/javascripts/addLabor.js"></script>
+    </main>
+    
+  </body>
+  
+  <% include ../partials/script %>
+  <script>
+    
+    // in case the server returned empty week_id (ie, no data for that week)
+    // then grab week_id from URL to send to JS file to populate field on Add Data page
+    
+    // from http://www.jquerybyexample.net/2012/06/get-url-parameters-using-jquery.html  
+    const GetURLParameter = sParam => {
+      var sPageURL = window.location.search.substring(1);
+      var sURLVariables = sPageURL.split('&');
+      for (var i = 0; i < sURLVariables.length; i++) {
+        var sParameterName = sURLVariables[i].split('=');
+        if (sParameterName[0] == sParam) {
+          return sParameterName[1];
+        }
+      }
+    };
+
+    console.log(GetURLParameter('week_id'));
+
+    const weekID = GetURLParameter('week_id');
+    
+  </script>
+  <script type="text/javascript" src="/javascripts/addLabor.js"></script>
 </html>
