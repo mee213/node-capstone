@@ -129,7 +129,7 @@
 					       					%>
 					       						<label for="<%field.name%>"><%=field.label%></label>
 					       						<br>
-					       						<input type="number" name="<%=field.name%>" id="<%=field.name%>" step="0.01" min="0" required/>
+					       						<input type="number" name="<%=field.name%>" id="<%=field.name%>"  step="0.01" min="0" required/>
 					       						<br>
 					       						<br>
 					       					<%
@@ -153,7 +153,8 @@
 	
 	<% include ../partials/script %>
 	<script>
-  		const weekID = '<%= week_id%>';
+		const weekID = '<%= week_id%>';
+		console.log(weekID);
 	</script>
 	<script type="text/javascript" src="/javascripts/addLabor.js"></script>
 </html>

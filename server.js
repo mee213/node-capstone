@@ -3,6 +3,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
+const request = require('request');
 
 // Mongoose internally uses a promise-like object,
 // but its better to make Mongoose use built in es6 promises
@@ -33,12 +34,25 @@ app.get('/', (req, res) => {
 });
 
 app.get('/addLabor', (req, res) => {
-  res.render('pages/addLabor',{week_id: req.query['week_id']});
+  const week_id = req.query['week_id'];
+  request(
+    `${req.protocol}://${req.hostname}${(PORT ? ':' + PORT : '')}/laborWeeks/${week_id}`,
+    (error, response, body) => {
+      //console.log(body);
+      res.render('pages/addLabor',{week_id: body.week_id});
+    }
+  );
 });
 
 app.get('/addSales', (req, res) => {
-  res.render('pages/addSales',{week_id: req.query['week_id']});
-  
+  const week_id = req.query['week_id'];
+  request(
+    `${req.protocol}://${req.hostname}${(PORT ? ':' + PORT : '')}/salesWeeks/${week_id}`,
+    (error, response, body) => {
+      console.log(body);
+      res.render('pages/addSales',{week_id});
+    }
+  );
 });
 
 app.get('/searchResults', (req, res) => {
