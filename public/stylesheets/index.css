@@ -209,7 +209,7 @@ svg text {
     }
 
     .splash-nav-primary, .splash-nav-secondary {
-        height: 60px;
+        height: 75px;
         /* Menu items are displayed in a row */
         display: flex;
     }
