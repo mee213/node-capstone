@@ -18,6 +18,7 @@ const postDataToSalesWeeksAPI = (data) => {
             $('button.remove').click( () => {
                 $messageDiv.toggleClass('hidden');
             });
+            $('html, body').animate({ scrollTop: 0 }, 'slow');
         },
         error: (jqXHR) => {
             const errorMessage = `That didn't work. ${jqXHR.responseJSON.message}.`;
@@ -28,6 +29,7 @@ const postDataToSalesWeeksAPI = (data) => {
             $('button.remove').click( () => {
                 $messageDiv.toggleClass('hidden');
             });
+            $('html, body').animate({ scrollTop: 0 }, 'slow');
         }
     };
 
