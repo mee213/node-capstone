@@ -8,7 +8,7 @@ const postDataToSalesWeeksAPI = (data) => {
         url: `${SALESWEEKS_URL}`,
         data: data,
         success: () => {
-            const successMessage = 'Your data has been successfully added';
+            const successMessage = `Sales data for week ${data.week_id} has been successfully added`;
             const $messageDiv = $('.js-message');
             $messageDiv.removeClass('hidden');
             $messageDiv.html(`<p>${successMessage}</p><button type="button" class="remove">X</button>`);
@@ -21,7 +21,7 @@ const postDataToSalesWeeksAPI = (data) => {
             $('html, body').animate({ scrollTop: 0 }, 'slow');
         },
         error: (jqXHR) => {
-            const errorMessage = `That didn't work. ${jqXHR.responseJSON.message}.`;
+            const errorMessage = `That didn't work. Unable to add sales data for week ${data.week_id} because: ${jqXHR.responseJSON.message}.`;
             const $messageDiv = $('.js-message');
             $messageDiv.removeClass('hidden');
             $messageDiv.html(`<p>${errorMessage}</p><button type="button" class="remove">X</button>`);
@@ -46,7 +46,7 @@ function ready() {
     } else {
         $('#week_id').val(weekID);
     }
-    
+
     console.log('dataExists?');
     console.log(dataExists);
 
