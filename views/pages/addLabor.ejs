@@ -24,12 +24,12 @@
 					    	<legend>Time Period</legend>
 						    <label for="week_id">Week Number (YYYYWW)</label>
 						    <br>
-						    <input type="text" name="week_id" id="week_id" pattern="^20[1-9][0-9][1-5][0-9]" value='<%= week_id%>' required/>
+						    <input type="text" name="week_id" id="week_id" pattern="^20[1-9][0-9][1-5][0-9]" value='<%= data.week_id%>' required/>
 						    <br>
 						    <br>
 						    <label for="periodEndDate">Period End Date (YYYYMMDD)</label>
 						    <br>
-						    <input type="text" name="periodEndDate" id="periodEndDate" pattern="^20[1-9][0-9][0-1][0-9][0-3][0-9]" required/>
+						    <input type="text" name="periodEndDate" id="periodEndDate" pattern="^20[1-9][0-9][0-1][0-9][0-3][0-9]" value="<%= data.periodEndDate%>" required/>
 						    <br>
 						    <br>
 					    </fieldset>
@@ -129,7 +129,7 @@
 					       					%>
 					       						<label for="<%field.name%>"><%=field.label%></label>
 					       						<br>
-					       						<input type="number" name="<%=field.name%>" id="<%=field.name%>"  step="0.01" min="0" required/>
+					       						<input type="number" name="<%=field.name%>" id="<%=field.name%>" value="<%= data[field.name]%>" step="0.01" min="0" required/>
 					       						<br>
 					       						<br>
 					       					<%
@@ -153,8 +153,10 @@
 	
 	<% include ../partials/script %>
 	<script>
-		const weekID = '<%= week_id%>';
+		const weekID = <%= data.week_id%>;
+		const data_ = <%- JSON.stringify(data)%>;
 		console.log(weekID);
+		console.log(data_);
 	</script>
 	<script type="text/javascript" src="/javascripts/addLabor.js"></script>
 </html>

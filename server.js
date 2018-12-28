@@ -36,22 +36,20 @@ app.get('/', (req, res) => {
 app.get('/addLabor', (req, res) => {
   const week_id = req.query['week_id'];
   request(
-    `${req.protocol}://${req.hostname}${(PORT ? ':' + PORT : '')}/laborWeeks/${week_id}`,
-    (error, response, body) => {
-      //console.log(body);
-      res.render('pages/addLabor',{week_id: body.week_id});
-    }
+    { method: 'GET',
+      uri: `${req.protocol}://${req.hostname}${(PORT ? ':' + PORT : '')}/laborWeeks/${week_id}`,
+      json: true},
+    (error, response, body) => res.render('pages/addLabor',{data: body})
   );
 });
 
 app.get('/addSales', (req, res) => {
   const week_id = req.query['week_id'];
   request(
-    `${req.protocol}://${req.hostname}${(PORT ? ':' + PORT : '')}/salesWeeks/${week_id}`,
-    (error, response, body) => {
-      console.log(body);
-      res.render('pages/addSales',{week_id});
-    }
+    { method: 'GET',
+      uri: `${req.protocol}://${req.hostname}${(PORT ? ':' + PORT : '')}/salesWeeks/${week_id}`,
+      json: true},
+    (error, response, body) => res.render('pages/addSales',{data: body})
   );
 });
 
