@@ -249,7 +249,21 @@ salesWeekSchema.methods.serialize = function() {
     return {
     week_id: this.week_id,
     totalSales: this.totalSales,
-    startDate: this.sunDate
+    startDate: this.sunDate,
+    sunSales: this.sunSales,
+    monSales: this.monSales,
+    tueSales: this.tueSales,
+    wedSales: this.wedSales,
+    thuSales: this.thuSales,
+    friSales: this.friSales,
+    satSales: this.satSales,
+    sunDate: this.sunDate,
+    monDate: this.monDate,
+    tueDate: this.tueDate,
+    wedDate: this.wedDate,
+    thuDate: this.thuDate,
+    friDate: this.friDate,
+    satDate: this.satDate
     };
 };
 
