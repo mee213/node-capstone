@@ -78,6 +78,10 @@ input {
     font-family: courier-prime, monospace;
 }
 
+input[disabled] {
+    background-color: gainsboro;
+}
+
 svg text {
     font-family: 'Fira Sans', sans-serif;
 }
