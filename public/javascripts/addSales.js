@@ -49,6 +49,11 @@ const fillDates = (week_id) => {
         // index of payday (0-6 for Sunday through Saturday)
         const payday = 5; // 5 means payday happens each Friday
 
+        // payday has to be 0-6 to make sense
+        if (payday < 0 || payday > 6) {
+            throw new Error('Payday has to be between 0 and 6.');
+        } 
+
         // loop through first 7 days of the year looking for the first payday
         for (let i = 1; i <= 7; i++) {
             
@@ -59,8 +64,6 @@ const fillDates = (week_id) => {
                 return d;
             }
         }
-
-        // return an error here if payday const isn't a value from 0-6??
     }
 
     const getDatesArray = (year_, week_) => {
@@ -164,32 +167,29 @@ const disableWeekID = () => {
 
 const ready = () => {
     
+    console.log('dataExists?');
+    console.log(dataExists);
     const $week_id = $('#week_id');
 
     if (dataExists) { // if searched by week_id and found existing data
         $('h1').text("Update Sales Data");
         disableWeekID();
         disableDateInputs();
+        $('#sunSales').focus();
     } else if (weekID) { // if searched by week_id and no data was found
         console.log(weekID);
         $week_id.val(weekID);
         fillDates(weekID);
-        $('#sunSales').focus();
+        disableWeekID();
         disableDateInputs();
-        $week_id.blur( event => {
-            fillDates($week_id.val());
-            $('#sunSales').focus();
-        });
-    } else { // if coming from 'Add' link in menu nav bar, ie, no week_id yet
+        $('#sunSales').focus();
+    } else { // if coming from 'Add' link in menu nav bar, ie, week_id still blank
         $week_id.blur( event => {
             fillDates($week_id.val());
             $('#sunSales').focus();
             disableDateInputs();
         });
     }
-
-    console.log('dataExists?');
-    console.log(dataExists);
 
     $('form').submit( event => {
         event.preventDefault();
