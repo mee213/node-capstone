@@ -30,7 +30,7 @@
                         </fieldset>
 
                         <%
-                               let fields = [{date: 'sunDate', sales: 'sunSales'},
+                               const fields = [{date: 'sunDate', sales: 'sunSales'},
                                                {date: 'monDate', sales: 'monSales'},
                                                {date: 'tueDate', sales: 'tueSales'},
                                                {date: 'wedDate', sales: 'wedSales'},
@@ -38,7 +38,7 @@
                                                {date: 'friDate', sales: 'friSales'},
                                                {date: 'satDate', sales: 'satSales'}];
                                                
-                               let labels = [{date: 'Sunday Date (YYYYMMDD)', sales: 'Sunday Sales ($)'},
+                               const labels = [{date: 'Sunday Date (YYYYMMDD)', sales: 'Sunday Sales ($)'},
                                                {date: 'Monday Date (YYYYMMDD)', sales: 'Monday Sales ($)'},
                                                {date: 'Tuesday Date (YYYYMMDD)', sales: 'Tuesday Sales ($)'},
                                                {date: 'Wednesday Date (YYYYMMDD)', sales: 'Wednesday Sales ($)'},
@@ -79,48 +79,15 @@
         
     </body>
     <% include ../partials/script %>
+    <script type="text/javascript" src="/javascripts/helpers.js"></script>
     <script>
       const data_ = <%- JSON.stringify(data)%>;
       console.log(data_);
 
-      let dataExists;
+      const fields_ = <%- JSON.stringify(fields)%>;
 
-      if (typeof data_ === "string") {
-        dataExists = false;
-      } else {
-        dataExists = true;
-      } 
-      
-      console.log(dataExists);
-
-      // in case the server returned empty week_id (ie, no data for that week)
-      // then grab week_id from URL to send to JS file to populate field on Add Data page
-      
-      // from http://www.jquerybyexample.net/2012/06/get-url-parameters-using-jquery.html  
-      const GetURLParameter = sParam => {
-        var sPageURL = window.location.search.substring(1);
-        var sURLVariables = sPageURL.split('&');
-        for (var i = 0; i < sURLVariables.length; i++) {
-          var sParameterName = sURLVariables[i].split('=');
-          if (sParameterName[0] == sParam) {
-            return sParameterName[1];
-          }
-        }
-      };
-
-      const whichWeekID = () => {
-        if (dataExists) {
-          console.log('this week_id is from existing data');
-          return <%= data.week_id%>;
-        } else {
-          // use the GetURLParameter function to grab week_id from URL to pass it into the addSales.js file
-          console.log('this week_id is from the URL because there is no existing data');
-          return GetURLParameter('week_id');
-        }
-      }
-      
-      const weekID = whichWeekID();
-      console.log(weekID);
+      const weekID = getURLParameter('week_id');
+      console.log('weekID on addSales.ejs is ' + weekID);
     </script>
     <script type="text/javascript" src="/javascripts/addSales.js"></script>
 </html>
