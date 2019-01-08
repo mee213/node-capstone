@@ -40,7 +40,7 @@ const disableInputFields = arrayOfInputIDs => {
     }
 }
 
-const fillDates = (week_id) => {
+const fillDates = (week_id, arrayOfInputIDs, pageType) => {
 
     const year = week_id.substring(0, 4);
     const week = week_id.substring(4, 6);
@@ -77,7 +77,6 @@ const fillDates = (week_id) => {
         console.log('The index of the first payday Day is ' + firstPaydayDayIndex);
         const firstPaydayDateIndex = firstPaydayFullDate.getDate();
 
-        
         const thisPaydayFullDate = new Date(firstPaydayFullDate.setDate(firstPaydayDateIndex + (7 * (week_ - 1))));
         const thisPaydayDayIndex = thisPaydayFullDate.getDay();
         const thisPaydayDateIndex = thisPaydayFullDate.getDate();
@@ -124,25 +123,21 @@ const fillDates = (week_id) => {
     const datesArray = getDatesArray(year, week);
     console.log(datesArray);
 
-    const $sunDate = $('#sunDate');
-    const $monDate = $('#monDate');
-    const $tueDate = $('#tueDate');
-    const $wedDate = $('#wedDate');
-    const $thuDate = $('#thuDate');
-    const $friDate = $('#friDate');
-    const $satDate = $('#satDate');
+    if (pageType === 'sales') {
+        // set the input fields to show correct dates (in correct format)
+        // for the sales week, the 7 days correspond to the
+        // indexes 1-7 in the datesArray, whereas for the
+        // labor week, the 7 days correspond to the indexes 0-6,
+        // with periodEndDate being index 6
+        for (let i = 0; i < arrayOfInputIDs.length; i++) {
+            $(`#${arrayOfInputIDs[i]}`).val(moment(datesArray[i+1]).format('YYYYMMDD'));
+        }
+    } else if (pageType === 'labor') {
+        // periodEndDate corresponds to datesArray[6] 
+        $(`#${arrayOfInputIDs[0]}`).val(moment(datesArray[6]).format('YYYYMMDD'));
+    }
 
-    // set the input fields to show correct dates (in correct format)
-    // for the sales week, the 7 days correspond to the
-    // indexes 1-7 in the datesArray, whereas for the
-    // labor week, the 7 days correspond to the indexes 0-6
-    $sunDate.val(moment(datesArray[1]).format('YYYYMMDD'));
-    $monDate.val(moment(datesArray[2]).format('YYYYMMDD'));
-    $tueDate.val(moment(datesArray[3]).format('YYYYMMDD'));
-    $wedDate.val(moment(datesArray[4]).format('YYYYMMDD'));
-    $thuDate.val(moment(datesArray[5]).format('YYYYMMDD'));
-    $friDate.val(moment(datesArray[6]).format('YYYYMMDD'));
-    $satDate.val(moment(datesArray[7]).format('YYYYMMDD'));
+    
 }
 
       

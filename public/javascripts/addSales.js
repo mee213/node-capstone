@@ -43,6 +43,7 @@ const ready = () => {
     console.log('dataExists? ' + dataExists);
     
     const $week_id = $('#week_id');
+    const pageType = 'sales';
     
     // this will create an array of strings of the IDs of the date input fields
     // these strings are excluding the hash (#) sign
@@ -61,14 +62,14 @@ const ready = () => {
     } else if (weekID) { // if searched by week_id and no data was found
         console.log(weekID);
         $week_id.val(weekID);
-        fillDates(weekID);
+        fillDates(weekID, arrayOfDateInputIDs, pageType);
         disableInputFields(['week_id']);
         disableInputFields(arrayOfDateInputIDs);
         $('#sunSales').focus();
     } else { // if coming from 'Add' link in menu nav bar, ie, week_id still blank
         $week_id.focus();
         $week_id.blur( event => {
-            fillDates($week_id.val());
+            fillDates($week_id.val(), arrayOfDateInputIDs, pageType);
             $('#sunSales').focus();
             disableInputFields(arrayOfDateInputIDs);
         });

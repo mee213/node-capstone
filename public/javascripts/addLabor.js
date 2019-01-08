@@ -36,18 +36,42 @@ const postDataToLaborWeeksAPI = (data) => {
     $.post(settings);
 }
 
-function ready() {
+const ready = () => {
     
-    console.log(weekID);
+    const dataExists = doesDataExist(data_);  
+    console.log('dataExists? ' + dataExists);
+
+    const $week_id = $('#week_id');
+    const pageType = 'labor';
+
+    //there is only one date on this page, but needs to be in an array
+    const arrayOfDateInputIDs = ['periodEndDate'];
     
-    if (dataExists) {
+    if (dataExists) { // if searched by week_id and found existing data
         $('h1').text("Update Labor Data");
-    } else {
-        $('#week_id').val(weekID);
+        disableInputFields(['week_id']);
+        disableInputFields(arrayOfDateInputIDs);
+        $('#bakrsRegHours').focus();
+    } else if (weekID) { // if searched by week_id and no data was found
+        console.log(weekID);
+        $week_id.val(weekID);
+        fillDates(weekID, arrayOfDateInputIDs, pageType);
+        disableInputFields(['week_id']);
+        disableInputFields(arrayOfDateInputIDs);
+        $('#bakrsRegHours').focus();
+    } else { // if coming from 'Add' link in menu nav bar, ie, week_id still blank
+        $week_id.focus();
+        $week_id.blur( event => {
+            fillDates($week_id.val(), arrayOfDateInputIDs, pageType);
+            $('#bakrsRegHours').focus();
+            disableInputFields(arrayOfDateInputIDs);
+        });
     }
 
     console.log('dataExists?');
     console.log(dataExists);
+
+
 
     $('form').submit( event => {
         event.preventDefault();
