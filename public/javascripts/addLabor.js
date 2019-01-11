@@ -8,17 +8,18 @@ const postDataToLaborWeeksAPI = (data) => {
         url: `${LABORWEEKS_URL}`,
         data: data,
         success: () => {
-            const successMessage = `Labor data for week ${data.week_id} has been successfully added`;
-            const $messageDiv = $('.js-message');
-            $messageDiv.removeClass('hidden');
-            $messageDiv.html(`<p>${successMessage}</p><button type="button" class="remove">X</button>`);
-            $messageDiv.css("background-color", "#ccffcc");
-            $(':input').val("");
-            $('form').get(0).reset()
-            $('button.remove').click( () => {
-                $messageDiv.toggleClass('hidden');
-            });
-            $('html, body').animate({ scrollTop: 0 }, 'slow');
+            location.replace(`searchResults/?week_id=${weekID}`);
+            // const successMessage = `Labor data for week ${data.week_id} has been successfully added`;
+            // const $messageDiv = $('.js-message');
+            // $messageDiv.removeClass('hidden');
+            // $messageDiv.html(`<p>${successMessage}</p><button type="button" class="remove">X</button>`);
+            // $messageDiv.css("background-color", "#ccffcc");
+            // $(':input').val("");
+            // $('form').get(0).reset()
+            // $('button.remove').click( () => {
+            //     $messageDiv.toggleClass('hidden');
+            // });
+            // $('html, body').animate({ scrollTop: 0 }, 'slow');
         },
         error: (jqXHR) => {
             const errorMessage = `That didn't work. Unable to add labor data for week ${data.week_id} because: ${jqXHR.responseJSON.message}.`;
