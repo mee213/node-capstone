@@ -8,20 +8,22 @@ const postDataToSalesWeeksAPI = (data) => {
         url: `${SALESWEEKS_URL}`,
         data: data,
         success: () => {
-            const successMessage = `Sales data for week ${data.week_id} has been successfully added`;
-            const $messageDiv = $('.js-message');
-            $messageDiv.removeClass('hidden');
-            $messageDiv.html(`<p>${successMessage}</p><button type="button" class="remove">X</button>`);
-            $messageDiv.css("background-color", "#ccffcc");
-            $(':input').val("");
-            $('form').get(0).reset()
-            $('button.remove').click( () => {
-                $messageDiv.toggleClass('hidden');
-            });
-            $('html, body').animate({ scrollTop: 0 }, 'slow');
+            location.replace(`searchResults/?week_id=${weekID}`);
+            // const successMessage = `Sales data for week ${data.week_id} has been successfully added`;
+            // const $messageDiv = $('.js-message');
+            // $messageDiv.removeClass('hidden');
+            // $messageDiv.html(`<p>${successMessage}</p><button type="button" class="remove">X</button>`);
+            // $messageDiv.css("background-color", "#ccffcc");
+            // $(':input').val("");
+            // $('form').get(0).reset()
+            // $('button.remove').click( () => {
+            //     $messageDiv.toggleClass('hidden');
+            // });
+            // $('html, body').animate({ scrollTop: 0 }, 'slow');
         },
         error: (jqXHR) => {
-            const errorMessage = `That didn't work. Unable to add sales data for week ${data.week_id} because: ${jqXHR.responseJSON.message}.`;
+            console.log(jqXHR);
+            const errorMessage = `That didn't work. Unable to add sales data for week ${weekID} because: ${jqXHR.responseJSON.message}.`;
             const $messageDiv = $('.js-message');
             $messageDiv.removeClass('hidden');
             $messageDiv.html(`<p>${errorMessage}</p><button type="button" class="remove">X</button>`);
@@ -78,7 +80,9 @@ const ready = () => {
     $('form').submit( event => {
         event.preventDefault();
 
+        var disabled = $(':input:disabled').removeAttr('disabled');
         var formDataArray = $(':input').serializeArray();
+        disabled.attr('disabled','disabled');
 
         // we have an array of objects, 
         //var myArray = [ { name: 'a', value: 1 }, { name: 'b', value: 2 }, { name: 'c', value: 3 } ];
