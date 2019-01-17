@@ -51,6 +51,9 @@ const setWeekCalendar = settingElement => {
         selectOtherMonths: true,
         showWeek: true,
         firstDay: 0,
+        changeMonth: true,
+		changeYear: true,
+	    yearRange: '2013:2023',
         calculateWeek: function(date) {
             return moment(date).week();
         },
@@ -94,6 +97,22 @@ const setWeekCalendar = settingElement => {
 
     $('body').on('mousemove', '.ui-weekpicker .ui-datepicker-calendar tr', function() { $(this).find('td a').addClass('ui-state-hover'); });
     $('body').on('mouseleave', '.ui-weekpicker .ui-datepicker-calendar tr', function() { $(this).find('td a').removeClass('ui-state-hover'); });
+
+    //let priorWeekID;
+    //let userWeekID;
+
+    $('#search').on('change', function() {
+        
+        // get user-inputted week_id from input field (user typed it in and didn't use weekpicker)
+        let userWeekID = $(this).val();
+        
+        // need to validate input is in YYYYWW format before using it
+        if (/^20[1-9][0-9][0-5][0-9]/.test(userWeekID)) {
+            const year = userWeekID.substring(0, 4);
+            const week = userWeekID.substring(4, 6);
+            selectedDate = new Date(moment().year(year).day("Friday").week(week));
+        }
+    })
 };
 
 const convertToWeekPicker = targetElement => {
