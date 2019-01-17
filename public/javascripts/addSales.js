@@ -71,10 +71,18 @@ const ready = () => {
     } else { // if coming from 'Add' link in menu nav bar, ie, week_id still blank
         $week_id.focus();
         $week_id.blur( event => {
-            fillDates($week_id.val(), arrayOfDateInputIDs, pageType);
-            $('#sunSales').focus();
-            disableInputFields(arrayOfDateInputIDs);
+            if ($week_id.val()) {
+                fillDates($week_id.val(), arrayOfDateInputIDs, pageType);
+                $('#sunSales').focus();
+                disableInputFields(arrayOfDateInputIDs);
+            } else {
+                clearDateFields(arrayOfDateInputIDs);
+            } 
         });
+
+
+
+        
     }
 
     $('form').submit( event => {

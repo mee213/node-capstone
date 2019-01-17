@@ -40,6 +40,12 @@ const disableInputFields = arrayOfInputIDs => {
     }
 }
 
+const clearDateFields = arrayOfInputIDs => {
+    for (let i = 0; i < arrayOfInputIDs.length; i++) {
+        $(`#${arrayOfInputIDs[i]}`).prop('disabled', false).val('');
+    }
+}
+
 const fillDates = (week_id, arrayOfInputIDs, pageType) => {
 
     const year = week_id.substring(0, 4);
