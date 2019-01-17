@@ -350,6 +350,18 @@ function loadSearchResults() {
     console.log('loadSearchResults ran');
     console.log(weekID);
 
+    const year = weekID.substring(0, 4);
+    const week = weekID.substring(4, 6);
+    const salesStartDate = new Date(moment().year(year).day("Sunday").week(week));
+    const salesEndDate = new Date(moment().year(year).day("Saturday").week(week));
+    const salesStartDateString = moment(salesStartDate).format('ddd, MMM Do, YYYY');
+    const salesEndDateString = moment(salesEndDate).format('ddd, MMM Do, YYYY');
+    const laborStartDateString = moment(salesStartDate).subtract(1,'day').format('ddd, MMM Do, YYYY');
+    const laborEndDateString = moment(salesEndDate).subtract(1,'day').format('ddd, MMM Do, YYYY');
+
+    $('h2').text(`Week ${week} of ${year}`);
+    $('h2').after(`<p>Sales Week: ${salesStartDateString} through ${salesEndDateString}</p><p>Labor Week: ${laborStartDateString} through ${laborEndDateString}</p><br>`)
+
     // get sales+labor from db
     // (could be existing data or null data for either, OR an error)
     getDataFromAPIs(weekID)
