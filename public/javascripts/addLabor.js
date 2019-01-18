@@ -86,7 +86,9 @@ const ready = () => {
     $('form').submit( event => {
         event.preventDefault();
 
+        var disabled = $(':input:disabled').removeAttr('disabled');
         var formDataArray = $(':input').serializeArray();
+        disabled.attr('disabled','disabled');
 
         // we have an array of objects, 
         //var myArray = [ { name: 'a', value: 1 }, { name: 'b', value: 2 }, { name: 'c', value: 3 } ];

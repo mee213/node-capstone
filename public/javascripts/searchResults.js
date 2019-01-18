@@ -360,7 +360,7 @@ function loadSearchResults() {
     const laborEndDateString = moment(salesEndDate).subtract(1,'day').format('ddd D MMM YYYY');
 
     $('h2').text(`Week ${week} of ${year}`);
-    $('h2').after(`<p>Sales: ${salesStartDateString} &mdash; ${salesEndDateString}</p><p>Labor: ${laborStartDateString} &mdash; ${laborEndDateString}</p><br>`)
+    $('h2').after(`<p>Sales: ${salesStartDateString} &ndash; ${salesEndDateString}</p><p>Labor: ${laborStartDateString} &ndash; ${laborEndDateString}</p><br>`)
 
     // get sales+labor from db
     // (could be existing data or null data for either, OR an error)
