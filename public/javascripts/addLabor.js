@@ -61,7 +61,7 @@ const ready = () => {
         disableInputFields(arrayOfDateInputIDs);
         $('#bakrsRegHours').focus();
     } else { // if coming from 'Add' link in menu nav bar, ie, week_id still blank
-        $week_id.focus();
+        convertToWeekPicker($week_id);
         $week_id.blur( event => {
             if ($week_id.val()) {
                 fillDates($week_id.val(), arrayOfDateInputIDs, pageType);
@@ -75,8 +75,6 @@ const ready = () => {
 
     console.log('dataExists?');
     console.log(dataExists);
-
-
 
     $('form').submit( event => {
         event.preventDefault();

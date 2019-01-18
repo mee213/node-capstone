@@ -9,9 +9,6 @@ function clearMessage($aMessageDiv) {
 
 function main() {
     const $search = $('#search');
-
-    // user starts here
-    $search.focus();
     
     // if user has already filled in the search box but not submitted yet,
     // and they reload the page, the search box will refresh to be empty
@@ -19,6 +16,8 @@ function main() {
 
     // search input field will have a pop-up calendar week picker
     convertToWeekPicker($search);
+
+   
 }
 
 $(main);

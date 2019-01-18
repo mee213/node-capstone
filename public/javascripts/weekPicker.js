@@ -101,7 +101,7 @@ const setWeekCalendar = settingElement => {
     //let priorWeekID;
     //let userWeekID;
 
-    $('#search').on('change', function() {
+    $(settingElement).on('change', function() {
         
         // get user-inputted week_id from input field (user typed it in and didn't use weekpicker)
         let userWeekID = $(this).val();
