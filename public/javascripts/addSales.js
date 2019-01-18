@@ -2,11 +2,18 @@
 
 const SALESWEEKS_URL = '/salesWeeks';
 
-const postDataToSalesWeeksAPI = (data) => {
+const saveDataToSalesWeeksAPI = (data, method_) => {
+
+    let thisURL = `${SALESWEEKS_URL}`;
+
+    if (method_ === 'put') {
+        thisURL += `/${weekID}`;
+    }
 
     const settings = {
-        url: `${SALESWEEKS_URL}`,
+        url: thisURL,
         data: data,
+        method: method_,
         success: () => {
             location.replace(`searchResults/?week_id=${weekID}`);
             // const successMessage = `Sales data for week ${data.week_id} has been successfully added`;
@@ -35,7 +42,7 @@ const postDataToSalesWeeksAPI = (data) => {
         }
     };
 
-    $.post(settings);
+    $.ajax(settings);
 
 }
 
@@ -108,7 +115,7 @@ const ready = () => {
 
         var formDataObj = formDataArray.reduce(reducer, {});
 
-        postDataToSalesWeeksAPI(formDataObj);
+        saveDataToSalesWeeksAPI(formDataObj, dataExists ? 'put' : 'post');
 
     });
 }

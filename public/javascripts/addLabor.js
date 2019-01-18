@@ -2,11 +2,18 @@
 
 const LABORWEEKS_URL = '/laborWeeks';
 
-const postDataToLaborWeeksAPI = (data) => {
+const saveDataToLaborWeeksAPI = (data, method_) => {
+
+    let thisURL = `${LABORWEEKS_URL}`;
+
+    if (method_ === 'put') {
+        thisURL += `/${weekID}`;
+    }
 
     const settings = {
-        url: `${LABORWEEKS_URL}`,
+        url: thisURL,
         data: data,
+        method: method_,
         success: () => {
             location.replace(`searchResults/?week_id=${weekID}`);
             // const successMessage = `Labor data for week ${data.week_id} has been successfully added`;
@@ -22,7 +29,7 @@ const postDataToLaborWeeksAPI = (data) => {
             // $('html, body').animate({ scrollTop: 0 }, 'slow');
         },
         error: (jqXHR) => {
-            const errorMessage = `That didn't work. Unable to add labor data for week ${data.week_id} because: ${jqXHR.responseJSON.message}.`;
+            const errorMessage = `That didn't work. Unable to add labor data for week ${weekID} because: ${jqXHR.responseJSON.message}.`;
             const $messageDiv = $('.js-message');
             $messageDiv.removeClass('hidden');
             $messageDiv.html(`<p>${errorMessage}</p><button type="button" class="remove">X</button>`);
@@ -34,7 +41,7 @@ const postDataToLaborWeeksAPI = (data) => {
         }
     };
 
-    $.post(settings);
+    $.ajax(settings);
 }
 
 const ready = () => {
@@ -101,7 +108,7 @@ const ready = () => {
 
         var formDataObj = formDataArray.reduce(reducer, {});
 
-        postDataToLaborWeeksAPI(formDataObj);
+        saveDataToLaborWeeksAPI(formDataObj, dataExists ? 'put' : 'post');
 
     });
 }
