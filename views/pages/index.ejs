@@ -19,8 +19,8 @@
         <div class="description-div">
           <h1>Labor Report App</h1>
 
-          <h3>This app stores and displays weekly sales and labor data for a bakery.</h3>
-          <p class="description-p">You can add or update weekly sales and labor data, or view a labor report for a week that has existing data. In the search box, enter the week number you would like to add, update, or view.</p>
+          <h3>This app stores and displays weekly sales and labor data for a wholesale bread bakery.</h3>
+          <p class="description-p">You can add or update weekly sales and labor data, or view a labor report for a week that has existing data.</p>
         </div>
       </div>
     
@@ -28,16 +28,15 @@
 		
       <div class="col-6">
         <div class="search-div">
-          <h2 class="search-heading">Select a Sales Week</h2>
-          <p>Click input field below for calendar pop-up</p>
+          <h3 class="search-heading">Select a Sales Week</h3>
+          <p>Enter a week number to add, update, or view.</p>
           
           <form action="searchResults" class="js-search-form">
               <fieldset>
                 <label for="search">Week Number (YYYYWW)</label>
                 <br>
                 <input type="text" class="js-query" id="search" name="week_id" pattern="^20[1-9][0-9][0-5][0-9]" required/>
-                <br>
-                <br>
+                <p class="help-text">Click input box for calendar pop-up</p>
               </fieldset>
               <button type="submit">Search</button>
             </form>
