@@ -351,13 +351,21 @@ function loadSearchResults() {
     console.log(weekID);
 
     const year = weekID.substring(0, 4);
-    const week = weekID.substring(4, 6);
+    let week;
+    // if the week number has a leading zero, remove it
+    if (weekID.substring(4, 5) === '0') {
+        week = weekID.substring(5, 6);
+    } else {
+        week = weekID.substring(4, 6);
+    }
     const salesStartDate = new Date(moment().year(year).day("Sunday").week(week));
     const salesEndDate = new Date(moment().year(year).day("Saturday").week(week));
     const salesStartDateString = moment(salesStartDate).format('ddd D MMM YYYY');
     const salesEndDateString = moment(salesEndDate).format('ddd D MMM YYYY');
     const laborStartDateString = moment(salesStartDate).subtract(1,'day').format('ddd D MMM YYYY');
     const laborEndDateString = moment(salesEndDate).subtract(1,'day').format('ddd D MMM YYYY');
+
+    
 
     $('h2').text(`Week ${week} of ${year}`);
     $('h2').after(`<p>Sales: ${salesStartDateString} &ndash; ${salesEndDateString}</p><p>Labor: ${laborStartDateString} &ndash; ${laborEndDateString}</p><br>`)

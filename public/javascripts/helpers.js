@@ -21,10 +21,10 @@ const doesDataExist = data => {
 
     let dataExists_;
 
-    if (typeof data === "string") {
-        dataExists_ = false;
-      } else {
+    if (data.week_id) {
         dataExists_ = true;
+      } else {
+        dataExists_ = false;
       } 
     
     console.log(dataExists_);
