@@ -176,6 +176,20 @@ describe('Sales Weeks Model', function() {
 			week_id: '201610',
 			totalSales: 144930,
 			startDate: '20160228',
+			sunSales: 9085.55,
+			monSales: 19692.03,
+			tueSales: 29180.03,
+			wedSales: 15809.44,
+			thuSales: 34894.37,
+			friSales: 19656.74,
+			satSales: 16611.84,
+			sunDate: '20160228',
+			monDate: '20160229',
+			tueDate: '20160301',
+			wedDate: '20160302',
+			thuDate: '20160303',
+			friDate: '20160304',
+			satDate: '20160305'
 		};
 		
 		expect(salesTestWeek.serialize()).to.deep.equal(serializedSalesWeek);

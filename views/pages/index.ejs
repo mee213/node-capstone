@@ -14,26 +14,37 @@
 
     <% include ../partials/message %>
     
-		<div class="row">
-      <div class="col-12">
-        <h1>Search by Week</h1>
-        
-       	<form action="#" class="js-search-form">
-            <fieldset>
-            	<label for="search">Week Number (YYYYWW)</label>
-              <br>
-            	<input type="text" class="js-query" id="search">
-              <br>
-              <br>
-            </fieldset>
-          	<button type="submit">Search</button>
-        	</form>
+    <div class="row">
+      <div class="col-6">
+        <div class="description-div">
+          <h1>Labor Report App</h1>
+
+          <h3>This app stores and displays weekly sales and labor data for a wholesale bread bakery.</h3>
+          <p class="description-p">You can add or update weekly sales and labor data, or view a labor report for a week that has existing data.</p>
+        </div>
+      </div>
+    
+
+		
+      <div class="col-6">
+        <div class="search-div">
+          <h3 class="search-heading">Select a Sales Week</h3>
+          <p>Enter a week number to add, update, or view.</p>
+          
+          <form action="searchResults" class="js-search-form">
+              <fieldset>
+                <label for="search">Week Number (YYYYWW)</label>
+                <br>
+                <input type="text" class="js-query" id="search" name="week_id" pattern="^20[1-9][0-9][0-5][0-9]" required/>
+                <p class="help-text">Click input box for calendar pop-up</p>
+              </fieldset>
+              <button type="submit">Search</button>
+            </form>
+          </div>
       </div>
     </div>
       
-    <div class="js-results row" aria-live="assertive" hidden>
-        
-    </div>
+    
 
 	</main>
 
@@ -41,6 +52,7 @@
 
 	
 </body>
-<script src="./javascripts/index.js"></script>
+<script src="../javascripts/weekPicker.js"></script>
+<script src="../javascripts/index.js"></script>
 <% include ../partials/script %>
 </html>

@@ -6,6 +6,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Fira Sans', sans-serif;
+    color: #1B2A56;
 }
 
 h1 {
@@ -14,36 +15,93 @@ h1 {
     font-style: normal;
 }
 
+.search-results-h1 {
+    font-size: 2.3em;
+    margin-top: 0.3em;
+    margin-bottom: 0;
+}
+
+h2 {
+    font-size: 2.3em;
+    margin-top: 0.3em;
+    margin-bottom: 0.6em;
+}
+
+h3 {
+    font-size: 1.5em;
+}
+
 a {
     text-decoration: none;
     color: #6799ff;
 }
 
+.description-div {
+    max-width: 360px;
+}
+
+.description-p {
+    padding-top: 10px;
+}
+
+.search-div {
+    max-width: 330px;
+}
+
+.search-heading {
+    padding-top: 6px;
+}
+
 fieldset {
-    padding: 20px 20px;
-    margin: 25px 0px;
+    padding: 20px 30px;
+    margin: 35px 0px 45px 0px;
+    border-radius: 20px;
+    border-color: #1B2A56;
+    background-color: #ECE7DE;
 }
 
 legend {
-    border: solid #c0c0c0 1px;
-    padding: 5px;
+    border: solid #1B2A56 1px;
+    padding: 15px 20px;
+    border-radius: 10px;
+    font-size: 1.2em;
+    font-style: bold;
+    background-color: white;
 }
 
-button {
-    padding: 10px 20px;
-    border-radius: 10px;
-    background-color: white;
+.js-buttons a {
+    margin: 0px 30px 30px 0px;
+    display: inline-block;
+}
+
+button, .js-buttons a {
+    padding: 15px 20px;
+    border-radius: 18px;
+    border: solid #1B2A56 1px;
+    background-color: #6799ff;
     cursor: pointer;
     font-family: 'Rubik', sans-serif;
     text-transform: uppercase;
+    color: white;
+    font-size: 1.2em;
 }
 
-button:hover {
-    background-color: #DCDCDC;
+button:hover, .js-buttons a:hover {
+    background-color: #ECE7DE;
+    
+    color: #F57D20;
 }
 
 button[type="submit"] {
     margin-bottom: 30px;
+}
+
+button.remove {
+    background-color: transparent;
+    border-color: white;
+    border-radius: .5rem;
+    padding: 5px 10px;
+    
 }
 
 label {
@@ -53,6 +111,67 @@ label {
 
 input {
     font-family: courier-prime, monospace;
+    padding: 12px 0px 12px 12px;
+    border-radius: 6px;
+}
+
+input[disabled] {
+    background-color: #ebebeb;
+}
+
+input#search {
+    background-image: url(../images/noun_Calendar_2136790_000000.svg);
+    background-position: 96% 50%;
+    background-repeat: no-repeat;
+    background-size: 16%;
+}
+
+legend#time-period {
+    background-image: url(../images/noun_Calendar_1544114_000000.svg);
+    background-position: 9% 46%;
+    background-repeat: no-repeat;
+    background-size: 41px;
+    padding-left: 65px;
+}
+
+legend#production {
+    background-image: url(../images/noun_Baker_1352185_000000.svg);
+    background-position: 7px 50%;
+    background-repeat: no-repeat;
+    background-size: 61px;
+    padding-left: 70px;
+}
+
+legend#customer-service {
+    background-image: url(../images/noun_customer_service_821733_000000.svg);
+    background-position: 7px 50%;
+    background-repeat: no-repeat;
+    background-size: 61px;
+    padding-left: 72px;
+}
+
+legend#distribution {
+    background-image: url(../images/noun_Truck_597831_000000.svg);
+    background-position: 7px 50%;
+    background-repeat: no-repeat;
+    background-size: 61px;
+    padding-left: 70px;
+}
+
+legend#sanitation {
+    background-image: url(../images/noun_cleaning_1530751_000000.svg);
+    background-position: 10px 50%;
+    background-repeat: no-repeat;
+    background-size: 58px;
+    padding-left: 75px;
+}
+
+legend#packing {
+    background-image: url(../images/noun_Box_1664464_000000.svg);
+    background-position: 9px 50%;
+    background-repeat: no-repeat;
+    background-size: 57px;
+    padding-left: 75px;
 }
 
 svg text {
@@ -63,17 +182,37 @@ svg text {
     margin-bottom: 50px;
 }
 
-.js-message, .js-message-labor, .js-message-sales {
+.message {
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0px 10px;
+    padding: .75rem 1.25rem;
+    margin-top: 0.6rem;
+    margin-bottom: 0.6rem;
+    border: 1px solid transparent;
+    border-radius: .5rem;
+}
+
+.help-text {
+    color: #F57D20;
+    font-size: 0.8em;
+    margin-top: 5px;
+}
+
+.logo-img {
+    width: 80px; 
+    padding: 8px 0px;
 }
 
 .hidden {
     display: none;
 }
+
+/* =====================================================
+    Responsive Nav Bar Menu Collapses Into Mobile Hamburger 
+    Adapted from www.thinkful.com
+======================================================== */
 
 .hamburger {
     width: 48px;
@@ -86,7 +225,7 @@ svg text {
      * going to live top-right, so we can position absolutely and not worry
      * too much */
     position: absolute;
-    top: 8px;
+    top: 20px;
     right: 22px;
 }
 
@@ -158,6 +297,57 @@ svg text {
     width: 74px;
 }
 
+/* =====================================================
+    Media Queries 
+======================================================== */
+
+@media (min-width: 382px) {
+
+    legend#packing {
+        background-size: 42px;
+        padding-left: 58px;
+        background-position: 5% 50%;
+    }
+
+}
+
+@media (min-width: 406px) {
+
+    legend#sanitation {
+        background-size: 42px;
+        padding-left: 56px;
+        background-position: 4% 50%;
+    }
+
+}
+
+@media (min-width: 407px) {
+
+    legend#production {
+        background-size: 45px;
+        padding-left: 55px;
+    }
+
+}
+
+@media (min-width: 415px) {
+
+    legend#distribution {
+        background-size: 45px;
+        padding-left: 55px;
+    }
+
+}
+
+@media (min-width: 465px) {
+
+    legend#customer-service {
+        background-size: 45px;
+        padding-left: 55px;
+    }
+
+}
+
 @media (min-width: 576px) {
 
     label {
@@ -166,6 +356,14 @@ svg text {
 
     fieldset {
         padding: 30px 50px;
+    }
+
+    .logo-img {
+        padding: 0px 0px; 
+    }
+
+    legend#time-period {
+        padding-left: 60px;
     }
 
     .hamburger {
@@ -184,7 +382,7 @@ svg text {
     }
 
     .splash-nav-primary, .splash-nav-secondary {
-        height: 60px;
+        height: 96px;
         /* Menu items are displayed in a row */
         display: flex;
     }
@@ -201,7 +399,7 @@ svg text {
 
     .splash-nav-item > a {
         /* Fix the line-height so the link text lines up with the logo */
-        line-height: 30px;
+        line-height: 48px;
     }
 
     .splash-nav-item:not(.splash-nav-item__logo):hover {
@@ -242,7 +440,5 @@ svg text {
         display: inline;
     }
 
-    .splash-nav-web-dev-bootcamp-link {
-        display: block;
-    }
+    
 }

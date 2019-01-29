@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <% include ../partials/head %>
+</head>
+
+<body>
+
+  <% include ../partials/menu %>
+
+	<main role="main">
+
+    <% include ../partials/message %>    
+
+    <div class="row">
+      <div class="col-12">
+        <h1 class="search-results-h1">Labor Report</h1>
+        <h2>Week <%= week_id%></h2>
+        
+        <div class="js-buttons">
+
+
+        </div>
+      
+          
+        
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <div class="js-results" aria-live="assertive" hidden>
+          
+        </div>
+      </div>
+    </div>
+  </main>
+
+</body>
+
+<script>
+  const weekID = '<%= week_id%>';
+</script>
+<script type="text/javascript" src="../javascripts/helpers.js"></script>
+<script src="../javascripts/searchResults.js"></script>
+
+<% include ../partials/script %>
+
+</html>

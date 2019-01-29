@@ -3,6 +3,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
+const request = require('request');
 
 // Mongoose internally uses a promise-like object,
 // but its better to make Mongoose use built in es6 promises
@@ -32,12 +33,44 @@ app.get('/', (req, res) => {
   res.render('pages/index');
 });
 
-app.get('/addLabor', (req, res) => {
-  res.render('pages/addLabor');
+app.get('/addLabor', (req, res, next) => {
+  const week_id = req.query['week_id'];
+  request(
+    { method: 'GET',
+      uri: `${req.protocol}://${req.hostname}${(PORT ? ':' + PORT : '')}/laborWeeks/${week_id}`,
+      json: true},
+    (error, response, body) => {
+      if (error) {
+        return next(error);
+      }
+      if (response.statusCode === 404) {
+        return res.render('pages/addLabor',{data: {}})
+      }
+      res.render('pages/addLabor',{data: body})
+    }
+  );
 });
 
-app.get('/addSales', (req, res) => {
-  res.render('pages/addSales');
+app.get('/addSales', (req, res, next) => {
+  const week_id = req.query['week_id'];
+  request(
+    { method: 'GET',
+      uri: `${req.protocol}://${req.hostname}${(PORT ? ':' + PORT : '')}/salesWeeks/${week_id}`,
+      json: true},
+    (error, response, body) => {
+      if (error) {
+        return next(error);
+      }
+      if (response.statusCode === 404) {
+        return res.render('pages/addSales',{data: {}})
+      }
+      res.render('pages/addSales',{data: body})
+    }   
+  );
+});
+
+app.get('/searchResults', (req, res) => {
+  res.render('pages/searchResults',{week_id: req.query['week_id']});
 });
 
 // when requests come into `/labor` or
@@ -46,6 +79,16 @@ app.get('/addSales', (req, res) => {
 // these router instances act as modular, mini-express apps.
 app.use('/laborWeeks', laborWeeksRouter);
 app.use('/salesWeeks', salesWeeksRouter);
+
+// catch-all endpoint if client makes request to non-existent endpoint
+app.use('*', function (req, res) {
+  res.status(404).send('Not Found');
+});
+
+app.use(function(err, req, res, next) {
+  console.error(err); // Log error message in our server's console
+  res.status(500).send('Server Error'); // All HTTP requests must have a response, so let's send back an error with its status code and message
+});
 
 // both runServer and closeServer need to access the same
 // server object, so we declare `server` here, and then when

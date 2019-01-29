@@ -91,6 +91,18 @@ describe('Server Routes', function() {
 
   })
 
+  describe('Search Results Page', function() {
+
+    it('should exist', function() {
+      
+      return chai.request(app)
+        .get('/searchResults')
+        .then(function(res) {
+          expect(res).to.have.status(200);
+        });
+    });
+  });
+
 })
 
 
