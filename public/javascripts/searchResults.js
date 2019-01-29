@@ -247,6 +247,7 @@ function doSomeD3(data) {
 function showButtonsAndMessages(responses) {
     const salesWeek = responses[0];
     const laborWeek = responses[1];
+    const successDiv = '.js-message';
     const laborDiv = '.js-message-labor';
     const salesDiv = '.js-message-sales';
     const addLaborMessage = 'No labor data found, click below to add';
@@ -260,7 +261,7 @@ function showButtonsAndMessages(responses) {
     const successMessage = getCookie("success-message");
 
     if (successMessage) {
-        createMessage(successMessage, '.js-message');
+        createMessage(successMessage, successDiv);
         deleteCookie("success-message");
     }
 
@@ -303,14 +304,24 @@ function showButtonsAndMessages(responses) {
 
 function createMessage(message, whichDiv) {
     const $messageDiv = $(whichDiv);
+    // trim the leading period off the div's class name
+    const whichDivTrimmedString = whichDiv.substring(1, whichDiv.length);
     $messageDiv.removeClass('hidden');
-    $messageDiv.html(`<p>${message}</p>`);
-    $messageDiv.css("background-color", "#DCDCDC");
-
-    // $messageDiv.html(`<p>${dataMessage}</p><button type="button" class="remove">X</button>`);
-    // $('button.remove').click( () => {
-    //     $messageDiv.toggleClass('hidden');
-    // });
+    $messageDiv.html(`<p>${message}</p><button type="button" class="remove remove-${whichDivTrimmedString}">x</button>`);
+    // message styling adapted from https://getbootstrap.com/docs/4.0/components/alerts/
+    if (whichDiv === '.js-message') { // success styling
+        $messageDiv.css("background-color", "#d4edda");
+        $messageDiv.css("border-color", "#c3e6cb");
+        $messageDiv.css("color", "#155724");
+    } else { // info styling
+        $messageDiv.css("background-color", "#e2e3e5");
+        $messageDiv.css("border-color", "#d6d8db");
+        $messageDiv.css("color", "#383d41");
+    }
+    
+    $(`button.remove-${whichDivTrimmedString}`).click( () => {
+        $messageDiv.addClass('hidden');
+    });
 }
 
 function createButton(action, page) {

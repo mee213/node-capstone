@@ -15,26 +15,18 @@ const saveDataToLaborWeeksAPI = (data, method_) => {
         data: data,
         method: method_,
         success: () => {
-            setCookie("success-message", `Labor data for week ${weekID} has been successfully added`);
+            setCookie("success-message", `Labor data for week ${weekID} has been added`);
             location.replace(`searchResults/?week_id=${weekID}`);
-            // const successMessage = `Labor data for week ${data.week_id} has been successfully added`;
-            // const $messageDiv = $('.js-message');
-            // $messageDiv.removeClass('hidden');
-            // $messageDiv.html(`<p>${successMessage}</p><button type="button" class="remove">X</button>`);
-            // $messageDiv.css("background-color", "#ccffcc");
-            // $(':input').val("");
-            // $('form').get(0).reset()
-            // $('button.remove').click( () => {
-            //     $messageDiv.toggleClass('hidden');
-            // });
-            // $('html, body').animate({ scrollTop: 0 }, 'slow');
         },
         error: (jqXHR) => {
             const errorMessage = `That didn't work. Unable to add labor data for week ${weekID} because: ${jqXHR.responseJSON.message}.`;
             const $messageDiv = $('.js-message');
             $messageDiv.removeClass('hidden');
-            $messageDiv.html(`<p>${errorMessage}</p><button type="button" class="remove">X</button>`);
-            $messageDiv.css("background-color", "#ffcccc");
+            $messageDiv.html(`<p>${errorMessage}</p><button type="button" class="remove">x</button>`);
+            // message styling adapted from https://getbootstrap.com/docs/4.0/components/alerts/
+            $messageDiv.css("background-color", "#f8d7da");
+            $messageDiv.css("border-color", "#f5c6cb");
+            $messageDiv.css("color", "#721c24");
             $('button.remove').click( () => {
                 $messageDiv.toggleClass('hidden');
             });
