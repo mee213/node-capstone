@@ -114,47 +114,47 @@ legend#time-period {
     background-image: url(../images/noun_Calendar_1544114_000000.svg);
     background-position: 9% 46%;
     background-repeat: no-repeat;
-    background-size: 21%;
+    background-size: 41px;
     padding-left: 65px;
 }
 
 legend#production {
     background-image: url(../images/noun_Baker_1352185_000000.svg);
-    background-position: 4% 50%;
+    background-position: 7px 50%;
     background-repeat: no-repeat;
-    background-size: 27%;
+    background-size: 61px;
     padding-left: 70px;
 }
 
 legend#customer-service {
     background-image: url(../images/noun_customer_service_821733_000000.svg);
-    background-position: 4% 50%;
+    background-position: 7px 50%;
     background-repeat: no-repeat;
-    background-size: 27%;
+    background-size: 61px;
     padding-left: 72px;
 }
 
 legend#distribution {
     background-image: url(../images/noun_Truck_597831_000000.svg);
-    background-position: 4% 50%;
+    background-position: 7px 50%;
     background-repeat: no-repeat;
-    background-size: 27%;
+    background-size: 61px;
     padding-left: 70px;
 }
 
 legend#sanitation {
     background-image: url(../images/noun_cleaning_1530751_000000.svg);
-    background-position: 6% 50%;
+    background-position: 10px 50%;
     background-repeat: no-repeat;
-    background-size: 26%;
+    background-size: 58px;
     padding-left: 75px;
 }
 
 legend#packing {
     background-image: url(../images/noun_Box_1664464_000000.svg);
-    background-position: 6% 50%;
+    background-position: 9px 50%;
     background-repeat: no-repeat;
-    background-size: 25%;
+    background-size: 57px;
     padding-left: 75px;
 }
 
@@ -190,7 +190,8 @@ svg text {
 }
 
 /* =====================================================
-    Responsive Nav Bar Menu Collapses Into Hamburger 
+    Responsive Nav Bar Menu Collapses Into Mobile Hamburger 
+    Adapted from www.thinkful.com
 ======================================================== */
 
 .hamburger {
@@ -280,6 +281,53 @@ svg text {
     Media Queries 
 ======================================================== */
 
+@media (min-width: 382px) {
+
+    legend#packing {
+        background-size: 42px;
+        padding-left: 58px;
+        background-position: 5% 50%;
+    }
+
+}
+
+@media (min-width: 406px) {
+
+    legend#sanitation {
+        background-size: 42px;
+        padding-left: 56px;
+        background-position: 4% 50%;
+    }
+
+}
+
+@media (min-width: 407px) {
+
+    legend#production {
+        background-size: 45px;
+        padding-left: 55px;
+    }
+
+}
+
+@media (min-width: 415px) {
+
+    legend#distribution {
+        background-size: 45px;
+        padding-left: 55px;
+    }
+
+}
+
+@media (min-width: 465px) {
+
+    legend#customer-service {
+        background-size: 45px;
+        padding-left: 55px;
+    }
+
+}
+
 @media (min-width: 576px) {
 
     label {
@@ -295,35 +343,7 @@ svg text {
     }
 
     legend#time-period {
-        background-size: 22%;
         padding-left: 60px;
-    }
-
-    legend#production {
-        background-size: 16%;
-        padding-left: 55px;
-    }
-
-    legend#customer-service {
-        background-size: 12%;
-        padding-left: 55px;
-    }
-
-    legend#distribution {
-        background-size: 14%;
-        padding-left: 55px;
-    }
-
-    legend#sanitation {
-        background-size: 15%;
-        padding-left: 56px;
-        background-position: 4% 50%;
-    }
-
-    legend#packing {
-        background-size: 16%;
-        padding-left: 58px;
-        background-position: 5% 50%;
     }
 
     .hamburger {

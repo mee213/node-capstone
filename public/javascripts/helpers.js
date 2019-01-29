@@ -96,8 +96,22 @@ const fillDates = (week_id, arrayOfInputIDs, pageType) => {
         // periodEndDate corresponds to datesArray[6] 
         $(`#${arrayOfInputIDs[0]}`).val(moment(datesArray[6]).format('YYYYMMDD'));
     }
-
-    
 }
+
+//  the following cookie functions are adapted from:
+//  https://plainjs.com/javascript/utilities/set-cookie-get-cookie-and-delete-cookie-5/
+
+const getCookie = name => {
+    var v = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+    return v ? v[2] : null;
+}
+
+const setCookie = (name, value) => {
+    var d = new Date;
+    d.setTime(d.getTime() + 2*60*1000); // expires in 2 minutes (in milliseconds)
+    document.cookie = name + "=" + value + ";path=/;expires=" + d.toGMTString();
+}
+
+const deleteCookie = name => { setCookie(name, '', -1); }
 
       

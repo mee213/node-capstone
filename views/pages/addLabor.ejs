@@ -25,8 +25,7 @@
                 <label for="week_id">Week Number (YYYYWW)</label>
                 <br>
                 <input type="text" name="week_id" id="week_id" pattern="^20[1-9][0-9][0-5][0-9]" value='<%= data.week_id%>' required/>
-                <br>
-                <br>
+                <p class="help-text">To change the week number, go <a href="/">HOME</a></p>
                 <label for="periodEndDate">Pay Period End Date (YYYYMMDD)</label>
                 <br>
                 <input type="text" name="periodEndDate" id="periodEndDate" pattern="^20[1-9][0-9][0-1][0-9][0-3][0-9]" value="<%= data.periodEndDate%>" required/>

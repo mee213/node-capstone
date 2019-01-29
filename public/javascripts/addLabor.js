@@ -15,6 +15,7 @@ const saveDataToLaborWeeksAPI = (data, method_) => {
         data: data,
         method: method_,
         success: () => {
+            setCookie("success-message", `Labor data for week ${weekID} has been successfully added`);
             location.replace(`searchResults/?week_id=${weekID}`);
             // const successMessage = `Labor data for week ${data.week_id} has been successfully added`;
             // const $messageDiv = $('.js-message');

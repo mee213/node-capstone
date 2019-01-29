@@ -257,6 +257,13 @@ function showButtonsAndMessages(responses) {
     console.log(salesWeek);
     console.log(laborWeek);
 
+    const successMessage = getCookie("success-message");
+
+    if (successMessage) {
+        createMessage(successMessage, '.js-message');
+        deleteCookie("success-message");
+    }
+
     // salesWeek is found but laborWeek is not found
     if (salesWeek && !laborWeek) {
         createMessage(updateSalesMessage, salesDiv);
