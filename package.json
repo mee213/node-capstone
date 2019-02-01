@@ -18,6 +18,7 @@
     "express": "^4.16.3",
     "mongoose": "^5.1.0",
     "morgan": "^1.9.1",
+    "newrelic": "^5.2.1",
     "nodemon": "^1.18.9",
     "request": "^2.88.0"
   },

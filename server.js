@@ -4,6 +4,7 @@ const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const request = require('request');
+const newrelic = require('newrelic');
 
 // Mongoose internally uses a promise-like object,
 // but its better to make Mongoose use built in es6 promises
