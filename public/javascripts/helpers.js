@@ -2,8 +2,8 @@
 
 // gets any parameter from the URL (send in the name of the desired param as argument)
 // from http://www.jquerybyexample.net/2012/06/get-url-parameters-using-jquery.html  
+// eslint-disable-next-line no-unused-vars
 const getURLParameter = sParam => {
-    console.log('getURLParameter() ran');
     var sPageURL = window.location.search.substring(1);
     var sURLVariables = sPageURL.split('&');
     for (var i = 0; i < sURLVariables.length; i++) {
@@ -15,9 +15,8 @@ const getURLParameter = sParam => {
 };
 
 // returns true or false if data exists in database or not for given sales or labor week
+// eslint-disable-next-line no-unused-vars
 const doesDataExist = data => {
-
-    console.log('doesDataExist() ran');
 
     let dataExists_;
 
@@ -26,38 +25,37 @@ const doesDataExist = data => {
       } else {
         dataExists_ = false;
       } 
-    
-    console.log(dataExists_);
 
     return dataExists_;
 }
 
 // send an array like ['someID', 'someOtherID', ...]
 // do not include the hashes(#) in the array, hash(#) is added below
+// eslint-disable-next-line no-unused-vars
 const disableInputFields = arrayOfInputIDs => {
     for (let i = 0; i < arrayOfInputIDs.length; i++) {
         $(`#${arrayOfInputIDs[i]}`).prop('disabled', true);
     }
 }
 
+// eslint-disable-next-line no-unused-vars
 const clearDateFields = arrayOfInputIDs => {
     for (let i = 0; i < arrayOfInputIDs.length; i++) {
         $(`#${arrayOfInputIDs[i]}`).prop('disabled', false).val('');
     }
 }
 
+// eslint-disable-next-line no-unused-vars
 const fillDates = (week_id, arrayOfInputIDs, pageType) => {
 
     const year = week_id.substring(0, 4);
     const week = week_id.substring(4, 6);
-    console.log('The year is: ' + year);
-    console.log('The week is: ' + week);
 
     const getDatesArray = (year_, week_) => {
 
+        // eslint-disable-next-line no-undef
         const sharedFridayFullDate = new Date(moment().year(year_).day("Friday").week(week_));
         const sharedFridayDateIndex = sharedFridayFullDate.getDate();
-        console.log('sharedFridayFullDate is: ' + sharedFridayFullDate);
 
         const offsetArray = [-6,-5,-4,-3,-2,-1,0,1];
         const datesArray_ = [];
@@ -65,23 +63,17 @@ const fillDates = (week_id, arrayOfInputIDs, pageType) => {
         // create an array of 8 dates, beginning and ending with Saturday, containing shared Friday
         for (let i = 0; i <= 7; i++) {
             const offset = offsetArray[i];
-            console.log('offset is ' + offset);
             const thisYear = sharedFridayFullDate.getFullYear();
             const thisMonth = sharedFridayFullDate.getMonth();
             const thisDay = sharedFridayDateIndex + offset;
             const thisDate = new Date(thisYear, thisMonth, thisDay);
-            console.log('thisDate is ' + thisDate);
             datesArray_.push(thisDate);
         }
-        
-        console.log('The first Saturday is ' + datesArray_[0]);
-        console.log('The last Saturday is ' + datesArray_[7]);
 
         return datesArray_;
     }
 
     const datesArray = getDatesArray(year, week);
-    console.log(datesArray);
 
     if (pageType === 'sales') {
         // set the input fields to show correct dates (in correct format)
@@ -90,10 +82,12 @@ const fillDates = (week_id, arrayOfInputIDs, pageType) => {
         // labor week, the 7 days correspond to the indexes 0-6,
         // with periodEndDate being index 6
         for (let i = 0; i < arrayOfInputIDs.length; i++) {
+            // eslint-disable-next-line no-undef
             $(`#${arrayOfInputIDs[i]}`).val(moment(datesArray[i+1]).format('YYYYMMDD'));
         }
     } else if (pageType === 'labor') {
         // periodEndDate corresponds to datesArray[6] 
+        // eslint-disable-next-line no-undef
         $(`#${arrayOfInputIDs[0]}`).val(moment(datesArray[6]).format('YYYYMMDD'));
     }
 }
@@ -101,6 +95,7 @@ const fillDates = (week_id, arrayOfInputIDs, pageType) => {
 //  the following cookie functions are adapted from:
 //  https://plainjs.com/javascript/utilities/set-cookie-get-cookie-and-delete-cookie-5/
 
+// eslint-disable-next-line no-unused-vars
 const getCookie = name => {
     var v = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
     return v ? v[2] : null;
@@ -112,6 +107,7 @@ const setCookie = (name, value) => {
     document.cookie = name + "=" + value + ";path=/;expires=" + d.toGMTString();
 }
 
+// eslint-disable-next-line no-unused-vars
 const deleteCookie = name => { setCookie(name, '', -1); }
 
 

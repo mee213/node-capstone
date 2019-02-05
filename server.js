@@ -1,6 +1,6 @@
 'use strict';
 
-const newrelic = require('newrelic');
+require('newrelic');
 const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
@@ -87,8 +87,10 @@ app.use('*', function (req, res) {
 });
 
 app.use(function(err, req, res, next) {
+  // eslint-disable-next-line no-console
   console.error(err); // Log error message in our server's console
   res.status(500).send('Server Error'); // All HTTP requests must have a response, so let's send back an error with its status code and message
+  next();
 });
 
 // both runServer and closeServer need to access the same

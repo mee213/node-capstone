@@ -1,7 +1,11 @@
 // adapted from https://github.com/dnviti/jQueryWeekPicker
-// with very many edits and modifications of my own
+// with edits and modifications of my own
 
 'use strict';
+
+// for eslint
+/* global moment
+*/
 
 const setWeekCalendar = settingElement => {
     
@@ -52,8 +56,8 @@ const setWeekCalendar = settingElement => {
         showWeek: true,
         firstDay: 0,
         changeMonth: true,
-		changeYear: true,
-	    yearRange: '2013:2023',
+        changeYear: true,
+        yearRange: '2013:2023',
         calculateWeek: function(date) {
             return moment(date).week();
         },
@@ -90,7 +94,7 @@ const setWeekCalendar = settingElement => {
                 cssClass = 'ui-datepicker-current-day';
             return [true, cssClass];
         },
-        onChangeMonthYear: function(year, month, inst) {
+        onChangeMonthYear: function() {
             highlightSelectedWeek();
         }
     }).datepicker('widget').addClass('ui-weekpicker');
@@ -115,12 +119,14 @@ const setWeekCalendar = settingElement => {
     })
 };
 
+// eslint-disable-next-line no-unused-vars
 const convertToWeekPicker = targetElement => {
     // should these be triple === signs?
     if (targetElement.prop("tagName") == "INPUT" && (targetElement.attr("type") == "text" || targetElement.attr("type") == "hidden")) {
         setWeekCalendar(targetElement);
     } else {
         targetElement.replaceWith("<span>ERROR: please control js console</span>");
+        // eslint-disable-next-line no-console
         console.error("convertToWeekPicker() - ERROR: The target element is not compatible with this conversion, try to use an <input type=\"text\" /> or an <input type=\"hidden\" />");
     }
 };

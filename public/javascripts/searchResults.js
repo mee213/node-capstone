@@ -1,40 +1,23 @@
 'use strict'
 
+// for eslint
+/* global getCookie,
+   deleteCookie,
+   weekID,
+   moment
+*/
+
 const SALESWEEKS_URL = '/salesWeeks';
 const LABORWEEKS_URL = '/laborWeeks';
 
 const getDataFromAPIs = function(weekID) {
 
-    /*
-    return new Promise(function(resolve, reject) {
-    */
+    const getSalesWeek = getDataFromSalesWeeksAPI(weekID);
 
-        const getSalesWeek = getDataFromSalesWeeksAPI(weekID);
+    const getLaborWeek = getDataFromLaborWeeksAPI(weekID);
 
-        const getLaborWeek = getDataFromLaborWeeksAPI(weekID);
-
-        // returns responses (an array)
-        return Promise.all([getSalesWeek, getLaborWeek]);
-
-        /*
-        let grossPayByDept;
-
-        getSalesAndLaborWeeks
-            .then(function(responses) {
-                let salesWeek = responses[0];
-                let laborWeek = responses[1];
-                
-                grossPayByDept = createGrossPayByDeptObj(salesWeek, laborWeek);
-                if (grossPayByDept != undefined) {
-                    resolve (grossPayByDept);
-                } else {
-                    reject(Error("There has been an error in getDataFromAPIs"));
-                }
-                
-            });
-            
-    });
-    */
+    // returns responses (an array)
+    return Promise.all([getSalesWeek, getLaborWeek]);
 }
 
 const getDataFromSalesWeeksAPI = function(weekID) {
@@ -255,9 +238,6 @@ function showButtonsAndMessages(responses) {
     const updateLaborMessage = 'Existing labor data found, click below to update';
     const updateSalesMessage = 'Existing sales data found, click below to update';
 
-    console.log(salesWeek);
-    console.log(laborWeek);
-
     const successMessage = getCookie("success-message");
 
     if (successMessage) {
@@ -327,9 +307,6 @@ function createMessage(message, whichDiv) {
 function createButton(action, page) {
     const pageTitleCase = page.charAt(0).toUpperCase() + page.slice(1);
     const actionTitleCase = action.charAt(0).toUpperCase() + action.slice(1);
-    
-    console.log(pageTitleCase);
-    console.log(actionTitleCase);
 
     $('.js-buttons').append(`
         <a class="button" href="/add${pageTitleCase}?week_id=${weekID}">${actionTitleCase} ${pageTitleCase} Data</a>
@@ -365,8 +342,6 @@ function handleErrors() {
 }
 
 function loadSearchResults() {
-    console.log('loadSearchResults ran');
-    console.log(weekID);
 
     const year = weekID.substring(0, 4);
     let week;

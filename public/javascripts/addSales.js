@@ -1,5 +1,16 @@
 'use strict';
 
+// for eslint
+/* global weekID, 
+   setCookie,
+   doesDataExist,
+   data_,
+   disableInputFields,
+   fillDates,
+   convertToWeekPicker,
+   clearDateFields,
+   fields_ */
+
 const SALESWEEKS_URL = '/salesWeeks';
 
 const saveDataToSalesWeeksAPI = (data, method_) => {
@@ -19,7 +30,6 @@ const saveDataToSalesWeeksAPI = (data, method_) => {
             location.replace(`searchResults/?week_id=${weekID}`);
         },
         error: (jqXHR) => {
-            console.log(jqXHR);
             const errorMessage = `That didn't work. Unable to add sales data for week ${weekID} because: ${jqXHR.responseJSON.message}.`;
             const $messageDiv = $('.js-message');
             $messageDiv.removeClass('hidden');
@@ -42,7 +52,6 @@ const saveDataToSalesWeeksAPI = (data, method_) => {
 const ready = () => {
 
     const dataExists = doesDataExist(data_);  
-    console.log('dataExists? ' + dataExists);
     
     const $week_id = $('#week_id');
     const pageType = 'sales';
@@ -54,15 +63,12 @@ const ready = () => {
         arrayOfDateInputIDs.push(fields_[i].date);
     }
 
-    console.log(arrayOfDateInputIDs);
-
     if (dataExists) { // if searched by week_id and found existing data
         $('h1').text("Update Sales Data");
         disableInputFields(['week_id']);
         disableInputFields(arrayOfDateInputIDs);
         $('#sunSales').focus();
     } else if (weekID) { // if searched by week_id and no data was found
-        console.log(weekID);
         $week_id.val(weekID);
         fillDates(weekID, arrayOfDateInputIDs, pageType);
         disableInputFields(['week_id']);
@@ -70,7 +76,7 @@ const ready = () => {
         $('#sunSales').focus();
     } else { // if coming from 'Add' link in menu nav bar, ie, week_id still blank
         convertToWeekPicker($week_id);
-        $week_id.blur( event => {
+        $week_id.blur( () => {
             if ($week_id.val()) {
                 fillDates($week_id.val(), arrayOfDateInputIDs, pageType);
                 $('#sunSales').focus();

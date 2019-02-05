@@ -1,10 +1,7 @@
 'use strict';
-/*
-function clearMessage($aMessageDiv) {
-    $aMessageDiv.html('');
-    $aMessageDiv.addClass('hidden');
-}
-*/
+
+// for eslint
+/* global convertToWeekPicker */
 
 
 function main() {

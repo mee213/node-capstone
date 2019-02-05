@@ -1,5 +1,15 @@
 'use strict';
 
+// for eslint
+/* global weekID, 
+   setCookie,
+   doesDataExist,
+   data_,
+   disableInputFields,
+   fillDates,
+   convertToWeekPicker,
+   clearDateFields */
+
 const LABORWEEKS_URL = '/laborWeeks';
 
 const saveDataToLaborWeeksAPI = (data, method_) => {
@@ -40,7 +50,6 @@ const saveDataToLaborWeeksAPI = (data, method_) => {
 const ready = () => {
     
     const dataExists = doesDataExist(data_);  
-    console.log('dataExists? ' + dataExists);
 
     const $week_id = $('#week_id');
     const pageType = 'labor';
@@ -54,7 +63,6 @@ const ready = () => {
         disableInputFields(arrayOfDateInputIDs);
         $('#bakrsRegHours').focus();
     } else if (weekID) { // if searched by week_id and no data was found
-        console.log(weekID);
         $week_id.val(weekID);
         fillDates(weekID, arrayOfDateInputIDs, pageType);
         disableInputFields(['week_id']);
@@ -62,7 +70,7 @@ const ready = () => {
         $('#bakrsRegHours').focus();
     } else { // if coming from 'Add' link in menu nav bar, ie, week_id still blank
         convertToWeekPicker($week_id);
-        $week_id.blur( event => {
+        $week_id.blur( () => {
             if ($week_id.val()) {
                 fillDates($week_id.val(), arrayOfDateInputIDs, pageType);
                 $('#bakrsRegHours').focus();
@@ -72,9 +80,6 @@ const ready = () => {
             } 
         });
     }
-
-    console.log('dataExists?');
-    console.log(dataExists);
 
     $('form').submit( event => {
         event.preventDefault();
