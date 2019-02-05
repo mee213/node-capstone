@@ -38,7 +38,7 @@ app.get('/addLabor', (req, res, next) => {
   const week_id = req.query['week_id'];
   request(
     { method: 'GET',
-      uri: `${req.protocol}://${req.hostname}${(PORT ? ':' + PORT : '')}/laborWeeks/${week_id}`,
+      uri: `${req.protocol}://${req.hostname}${(process.env.NODE_ENV == 'development' ? ':' + PORT : '')}/laborWeeks/${week_id}`,
       json: true},
     (error, response, body) => {
       if (error) {
@@ -56,7 +56,7 @@ app.get('/addSales', (req, res, next) => {
   const week_id = req.query['week_id'];
   request(
     { method: 'GET',
-      uri: `${req.protocol}://${req.hostname}${(PORT ? ':' + PORT : '')}/salesWeeks/${week_id}`,
+      uri: `${req.protocol}://${req.hostname}${(process.env.NODE_ENV == 'development' ? ':' + PORT : '')}/salesWeeks/${week_id}`,
       json: true},
     (error, response, body) => {
       if (error) {
